@@ -1,0 +1,41 @@
+{ "rules": {
+    // BEGIN Rules
+    // NOTE: Access is denied by default, a rule MUST be defined for access.
+
+    // Set rules for public branch
+    "public":{
+        //Set global read access to the public branch
+        ".read" : "auth.uid != null",
+        "onboarders" :{
+            "$thisUID" :{
+                ".write" :"auth.uid === $thisUID",
+                ".read"  :"auth.uid === $thisUID"
+            }
+        },
+        "products" :{
+            "$thisUID" :{
+                ".write" :"auth.uid === $thisUID",
+                ".read"  :"auth.uid === $thisUID"
+            }
+        }
+    },
+
+    // Set rules for Private branch
+    "_private": {
+        // NOTE there is no public read access in the private branch
+        "onboarders": {
+            "$thisUID" : {
+                ".write" :"auth.uid === $thisUID",
+                ".read"  :"auth.uid === $thisUID"
+            }
+        },
+        "products" :{
+            "$thisUID" :{
+                ".write" :"auth.uid === $thisUID",
+                ".read"  :"auth.uid === $thisUID"
+            }
+        }
+    }
+
+//END
+}}
