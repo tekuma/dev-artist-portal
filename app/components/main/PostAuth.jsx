@@ -50,9 +50,6 @@ export default class PostAuth extends React.Component {
         currentEditArtworkInfo: {},                 // Used to store information of artwork being edit momentarily
         currentEditAlbumInfo: {},                   // Used to store information of album being edit momentarily
         uploadPreviews: [],                         // Used to store files uploaded momentarily, to be previewed once uploaded
-        albumNames: ["Miscellaneous"],              // Used to store the JSON objects to be used by  Edit Artwork Form
-        albums : {},                                //
-        isUploading: false,                         //
         user  : {},                                 // public/onboarders/{UID} node
         userPrivate : {},                            // _private/onboarders/{UID} node
         currentError: ""
@@ -98,7 +95,6 @@ export default class PostAuth extends React.Component {
                     currentAlbum              ={this.state.currentAlbum}
                     changeAlbum               ={this.changeAlbum}
                     setUploadedFiles          ={this.setUploadedFiles}
-                    setAlbumNames             ={this.setAlbumNames}
                     editPublicUserInfo        ={this.editPublicUserInfo}
                     editPrivateUserInfo       ={this.editPrivateUserInfo}
                     toggleDeleteAccountDialog ={this.toggleDeleteAccountDialog}
@@ -107,7 +103,6 @@ export default class PostAuth extends React.Component {
                 <EditArtworkDialog
                     user={this.state.user}
                     albums={this.state.albums}
-                    albumNames={this.state.albumNames}
                     editArtworkIsOpen={this.state.editArtworkIsOpen}
                     toggleEditArtworkDialog={this.toggleEditArtworkDialog}
                     updateArtwork={this.updateArtwork}
@@ -469,14 +464,6 @@ export default class PostAuth extends React.Component {
     }
 
     // #Setter Methods
-
-    /**
-     * Setter method to populate an array of all album names.
-     * @param  {Array} names - an array of all names
-     */
-    setAlbumNames = (names) => {
-        this.setState({albumNames : names});
-    }
 
     /**
      * This method is used by the closeUploadDialog method

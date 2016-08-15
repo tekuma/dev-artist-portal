@@ -97,6 +97,8 @@ export default class Album extends React.Component {
                                 let image = this.props.thumbnail(artwork.fullsize_url, 150);
                                 thumbnail = image;
                                 break;
+                            } else if (artwork.album) {
+                                thumbnail = artwork.fullsize_url;
                             }
                         }
                     }
@@ -143,7 +145,8 @@ export default class Album extends React.Component {
         );
 
         return connectDragSource(connectDropTarget(
-            <li style       ={{opacity: isDragging ? 0 : 1}}
+            <li
+                style       ={{opacity: isDragging ? 0 : 1}}
                 onClick     ={this.props.changeAlbum}
                 className   ={(this.props.currentAlbum === this.props.album.name) ? "album black selected" : "album black"}>
                 <div className="album-avatar">

@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/album_manager/Album.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">components/album_manager/</a> Album.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.73% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>58/110</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.21% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>39/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.16% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.98% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/53</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">15 statements, 6 functions, 22 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Libs
+import React                        from 'react';
+import ReactDOM                     from "react-dom";
+import {DragSource, DropTarget}     from 'react-dnd';
+import {Tooltip, OverlayTrigger}    from 'react-bootstrap';
+&nbsp;
+// Files
+import ItemTypes                    from '../../constants/itemTypes';
+&nbsp;
+// ============= Drag and Drop ===============
+&nbsp;
+const albumSource = <span class="fstat-no" title="function not covered" >{</span>
+    beginDrag(props) {
+<span class="cstat-no" title="statement not covered" >        r</span>eturn {
+            album: props.album,
+            type: ItemTypes.ALBUM
+        };
+    }
+};
+&nbsp;
+const albumTarget = <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >{</span></span>
+    hover(targetProps, monitor) {
+<span class="cstat-no" title="statement not covered" >        c</span>onst target = targetProps.album;
+<span class="cstat-no" title="statement not covered" >        c</span>onst source = monitor.getItem();
+<span class="cstat-no" title="statement not covered" >        if(source.type == ItemTypes.ALBUM) {</span>
+<span class="cstat-no" title="statement not covered" >            if(source.album.name != target.name) {</span>
+                // Move order of albums
+<span class="cstat-no" title="statement not covered" >                t</span>argetProps.onMove(source, target);
+            }
+        }
+    },
+&nbsp;
+    drop(targetProps, monitor) {
+<span class="cstat-no" title="statement not covered" >        c</span>onst target = targetProps.album;
+<span class="cstat-no" title="statement not covered" >        c</span>onst source = monitor.getItem();
+<span class="cstat-no" title="statement not covered" >        if(source.type == ItemTypes.ARTWORK) {</span>
+<span class="cstat-no" title="statement not covered" >            if (source.album != target.name) {</span>
+                // Move artwork to new album
+<span class="cstat-no" title="statement not covered" >                t</span>argetProps.changeArtworkAlbum(source.id, source.album, target.name);
+&nbsp;
+                // Change album within artwork JSON
+<span class="cstat-no" title="statement not covered" >                c</span>onst thisUID  = firebase.auth().currentUser.uid;
+<span class="cstat-no" title="statement not covered" >                l</span>et path = `public/onboarders/${thisUID}/artworks/${source.id}`;
+<span class="cstat-no" title="statement not covered" >                l</span>et thisArtworkRef = firebase.database().ref(path);
+<span class="cstat-no" title="statement not covered" >                t</span>hisArtworkRef.transaction(<span class="fstat-no" title="function not covered" >(data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    d</span>ata['album'] = target.name;
+<span class="cstat-no" title="statement not covered" >                    r</span>eturn data;
+                });
+            }
+        }
+    }
+};
+&nbsp;
+// Makes Album a Drag Source
+@DragSource(ItemTypes.ALBUM, albumSource, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span>connect, monitor) =&gt; ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging() // map isDragging() state to isDragging prop
+}))
+// Makes Album a Drop Target
+@DropTarget([ItemTypes.ALBUM, ItemTypes.ARTWORK], albumTarget, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span>connect) =&gt; ({
+  connectDropTarget: connect.dropTarget()
+}))
+&nbsp;
+/**
+ * TODO
+ */
+export default class Album extends React.Component {
+<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span>
+        super(props);
+    }
+&nbsp;
+    componentWillMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("-----Album");
+    }
+&nbsp;
+    render() <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span></span>
+        const {connectDragSource, connectDropTarget, isDragging,
+            id, onMove, ...props} = this.props;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et thumbnail = "../../assets/images/icons/new-album.svg";
+<span class="cstat-no" title="statement not covered" >        l</span>et artworkID;
+&nbsp;
+        // ====== SETTING AVATAR IMAGE ======
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.props.album.artworks) {</span>
+            // STEP 1: FIND FIRST ARTWORK IN ALBUM
+<span class="cstat-no" title="statement not covered" >            a</span>rtworkID = this.props.album.artworks[0];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.props.user) {</span>
+                // STEP 2: GET ARTWORK'S IMAGE URL
+<span class="cstat-no" title="statement not covered" >                for (let id in this.props.user.artworks) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (this.props.user.artworks.hasOwnProperty(artworkID)) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (artworkID == id) {</span>
+<span class="cstat-no" title="statement not covered" >                            l</span>et artwork = this.props.user.artworks[artworkID];
+<span class="cstat-no" title="statement not covered" >                            if (artwork.album &amp;&amp; this.props.thumbnail) {</span>
+<span class="cstat-no" title="statement not covered" >                                l</span>et image = this.props.thumbnail(artwork.fullsize_url, 150);
+<span class="cstat-no" title="statement not covered" >                                t</span>humbnail = image;
+<span class="cstat-no" title="statement not covered" >                                b</span>reak;
+                            } else <span class="cstat-no" title="statement not covered" >if (artwork.album) {</span>
+<span class="cstat-no" title="statement not covered" >                                t</span>humbnail = artwork.fullsize_url;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+&nbsp;
+        // ==================================
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et avatarStyle = {
+            backgroundImage: 'url(' + thumbnail + ')'
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et styleResponsive = {
+            width   : 0.96 * (window.innerWidth * 0.3 - 40) - 70
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et styleFixed = {
+            width   : 210 * 0.96 - 70   // Album locker width caps at 210px. An album is 96% of the locker. The avatar is 70px
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        c</span>onst downloadTooltip = (
+            &lt;Tooltip
+                id="download-tooltip-regular"
+                className="tooltip"&gt;
+                Download
+            &lt;/Tooltip&gt;
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        c</span>onst editTooltip = (
+            &lt;Tooltip
+                id="edit-artwork-tooltip"
+                className="tooltip"&gt;
+                Edit
+            &lt;/Tooltip&gt;
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        c</span>onst deleteTooltip = (
+            &lt;Tooltip
+                id="delete-tooltip-regular"
+                className="tooltip"&gt;
+                Delete
+            &lt;/Tooltip&gt;
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        r</span>eturn connectDragSource(connectDropTarget(
+            &lt;li
+                style       ={{opacity: isDragging ? 0 : 1}}
+                onClick     ={this.props.changeAlbum}
+                className   ={(this.props.currentAlbum === this.props.album.name) ? "album black selected" : "album black"}&gt;
+                &lt;div className="album-avatar"&gt;
+                    &lt;div style={avatarStyle}
+                        className="avatar-container" /&gt;
+                &lt;/div&gt;
+                &lt;h3
+                    style={(window.innerWidth * 0.3 &gt; 250) ? styleResponsive : styleFixed}
+                    className   ="album-name" &gt;
+                    {this.props.album.name}
+                &lt;/h3&gt;
+                &lt;div className="album-tools bottom"&gt;
+                    &lt;OverlayTrigger
+                        placement="bottom"
+                        overlay={editTooltip}&gt;
+                        &lt;img
+                            className="album-tool"
+                            src='assets/images/icons/edit-white.svg'
+                            onClick={this.props.onEdit}
+                            onTouchTap={this.props.onEdit}
+                             /&gt;
+                     &lt;/OverlayTrigger&gt;
+                    &lt;OverlayTrigger
+                        placement   ="bottom"
+                        overlay     ={deleteTooltip}&gt;
+                        &lt;img
+                            className   ="album-tool"
+                            src         ='assets/images/icons/delete-white.svg'
+                            onClick     ={this.props.onDelete}
+                            onTouchTap  ={this.props.onDelete}
+                        /&gt;
+                    &lt;/OverlayTrigger&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        ));
+    }
+&nbsp;
+    componentDidMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("+++++Album");
+    }
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 15 2016 19:30:17 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

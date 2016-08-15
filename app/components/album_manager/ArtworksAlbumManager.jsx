@@ -17,7 +17,6 @@ export default class ArtworksAlbumManager extends React.Component {
     state = {
         albums    :{}, // album objects other than uploads
         uploads   :{}, // the uploads album object
-        albumNames:[]  // array of strings of album names
     }
 
     constructor(props) {
@@ -47,19 +46,16 @@ export default class ArtworksAlbumManager extends React.Component {
             let uploads = allAlbums[0];
 
             let albumKeys  = Object.keys(allAlbums);
-            let albumNames = ["Miscellaneous"];
             //NOTE 'i' starting at 1 to ignore uploads album
             for (let i = 1; i < albumKeys.length; i++) {
                 let key = albumKeys[i];
-                albumNames.push(allAlbums[key]['name']);
                 albums[key] = allAlbums[key];
             }
 
             //Set albums to state
             this.setState({
                 albums    :albums,
-                uploads   :uploads,
-                albumNames:albumNames
+                uploads   :uploads
             });
 
         }
@@ -75,20 +71,17 @@ export default class ArtworksAlbumManager extends React.Component {
             let uploads = allAlbums[0];
 
             let albumKeys  = Object.keys(allAlbums);
-            let albumNames = ["Miscellaneous"];
 
             //NOTE 'i' starting at 1 to ignore uploads album
             for (let i = 1; i < albumKeys.length; i++) {
                 let key = albumKeys[i];
-                albumNames.push(allAlbums[key]['name']);
                 albums[key] = allAlbums[key];
             }
 
             //Set albums to state
             this.setState({
                 albums    :albums,
-                uploads   :uploads,
-                albumNames:albumNames
+                uploads   :uploads
             });
         }
     }
