@@ -1,5 +1,6 @@
 // Libs
 import React from 'react';
+import firebase            from 'firebase';
 import {
     renderIntoDocument,
     scryRenderedDOMComponentsWithClass,
@@ -8,7 +9,6 @@ import {
 import TestBackend from 'react-dnd-test-backend';
 import {DragDropContext} from 'react-dnd';
 import assert from 'assert';
-
 
 // Files
 import ArtworksAlbumManager from '../app/components/album_manager/ArtworksAlbumManager';
@@ -19,45 +19,57 @@ import Album from '../app/components/album_manager/Album';
 import confirm from '../app/components/confirm_dialog/ConfirmFunction';
 import ItemTypes from '../app/constants/itemTypes';
 
+let config = {
+    apiKey: "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
+    authDomain: "project-7614141605200030275.firebaseapp.com",
+    databaseURL: "https://project-7614141605200030275.firebaseio.com",
+    storageBucket: "project-7614141605200030275.appspot.com",
+};
+
+firebase.initializeApp(config);
+
 describe('ArtworksAlbumManager', () => {
     let component;
+    let thisUID;
+    let userPath;
+    let userPrivatePath;
+    let user;
+    let userPrivate;
+
 
     beforeEach(() => {
         // toggleEditAlbumDialog,
         // toggleEditMiscAlbumDialog,
         // changeCurrentEditAlbum,
-        let user = {
-            albums : {
-                0: {
-                    artist: "",
-                    description: "",
-                    name: "Miscellaneous",
-                    year: ""
-                }
-            },
-            auth_provider: "google",
-            avatar: "",
-            bio: "",
-            display_name: "Untitled Artist",
-            location: "",
-            portfolio: "",
-            social_media: {
-                behance: "",
-                facebook: "",
-                instagram: "",
-                pinterest: "",
-                twitter: ""
-            }
-        },
-        userPrivate = {
-            dob: "",
-            email: "fake@gmail.com",
-            gender_pronoun: "",
-            legal_name: "",
-            over_eighteen: false,
-            paypal: ""
-        },
-        managerIsOpen = true,
+
+        firebase.auth().signInWithEmailAndPassword("test@tekuma.io", "password")
+        .then(() => {
+            console.log(">Password Auth successful for:", thisUser.displayName);
+            thisUID   = firebase.auth().currentUser.uid;
+            userPath = `public/onboarders/${thisUID}`;
+            userPrivatePath = `_private/onboarders/${thisUID}`;
+
+            firebase.database().ref(userPath).on('value', (snapshot)=>{
+                user = snapshot.val()
+                console.log("FIREBASE: user info updated");
+
+            }, (error)=>{
+                console.error(error);
+
+            });
+
+            firebase.database().ref(userPrivatePath).on('value', (snapshot)=>{
+                userPrivate = snapshot.val()
+
+            }, (error)=>{
+                console.error(error);
+
+            });
+        }).catch( (error) => {
+            console.error(error);
+        });
+
+        let managerIsOpen = true,
         currentAlbum = "Miscellaneous";
 
         let toggleManager = () => {
