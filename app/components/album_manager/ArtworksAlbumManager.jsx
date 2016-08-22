@@ -180,16 +180,18 @@ export default class ArtworksAlbumManager extends React.Component {
      * @return {[type]} [description]
      */
     addAlbum = () => {
+        console.log("UID: ",this.props.uid);
         const thisUID    = firebase.auth().currentUser.uid;
         let newAlbumName = this.getUniqueNewAlbumName();
         let albums       = this.state.albums;
 
-
         console.log(this.state.albums, "thisstatealbums");
         let albumPath = `public/onboarders/${thisUID}/albums`;
+        console.log("This is albumPath: ", albumPath);
         let albumRef  = firebase.database().ref(albumPath);
 
         albumRef.transaction( (data) => {
+            console.log("This is data in albumRef transaction: ", data);
             let albumLength = Object.keys(data).length;
             data[albumLength] = {
                 name: newAlbumName,

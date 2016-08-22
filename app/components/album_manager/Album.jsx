@@ -163,7 +163,7 @@ export default class Album extends React.Component {
                         placement="bottom"
                         overlay={editTooltip}>
                         <img
-                            className="album-tool"
+                            className="album-tool edit"
                             src='assets/images/icons/edit-white.svg'
                             onClick={this.props.onEdit}
                             onTouchTap={this.props.onEdit}
@@ -173,7 +173,7 @@ export default class Album extends React.Component {
                         placement   ="bottom"
                         overlay     ={deleteTooltip}>
                         <img
-                            className   ="album-tool"
+                            className   ="album-tool delete"
                             src         ='assets/images/icons/delete-white.svg'
                             onClick     ={this.props.onDelete}
                             onTouchTap  ={this.props.onDelete}

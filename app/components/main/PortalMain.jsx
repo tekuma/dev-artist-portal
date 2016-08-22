@@ -65,6 +65,7 @@ export default class PortalMain extends React.Component {
                 <ArtworksAlbumManager
                     thumbnail              ={this.props.thumbnail}
                     user                   ={this.props.user}
+                    uid                    ={this.props.uid}
                     userPrivate            ={this.props.userPrivate}
                     managerIsOpen          ={this.props.managerIsOpen}
                     toggleManager          ={this.props.toggleManager}

@@ -52,7 +52,8 @@ export default class PostAuth extends React.Component {
         uploadPreviews: [],                         // Used to store files uploaded momentarily, to be previewed once uploaded
         user  : {},                                 // public/onboarders/{UID} node
         userPrivate : {},                            // _private/onboarders/{UID} node
-        currentError: ""
+        currentError: "",
+        uid: ""
     };
 
     constructor(props) {
@@ -78,6 +79,7 @@ export default class PostAuth extends React.Component {
                 <PortalMain
                     thumbnail                 ={this.props.thumbnail}
                     user                      ={this.state.user}
+                    uid                       ={this.state.uid}
                     userPrivate               ={this.state.userPrivate}
                     albums                    ={this.state.albums}
                     toggleNav                 ={this.toggleNav}
@@ -149,6 +151,7 @@ export default class PostAuth extends React.Component {
     componentDidMount() {
         console.log("++++++PostAuth");
         const thisUID   = firebase.auth().currentUser.uid;
+        this.state.uid = thisUID;
         const  userPath = `public/onboarders/${thisUID}`;
         const userPrivatePath = `_private/onboarders/${thisUID}`;
 
