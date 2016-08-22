@@ -8,7 +8,8 @@
     "test": "karma start",
     "build": "webpack",
     "start": "webpack-dev-server",
-    "tdd": "karma start --auto-watch --no-single-run"
+    "tdd": "karma start --auto-watch --no-single-run",
+    "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install"
   },
   "repository": {
     "type": "git",
@@ -52,12 +53,14 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
+    "nightwatch": "^0.9.7",
     "npm-install-webpack-plugin": "^4.0.3",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.12",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.3.0",
     "react-dnd-test-backend": "^1.0.2",
+    "selenium-standalone": "^5.5.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",

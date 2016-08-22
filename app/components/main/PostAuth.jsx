@@ -151,7 +151,9 @@ export default class PostAuth extends React.Component {
     componentDidMount() {
         console.log("++++++PostAuth");
         const thisUID   = firebase.auth().currentUser.uid;
-        this.state.uid = thisUID;
+        this.setState({
+            uid: thisUID
+        });
         const  userPath = `public/onboarders/${thisUID}`;
         const userPrivatePath = `_private/onboarders/${thisUID}`;
 

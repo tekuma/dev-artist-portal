@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.07% </span>
+        <span class="strong">75.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>54/87</span>
+        <span class='fraction'>66/87</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">88.57% </span>
@@ -30,17 +30,17 @@
         <span class='fraction'>31/35</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">63.16% </span>
+        <span class="strong">68.42% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>12/19</span>
+        <span class='fraction'>13/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">29.41% </span>
+        <span class="strong">41.18% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/34</span>
+        <span class='fraction'>14/34</span>
       </div>
       <div class='fl pad1y'>
-        <span class="strong">7 statements, 6 functions, 16 branches</span>
+        <span class="strong">4 statements, 1 function, 12 branches</span>
         <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     </div>
@@ -212,33 +212,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,7 +263,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -354,16 +354,16 @@ export default class EditAlbumDialog extends React.Component {
         currentError: ""   // Used to store the current error to be displayed in the snackbar
     };
 &nbsp;
-<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span></span></span></span>
+    constructor(props) {
         super(props);
     }
 &nbsp;
     componentWillMount() {
-<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("-----EditAlbumDialog");
+        console.log("-----EditAlbumDialog");
     }
 &nbsp;
     render() {
-<span class="cstat-no" title="statement not covered" >        c</span>onst actions = [
+        const actions = [
               &lt;ConfirmButton
                   label     ={"Update"}
                   className ="edit-album-yes"
@@ -375,7 +375,7 @@ export default class EditAlbumDialog extends React.Component {
                   onClick   ={this.props.toggleEditAlbumDialog} /&gt;
         ];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        r</span>eturn (
+        return (
             &lt;div&gt;
                 &lt;MuiThemeProvider muiTheme={getMuiTheme()}&gt;
                     &lt;Dialog
@@ -410,7 +410,7 @@ export default class EditAlbumDialog extends React.Component {
     }
 &nbsp;
     componentDidMount() {
-<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("+++++EditAlbumDialog");
+        console.log("+++++EditAlbumDialog");
     }
 &nbsp;
     componentWillReceiveProps(nextProps) {
@@ -479,7 +479,7 @@ export default class EditAlbumDialog extends React.Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 18 2016 12:23:08 GMT-0400 (EDT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 22 2016 16:38:57 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

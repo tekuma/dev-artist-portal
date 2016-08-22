@@ -17,6 +17,7 @@ export default class ArtworksAlbumManager extends React.Component {
     state = {
         albums    :{}, // album objects other than uploads
         uploads   :{}, // the uploads album object
+        albumNames:[]  // array of strings of album names
     }
 
     constructor(props) {
@@ -46,16 +47,19 @@ export default class ArtworksAlbumManager extends React.Component {
             let uploads = allAlbums[0];
 
             let albumKeys  = Object.keys(allAlbums);
+            let albumNames = ["Miscellaneous"];
             //NOTE 'i' starting at 1 to ignore uploads album
             for (let i = 1; i < albumKeys.length; i++) {
                 let key = albumKeys[i];
+                albumNames.push(allAlbums[key]['name']);
                 albums[key] = allAlbums[key];
             }
 
             //Set albums to state
             this.setState({
                 albums    :albums,
-                uploads   :uploads
+                uploads   :uploads,
+                albumNames:albumNames
             });
 
         }
@@ -71,17 +75,20 @@ export default class ArtworksAlbumManager extends React.Component {
             let uploads = allAlbums[0];
 
             let albumKeys  = Object.keys(allAlbums);
+            let albumNames = ["Miscellaneous"];
 
             //NOTE 'i' starting at 1 to ignore uploads album
             for (let i = 1; i < albumKeys.length; i++) {
                 let key = albumKeys[i];
+                albumNames.push(allAlbums[key]['name']);
                 albums[key] = allAlbums[key];
             }
 
             //Set albums to state
             this.setState({
                 albums    :albums,
-                uploads   :uploads
+                uploads   :uploads,
+                albumNames:albumNames
             });
         }
     }
@@ -180,18 +187,16 @@ export default class ArtworksAlbumManager extends React.Component {
      * @return {[type]} [description]
      */
     addAlbum = () => {
-        console.log("UID: ",this.props.uid);
         const thisUID    = firebase.auth().currentUser.uid;
         let newAlbumName = this.getUniqueNewAlbumName();
         let albums       = this.state.albums;
 
+
         console.log(this.state.albums, "thisstatealbums");
         let albumPath = `public/onboarders/${thisUID}/albums`;
-        console.log("This is albumPath: ", albumPath);
         let albumRef  = firebase.database().ref(albumPath);
 
         albumRef.transaction( (data) => {
-            console.log("This is data in albumRef transaction: ", data);
             let albumLength = Object.keys(data).length;
             data[albumLength] = {
                 name: newAlbumName,

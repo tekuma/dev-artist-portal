@@ -19,6 +19,7 @@ import MiscAlbum from '../app/components/album_manager/MiscAlbum';
 import Album from '../app/components/album_manager/Album';
 import EditAlbumDialog from '../app/components/edit_album/EditAlbumDialog';
 import EditMiscAlbumDialog from '../app/components/edit_misc/EditMiscAlbumDialog';
+import confirm from '../app/components/confirm_dialog/ConfirmFunction';
 import ItemTypes from '../app/constants/itemTypes';
 
 let config = {
@@ -43,7 +44,7 @@ describe('ArtworksAlbumManager', () => {
     let editAlbumIsOpen = false;
     let editMiscAlbumIsOpen = false;
 
-    before('Firebase: Authenticate User', (done) => {
+    before('Initialize Firebase', (done) => {
          firebase.auth().signInWithEmailAndPassword("test@tekuma.io", "password")
          .then((thisUser) => {
              uid   = firebase.auth().currentUser.uid;
@@ -55,7 +56,7 @@ describe('ArtworksAlbumManager', () => {
          });
     });
 
-    before('Firebase: Get User Info', (done) => {
+    before('Initialize Firebase', (done) => {
         firebase.database().ref(`public/onboarders/${uid}`).on('value', (snapshot)=>{
              console.log("Hello, im in userPath");
              user = snapshot.val();
@@ -156,6 +157,7 @@ describe('ArtworksAlbumManager', () => {
 
         let addAlbum = findRenderedDOMComponentWithClass(managerComponent, "add-album");
         Simulate.click(addAlbum);
+        Simulate.click(addAlbum);
 
         setTimeout(() => {
             const numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
@@ -171,51 +173,75 @@ describe('ArtworksAlbumManager', () => {
         }, 500);
 
     });
-
-    it('Delete Album: Test 1', () => {
-        // Asserts whether an album can be deleted
-        // Already three albums (incl. Misc) from previous tests
-        // Album 1 (not incl. Misc) is deleted
-
-        let numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
-        assert.equal(numAlbums.length, 3); // One is the Misc Album, two are the New Albums
-
-        const deleteAlbum = scryRenderedDOMComponentsWithClass(managerComponent, 'album-tool delete')[1];
-        Simulate.click(deleteAlbum);
-
-        let confirmYes = findRenderedDOMComponentWithClass(managerComponent, 'confirm-yes');
-        Simulate.click(confirmYes);
-
-        setTimeout(() => {
-            numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
-            assert.equal(numAlbums.length, 1); // The one is the Misc Album
-        }, 500);
-    });
-
-    it('Delete Album: Test 2', () => {
-        // Asserts whether a third album will take name 'Untitled 1'
-        // if existing 'Untitled 1' album deleted
-        // This is done in previous test
-        // We add album and assert if name is 'Untitled 1'
-
-        let addAlbum = findRenderedDOMComponentWithClass(managerComponent, "add-album");
-        Simulate.click(addAlbum);
-
-        setTimeout(() => {
-            let numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
-            assert.equal(numAlbums.length, 3); // One is the Misc Album, two are New Albums
-
-            const albumOne = numAlbums[1];
-            const albumOneName = findRenderedDOMComponentWithClass(albumOne, 'album-name');
-            assert.equal(albumOneName, "Untitled 2");
-
-            const albumTwo = numAlbums[2];
-            const albumTwoName = findRenderedDOMComponentWithClass(albumTwo, 'album-name');
-            assert.equal(albumTwoName, "Untitled 1");
-        }, 500);
-
-
-    });
+    //
+    // it('Delete Album: Test 1', () => {
+    //     // Asserts whether an album can be deleted
+    //     // Album 1 should be deleted
+    //
+    //     let addAlbum = findRenderedDOMComponentWithClass(managerComponent, "add-album");
+    //     Simulate.click(addAlbum);
+    //     let numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 2); // One is the Misc Album, One is the New Album
+    //
+    //     const toDelete = numAlbums[1];
+    //     const deleteAlbum = findRenderedDOMComponentWithClass(toDelete, 'album-tool delete');
+    //     Simulate.click(deleteAlbum);
+    //
+    //     numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 1); // The one is the Misc Album
+    // });
+    //
+    // it('Delete Album: Test 2', () => {
+    //     // Asserts whether an album can be deleted
+    //     // Album 1 should be deleted
+    //     // Album 2 should remain, with name 'Untitled 2'
+    //
+    //     let addAlbum = findRenderedDOMComponentWithClass(managerComponent, "add-album");
+    //     Simulate.click(addAlbum);
+    //     Simulate.click(addAlbum);
+    //     let numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 3); // One is the Misc Album, One is the New Album
+    //
+    //     const toDelete = numAlbums[1];
+    //     const deleteAlbum = findRenderedDOMComponentWithClass(toDelete, 'album-tool delete');
+    //     Simulate.click(deleteAlbum);
+    //
+    //     numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 2); // The one is the Misc Album, the other is album two.
+    //
+    //     const albumTwo = numAlbums[1];
+    //     const albumTwoName = findRenderedDOMComponentWithClass(albumTwo, 'album-name');
+    //     assert.equal(albumTwoName, "Untitled 2");
+    // });
+    //
+    // it('Delete Album: Test 3', () => {
+    //     // Asserts whether an album can be deleted
+    //     // Album 1 should be deleted
+    //     // Album 2 should remain, with name 'Untitled 2'
+    //     // A third album should be added with the name 'Untitled 1'
+    //
+    //     let addAlbum = findRenderedDOMComponentWithClass(managerComponent, "add-album");
+    //     Simulate.click(addAlbum);
+    //     Simulate.click(addAlbum);
+    //     let numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 3); // One is the Misc Album, One is the New Album
+    //
+    //     const toDelete = numAlbums[1];
+    //     const deleteAlbum = findRenderedDOMComponentWithClass(toDelete, 'album-tool delete');
+    //     Simulate.click(deleteAlbum);
+    //
+    //     Simulate.click(addAlbum);
+    //     numAlbums = scryRenderedDOMComponentsWithClass(managerComponent, 'album black');
+    //     assert.equal(numAlbums.length, 3); // The one is the Misc Album, the other is album two, the other is album three.
+    //
+    //     const albumTwo = numAlbums[1];
+    //     const albumTwoName = findRenderedDOMComponentWithClass(albumTwo, 'album-name');
+    //     assert.equal(albumTwoName, "Untitled 2");
+    //
+    //     const albumThree = numAlbums[2];
+    //     const albumThreeName = findRenderedDOMComponentWithClass(albumThree, 'album-name');
+    //     assert.equal(albumThreeName, "Untitled 1");
+    // });
     //
     //
     // it('Edit Album', () => {
@@ -391,7 +417,7 @@ function updateAlbum(id, data) {
 
     // Update Album
     thisAlbumRef.update(data).then( () => {
-        if (id == 0) {
+        if (id == 0){
             this.toggleEditMiscAlbumDialog();
         } else {
             this.toggleEditAlbumDialog();
