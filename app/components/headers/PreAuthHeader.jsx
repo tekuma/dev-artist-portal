@@ -39,7 +39,7 @@ export default class PreAuthHeader extends React.Component {
                     className="header-icons logged-off"
                     onClick={this.props.toggleLogin}
                     >
-                    <div className="header-writing" title="Log In to Tekuma">
+                    <div className="header-writing login" title="Log In to Tekuma">
                         <h3>Log In</h3>
                     </div>
         	    </div>

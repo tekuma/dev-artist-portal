@@ -41,6 +41,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.23.1",
     "dotenv": "^2.0.0",
+    "expect.js": "^0.3.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.2",
     "file-loader": "^0.9.0",
     "isparta-instrumenter-loader": "^1.0.1",

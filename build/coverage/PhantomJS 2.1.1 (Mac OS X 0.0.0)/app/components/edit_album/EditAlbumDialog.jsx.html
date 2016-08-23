@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/components/edit_album/EditAlbumDialog.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/components/edit_album/</a> EditAlbumDialog.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">62.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>55/88</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>31/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.16% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/35</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">7 statements, 6 functions, 16 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Libs
+import React                from 'react';
+import uuid                 from 'node-uuid';
+import Dialog               from 'material-ui/Dialog';
+import Snackbar             from 'material-ui/Snackbar';
+import getMuiTheme          from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider     from 'material-ui/styles/MuiThemeProvider';
+&nbsp;
+// Files
+import EditAlbumForm      from './EditAlbumForm';
+import ConfirmButton        from '../confirm_dialog/ConfirmButton';
+&nbsp;
+/**
+ * TODO
+ */
+export default class EditAlbumDialog extends React.Component {
+    state =  {
+        albumInfo: {},     // Used to store the album information to be edited
+        errorType: {},     // Used to keep track of the type of error encountered to highlight relevant input field
+        errors: [],        // Used to store Auth errors from Registration errors
+        currentError: ""   // Used to store the current error to be displayed in the snackbar
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span></span></span></span>
+        super(props);
+    }
+&nbsp;
+    componentWillMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("-----EditAlbumDialog");
+    }
+&nbsp;
+    render() {
+<span class="cstat-no" title="statement not covered" >        c</span>onst actions = [
+              &lt;ConfirmButton
+                  label     ={"Update"}
+                  className ="edit-album-yes"
+                  onClick   ={this.onSubmit} /&gt;,
+&nbsp;
+              &lt;ConfirmButton
+                  label     ={"Cancel"}
+                  className ="edit-album-no"
+                  onClick   ={this.props.toggleEditAlbumDialog} /&gt;
+        ];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        r</span>eturn (
+            &lt;div&gt;
+                &lt;MuiThemeProvider muiTheme={getMuiTheme()}&gt;
+                    &lt;Dialog
+                        title                       ="Edit Album"
+                        actions                     ={actions}
+                        modal                       ={false}
+                        open                        ={this.props.editAlbumIsOpen}
+                        titleClassName              ="edit-album-title"
+                        actionsContainerClassName   ="edit-album-actions"
+                        bodyClassName               ="edit-album-body"
+                        contentClassName            ="edit-album-content" &gt;
+                        &lt;EditAlbumForm
+                            user            ={this.props.user}
+                            modifyTags      ={this.modifyTags}
+                            value           ={this.state.albumInfo}
+                            errorType       ={this.state.errorType}
+                            currentError    ={this.state.currentError}
+                            onChange        ={this.updateAlbumInfo}
+                            onSubmit        ={this.onSubmit}
+                            clearErrors     ={this.clearErrors} /&gt;
+                    &lt;/Dialog&gt;
+                &lt;/MuiThemeProvider&gt;
+                &lt;MuiThemeProvider muiTheme={getMuiTheme()}&gt;
+                    &lt;Snackbar
+                        className           ="registration-error"
+                        open                ={Object.keys(this.state.errorType).length &gt; 0}
+                        message             ={this.state.currentError}
+                        autoHideDuration    ={4000} /&gt;
+                &lt;/MuiThemeProvider&gt;
+            &lt;/div&gt;
+        );
+    }
+&nbsp;
+    componentDidMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("+++++EditAlbumDialog");
+    }
+&nbsp;
+    componentWillReceiveProps(nextProps) {
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            albumInfo : nextProps.currentEditAlbumInfo
+        })
+    }
+&nbsp;
+// ============= Methods ===============
+&nbsp;
+    updateAlbumInfo = <span class="fstat-no" title="function not covered" >(albumInfo) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            albumInfo : albumInfo
+        });
+    }
+&nbsp;
+    modifyTags = <span class="fstat-no" title="function not covered" >(tags) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et albumInfo = this.state.albumInfo;
+<span class="cstat-no" title="statement not covered" >        a</span>lbumInfo["tags"] = tags;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            albumInfo : albumInfo
+        });
+    }
+&nbsp;
+    onSubmit = <span class="fstat-no" title="function not covered" >(e) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span></span>
+<span class="cstat-no" title="statement not covered" >        e</span>.preventDefault();
+&nbsp;
+        // Test that user inputed an album name
+<span class="cstat-no" title="statement not covered" >        if (!this.state.albumInfo.name) {</span>
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.name = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Please enter a bane for the album");
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(this.state.errors.length == 0) {</span>
+            // this.props.toggleEditArtworkDialog();
+<span class="cstat-no" title="statement not covered" >            let id = this.state.albumInfo["id"] // get ID</span>
+<span class="cstat-no" title="statement not covered" >            this.state.albumInfo["id"] = null // remove ID from information</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.props.updateAlbum(id, this.state.albumInfo);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for(let i = 0; i &lt; this.state.errors.length; i++) <span class="cstat-no" title="statement not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >            s</span>etTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                t</span>his.setState({
+                    currentError: this.state.errors[i]
+                });
+            }, 3000 * i);
+        }
+    }
+&nbsp;
+    clearErrors = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            errorType: {},
+            errors: []
+        });
+    }
+}
+&nbsp;
+// ============= PropTypes ==============
+&nbsp;
+EditAlbumDialog.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    editAlbumIsOpen: React.PropTypes.bool.isRequired,
+    toggleEditAlbumDialog: React.PropTypes.func.isRequired,
+    updateAlbum: React.PropTypes.func.isRequired,
+    currentEditAlbumInfo: React.PropTypes.object.isRequired,
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 23 2016 16:56:24 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

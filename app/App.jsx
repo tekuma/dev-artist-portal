@@ -79,13 +79,17 @@ export default class App extends React.Component {
 
     render() {
         if (!this.state.loaded) {
+            console.log("Showing Loading Screen");
             return this.goToLoadingScreen();
         } else {
             if (this.state.loggedIn) {
+                console.log("Showing PostAuth");
                 return this.goToPostAuth();
             } else if (this.state.forgotPass) {
+                console.log("Showing ForgotPassword");
                 return this.goToForgotPassword();
             } else {
+                console.log("Showing PreAuth");
                 return this.goToPreAuth();
             }
         }
@@ -167,6 +171,7 @@ export default class App extends React.Component {
             <ForgotPassword
                 authenticateWithPassword={this.authenticateWithPassword}
                 errors                  ={this.state.errors}
+                clearErrors             ={this.clearErrors}
                 toggleForgotPassword    ={this.toggleForgotPassword}
                 returnToLandingPage    ={this.toggleForgotPassword}
             />

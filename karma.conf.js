@@ -6,7 +6,7 @@ module.exports = function karmaConfig (config) {
             // Set framework to mocha
             'mocha'
         ],
-        
+
         reporters: [
             // Reference: https://github.com/mlex/karma-spec-reporter
             // Set reporter to print detailed results to console
@@ -23,14 +23,14 @@ module.exports = function karmaConfig (config) {
             'node_modules/phantomjs-polyfill/bind-polyfill.js',
 
             // Grab all files in the tests directory that contain _test.
-            'tests/**/*_test.*'
+            'tests/*_tests.*'
         ],
 
         preprocessors: {
             // Reference: http://webpack.github.io/docs/testing.html
             // Reference: https://github.com/webpack/karma-webpack
             // Convert files with webpack and load sourcemaps
-            'tests/**/*_test.*': ['webpack', 'sourcemap']
+            'tests/**/*_tests.*': ['webpack', 'sourcemap']
         },
 
         browsers: [

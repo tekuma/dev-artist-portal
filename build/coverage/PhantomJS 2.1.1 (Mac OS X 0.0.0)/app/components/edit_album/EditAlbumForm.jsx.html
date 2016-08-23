@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/components/edit_album/EditAlbumForm.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/components/edit_album/</a> EditAlbumForm.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">45.95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>51/111</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">68.63% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>35/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.9% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>13/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.17% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/59</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">13 statements, 7 functions, 19 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Libs
+import React from 'react';
+import uuid from 'node-uuid';
+import { WithOutContext as ReactTags } from 'react-tag-input';
+&nbsp;
+/**
+ * TODO
+ */
+export default class EditAlbumForm extends React.Component {
+    state = {
+        tags: [],
+        suggestions: []
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span></span></span>
+        super(props);
+    }
+&nbsp;
+    componentWillMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("-----EditAlbumForm");
+    }
+&nbsp;
+    render() {
+<span class="cstat-no" title="statement not covered" >        l</span>et oldAlbum    = this.props.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et tags        = this.state.tags;
+<span class="cstat-no" title="statement not covered" >        l</span>et suggestions = this.state.suggestions;
+<span class="cstat-no" title="statement not covered" >        l</span>et onChange    = this.props.onChange;
+<span class="cstat-no" title="statement not covered" >        l</span>et clearErrors = this.props.clearErrors;
+<span class="cstat-no" title="statement not covered" >        l</span>et onSubmit    = this.props.onSubmit;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et errorStyle = {
+            border: '1px solid #ec167c'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        r</span>eturn (
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;form className="album-form" onSubmit={onSubmit}&gt;
+                        &lt;fieldset&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;&lt;h3 className="edit-album-hint"&gt;Changes to fields will be transferred to album artworks, and will overwrite corresponding artwork fields.&lt;/h3&gt;&lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;label htmlFor="album-title"&gt;
+                                        Name &lt;span className="pink"&gt;*&lt;/span&gt;
+                                    &lt;/label&gt;
+                                    &lt;input
+                                        type        ="text"
+                                        style       ={this.props.errorType.name ? errorStyle : null}
+                                        id          ="album-title"
+                                        className   ="text-inputs"
+                                        name        ="title"
+                                        placeholder ="What is the name of this album?"
+                                        defaultValue={this.props.value.name}
+                                        maxLength   ="50"
+                                        onClick     ={clearErrors}
+                                        onChange    ={<span class="fstat-no" title="function not covered" >(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                                            o</span>nChange(Object.assign({}, oldAlbum, {name: e.target.value}))
+                                        }} /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;label htmlFor="album-artist"&gt;
+                                        Artist
+                                    &lt;/label&gt;
+                                    &lt;input
+                                        type        ="text"
+                                        style       ={this.props.errorType.artist ? errorStyle : null}
+                                        id          ="album-artist"
+                                        className   ="text-inputs"
+                                        name        ="artist"
+                                        placeholder ="Who completed this album of artworks?"
+                                        defaultValue={this.props.value.artist}
+                                        maxLength   ="50"
+                                        onClick     ={clearErrors}
+                                        onChange    ={<span class="fstat-no" title="function not covered" >(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                                            o</span>nChange(Object.assign({}, oldAlbum, {artist: e.target.value}))
+                                        }} /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;label htmlFor="album-title"&gt;
+                                        Year
+                                    &lt;/label&gt;
+                                    &lt;input
+                                        type        ="text"
+                                        style       ={this.props.errorType.year ? errorStyle : null}
+                                        id          ="album-year"
+                                        className   ="text-inputs"
+                                        name        ="title"
+                                        placeholder ="Year album completed?"
+                                        defaultValue={this.props.value.year}
+                                        maxLength   ="4"
+                                        pattern="[0-9]*"
+                                        onClick     ={clearErrors}
+                                        onChange    ={<span class="fstat-no" title="function not covered" >(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                                            o</span>nChange(Object.assign({}, oldAlbum, {year: e.target.value}))
+                                        }} /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;label htmlFor="album-tags"&gt;
+                                        Tags
+                                    &lt;/label&gt;
+                                    &lt;ReactTags
+                                        tags={tags}
+                                        suggestions={suggestions}
+                                        handleDelete={this.handleDelete}
+                                        handleAddition={this.handleAddition}
+                                        handleDrag={this.handleDrag} /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;label
+                                        className="center"
+                                        htmlFor="album-description"&gt;
+                                        Description
+                                    &lt;/label&gt;
+                                    &lt;textarea
+                                        id          ="album-description"
+                                        style       ={this.props.errorType.description != undefined ? errorStyle : null}
+                                        placeholder ="Give this album a short description..."
+                                        value       ={this.props.value.description}
+                                        maxLength   ="1500"
+                                        onClick     ={clearErrors}
+                                        onChange    ={<span class="fstat-no" title="function not covered" >(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                                            o</span>nChange(Object.assign({}, oldAlbum, {description: e.target.value}))
+                                        }} /&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/fieldset&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+&nbsp;
+        );
+    }
+&nbsp;
+    componentDidMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("+++++EditAlbumForm");
+&nbsp;
+        // Get Tags
+<span class="cstat-no" title="statement not covered" >        if (this.props.value.tags) {</span>
+<span class="cstat-no" title="statement not covered" >            l</span>et allTags  = this.props.value.tags;
+<span class="cstat-no" title="statement not covered" >            l</span>et tagKeys  = Object.keys(allTags);
+<span class="cstat-no" title="statement not covered" >            l</span>et tags = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            for (let i = 0; i &lt; tagKeys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                t</span>ags.push(allTags[i]);
+            }
+&nbsp;
+            //Set tags to state
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                tags : tags
+            });
+        }
+&nbsp;
+        // Get suggestions
+<span class="cstat-no" title="statement not covered" >        l</span>et suggestions = [];
+<span class="cstat-no" title="statement not covered" >        l</span>et artworks = this.props.user.artworks;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (let artwork in artworks) {</span>
+<span class="cstat-no" title="statement not covered" >            if (artworks[artwork]["tags"]) {</span>
+<span class="cstat-no" title="statement not covered" >                l</span>et artworkTags = artworks[artwork]["tags"];
+<span class="cstat-no" title="statement not covered" >                for (let i = 0; i &lt; Object.keys(artworkTags).length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    l</span>et text = artworkTags[i].text;
+<span class="cstat-no" title="statement not covered" >                    if (suggestions.indexOf(text) == -1) {</span>
+<span class="cstat-no" title="statement not covered" >                        s</span>uggestions.push(text);
+                    }
+                }
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            suggestions : suggestions
+        });
+    }
+&nbsp;
+    componentWillReceiveProps(nextProps) {
+<span class="cstat-no" title="statement not covered" >        if (nextProps.user.albums) {</span>
+<span class="cstat-no" title="statement not covered" >            l</span>et user       = nextProps.user;
+<span class="cstat-no" title="statement not covered" >            l</span>et allAlbums  = user['albums'];
+<span class="cstat-no" title="statement not covered" >            l</span>et albumKeys  = Object.keys(allAlbums);
+<span class="cstat-no" title="statement not covered" >            l</span>et albumNames = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            for (let i = 0; i &lt; albumKeys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                l</span>et key = albumKeys[i];
+<span class="cstat-no" title="statement not covered" >                a</span>lbumNames.push(allAlbums[key]['name']);
+            }
+&nbsp;
+            //Set albums to state
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                albumNames : albumNames
+            });
+        }
+    }
+&nbsp;
+// ============= Methods ===============
+&nbsp;
+    handleDelete = <span class="fstat-no" title="function not covered" >(i) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et tags = this.state.tags;
+<span class="cstat-no" title="statement not covered" >        t</span>ags.splice(i, 1);
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({tags: tags});
+<span class="cstat-no" title="statement not covered" >        t</span>his.props.modifyTags(tags);
+    }
+&nbsp;
+    handleAddition = <span class="fstat-no" title="function not covered" >(tag) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et tags = this.state.tags;
+<span class="cstat-no" title="statement not covered" >        t</span>ags.push({
+            id: tags.length + 1,
+            text: tag
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({tags: tags});
+<span class="cstat-no" title="statement not covered" >        t</span>his.props.modifyTags(tags);
+    }
+&nbsp;
+    handleDrag = <span class="fstat-no" title="function not covered" >(tag, currPos, newPos) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et tags = this.state.tags;
+&nbsp;
+        // mutate array
+<span class="cstat-no" title="statement not covered" >        t</span>ags.splice(currPos, 1);
+<span class="cstat-no" title="statement not covered" >        t</span>ags.splice(newPos, 0, tag);
+&nbsp;
+        // re-render
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({ tags: tags });
+<span class="cstat-no" title="statement not covered" >        t</span>his.props.modifyTags(tags);
+    }
+}
+&nbsp;
+EditAlbumForm.propTypes = {
+    value: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func.isRequired
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 23 2016 16:56:24 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

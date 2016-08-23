@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/components/album_manager/Albums.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/components/album_manager/</a> Albums.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.43% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>53/81</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.94% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>31/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>11/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/35</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">7 statements, 5 functions, 16 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Libs
+import React                        from 'react';
+import firebase                     from 'firebase';
+import {DragSource, DropTarget}     from 'react-dnd';
+import {Tooltip, OverlayTrigger}    from 'react-bootstrap';
+import update                       from 'react-addons-update';
+&nbsp;
+// Files
+import MiscAlbum   from './MiscAlbum';
+import Album          from './Album';
+import ItemTypes      from '../../constants/itemTypes';
+&nbsp;
+/**
+ * TODO
+ */
+export default class Albums extends React.Component {
+<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span>
+        super(props);
+    }
+&nbsp;
+    componentWillMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("-----Albums");
+    }
+&nbsp;
+    render() <span class="cstat-no" title="statement not covered" >{</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et styleResponsive = {
+            height  : window.innerHeight - 60,
+            width   : window.innerWidth * 0.3 - 40
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et styleFixed = {
+            height  : window.innerHeight - 60,
+            width   : 210
+        };
+&nbsp;
+        // Create an array of albums to be used by map function
+<span class="cstat-no" title="statement not covered" >        l</span>et albumKeys = Object.keys(this.props.albums);
+<span class="cstat-no" title="statement not covered" >        l</span>et albumArray = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; albumKeys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            l</span>et index = albumKeys[i];
+<span class="cstat-no" title="statement not covered" >            l</span>et thisName = this.props.albums[index]['name'];
+<span class="cstat-no" title="statement not covered" >            l</span>et artworks = this.props.albums[index]['artworks'];
+<span class="cstat-no" title="statement not covered" >            a</span>lbumArray.push({
+                id: index,
+                name: thisName,
+                artworks: artworks
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        r</span>eturn (
+            &lt;ul style={(window.innerWidth * 0.3 &gt; 250) ? styleResponsive : styleFixed} className="album-locker right"&gt;
+                &lt;MiscAlbum
+                    user               ={this.props.user}
+                    uploads            ={this.props.uploads}
+                    thumbnail          ={this.props.thumbnail}
+                    changeAlbum        ={this.props.changeAlbum.bind(null, "Miscellaneous")}
+                    currentAlbum       ={this.props.currentAlbum}
+                    changeArtworkAlbum ={this.props.changeArtworkAlbum}
+                    emptyMisc          ={this.props.emptyMisc}
+                    editMisc           ={this.props.editMisc}
+                    /&gt;
+                {albumArray.map(<span class="fstat-no" title="function not covered" >album =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    r</span>eturn (
+                        &lt;Album
+                            key                 ={album.id}
+                            album               ={album}
+                            user                ={this.props.user}
+                            thumbnail           ={this.props.thumbnail}
+                            onEdit              ={this.props.onEdit.bind(null, album.id)}
+                            onDelete            ={this.props.onDelete.bind(null, album.id)}
+                            onMove              ={this.moveAlbum}
+                            currentAlbum        ={this.props.currentAlbum}
+                            changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
+                            changeArtworkAlbum  ={this.props.changeArtworkAlbum} /&gt;
+                    );
+                })}
+            &lt;/ul&gt;
+        );
+    }
+&nbsp;
+    componentDidMount() {
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("+++++Albums");
+&nbsp;
+    }
+&nbsp;
+// ============= Methods ===============
+&nbsp;
+    moveAlbum = <span class="fstat-no" title="function not covered" >(source, target) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("Entered move");
+<span class="cstat-no" title="statement not covered" >        c</span>onst thisUID = firebase.auth().currentUser.uid;
+<span class="cstat-no" title="statement not covered" >        c</span>onst albumPath = `public/onboarders/${thisUID}/albums`;
+<span class="cstat-no" title="statement not covered" >        c</span>onst albumRef = firebase.database().ref(albumPath);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        a</span>lbumRef.transaction(<span class="fstat-no" title="function not covered" >(data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            l</span>et sourceIndex = source['album']['id'];
+<span class="cstat-no" title="statement not covered" >            l</span>et targetIndex = target['id'];
+<span class="cstat-no" title="statement not covered" >            l</span>et sourceData = data[sourceIndex];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et albums = update(data, {
+                $splice: [[sourceIndex, 1],[targetIndex, 0, sourceData]]
+            });
+&nbsp;
+            // array.splice(start, deleteCount[, item1[, item2[, ...]]])
+            // start:
+            //  -&gt; index at which to start changing the array (with origin 0)
+            // deleteCount:
+            //  -&gt; An integer indicating the number of old array elements to remove
+            //  -&gt; If deleteCount is 0, no elements are removed
+            // item1, item2, ...
+            //  -&gt; The elements to add to the array, beginning at the start index
+            //
+            // In the example above, we are deleting 1 element starting from sourceAlbumIndex,
+            // then we are removing 0 elements starting from targetAlbumIndex
+            // and adding sourceAlbum before targetAlbumIndex
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            r</span>eturn albums;
+        });
+    }
+}
+&nbsp;
+// ============= PropTypes ==============
+&nbsp;
+Albums.propTypes = {
+    albums: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    uploads: React.PropTypes.object.isRequired,
+    onEdit: React.PropTypes.func.isRequired,
+    editMisc: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    emptyMisc: React.PropTypes.func.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+    changeArtworkAlbum: React.PropTypes.func.isRequired
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 23 2016 16:56:24 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

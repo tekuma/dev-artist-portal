@@ -1,0 +1,2229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/components/edit_profile/PrivateEdit.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/components/edit_profile/</a> PrivateEdit.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.55% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>52/176</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.05% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>31/206</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.13% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/123</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">7 statements, 6 functions, 16 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Libs
+import React            from 'react';
+import firebase         from 'firebase';
+import Dropzone         from 'react-dropzone';
+import getMuiTheme      from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Snackbar         from 'material-ui/Snackbar';
+import {Tooltip, OverlayTrigger}    from 'react-bootstrap';
+&nbsp;
+export default class PrivateEdit extends React.Component {
+    state = {
+        gender          : "",
+        accordion: {
+            legal_name: false,
+            email: false,
+            emailVerified: false,
+            password: false,
+            paypal: false,
+            age         : false,
+            pronoun     : false
+        },
+        allAccordion    : false,
+        errorType: {},
+        errors: [],
+        currentError: ""
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span></span></span></span></span></span>
+        super(props);
+    }
+&nbsp;
+    componentWillMount() {
+        //pass
+    }
+&nbsp;
+    render() {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et errorStylePasswordAuth = {
+            border: '1px solid #ec167c'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et errorStyle = {
+            border: '1px solid #ec167c'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et hideStyle = {
+            display: 'none'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et age;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.props.userPrivate.dob) {</span>
+<span class="cstat-no" title="statement not covered" >            a</span>ge = `${this.props.userPrivate.dob.split("-")[1]}-${this.props.userPrivate.dob.split("-")[0]}-${this.props.userPrivate.dob.split("-")[2]}`;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        c</span>onst saveTooltip = (
+            &lt;Tooltip
+                id="delete-tooltip-regular"
+                className="tooltip"&gt;
+                Save Private Information
+            &lt;/Tooltip&gt;
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        c</span>onst accordionTooltip = (
+            &lt;Tooltip
+                id="delete-tooltip-regular"
+                className="tooltip"&gt;
+                Open All Private Fields
+            &lt;/Tooltip&gt;
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        r</span>eturn(
+            &lt;div&gt;
+                &lt;div className="edit-profile-heading"&gt;
+                    &lt;div
+                        className={this.props.editingPublic ? "edit-profile-public selected" : "edit-profile-public"}
+                        onClick={this.props.editPublic}&gt;
+                        &lt;h2&gt;Public&lt;/h2&gt;
+                    &lt;/div&gt;
+                    &lt;div
+                        className={!this.props.editingPublic ? "edit-profile-private selected" : "edit-profile-private"}
+                        onClick={this.props.editPrivate}&gt;
+                        &lt;h2&gt;Private&lt;/h2&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div className ="scroll-edit-profile"&gt;
+                    &lt;article className="edit-accordion"&gt;
+                        &lt;div
+                            className={this.state.accordion.legal_name ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"legal_name")}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Legal Name&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{this.props.userPrivate.legal_name != "" ? this.props.userPrivate.legal_name : "Unset"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="legal-name-content"
+                            className={this.state.accordion.legal_name ? "accordion-content open" : "accordion-content"}&gt;
+                                &lt;input
+                                type="text"
+                                id="edit-legalname"
+                                defaultValue={this.props.userPrivate.legal_name}
+                                ref="legalname"
+                                style={this.state.errorType.legalName ? errorStyle : null}
+                                onKeyPress={this.setUnsaved}
+                                placeholder="Legal Name"
+                                required=""
+                                maxLength="50"
+                                autoCapitalize="off"
+                                autoComplete="off"
+                                autoCorrect="off" /&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.email ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"email")}
+                            style={this.props.user.auth_provider == "password" ? (this.state.errorType.email ? errorStylePasswordAuth : null) : (this.state.errorType.email ? errorStyle : hideStyle)}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Email&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{this.props.userPrivate.email != "" ? this.props.userPrivate.email : "Unset"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="email-content"
+                            className={this.state.accordion.email ? "accordion-content open" : "accordion-content"}
+                            style={this.props.user.auth_provider == "password" ? (this.state.errorType.email ? errorStylePasswordAuth : null) : (this.state.errorType.email ? errorStyle : hideStyle)}&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;input
+                                        type="email"
+                                        id="edit-email"
+                                        defaultValue={this.props.userPrivate.email}
+                                        ref="email"
+                                        style={this.state.errorType.email ? errorStyle : null}
+                                        onKeyPress={this.setUnsaved}
+                                        placeholder="Email"
+                                        required="true"
+                                        maxLength="100" /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;input
+                                        type="password"
+                                        id="edit-password"
+                                        ref="emailPassword"
+                                        placeholder="Current Password"
+                                        required="true"
+                                        maxLength="100"
+                                        autoComplete="off" /&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.emailVerified ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"emailVerified")}
+                            style={this.props.user.auth_provider == "password" ? null : hideStyle}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Email Verification&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{(firebase.auth().currentUser.emailVerified) ? "Verified" : "Unverified"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="email-verified-content"
+                            className={this.state.accordion.emailVerified ? "accordion-content open" : "accordion-content"}
+                            style={this.props.user.auth_provider == "password" ? null : hideStyle}&gt;
+                            {firebase.auth().currentUser.emailVerified ?
+                                &lt;h3 className="email-verified-writing"&gt;
+                                    Email Verified
+                                &lt;/h3&gt; :
+                                &lt;button
+                                    className="verify-button"
+                                    type="submit"
+                                    onClick={this.verifyEmail}&gt;
+                                    &lt;h3&gt;Verify Email&lt;/h3&gt;
+                                &lt;/button&gt;}
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.password ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"password")}
+                            style={this.props.user.auth_provider == "password" ? (this.state.errorType.email ? errorStylePasswordAuth : null) : (this.state.errorType.email ? errorStyle : hideStyle)}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Password&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;&amp;#9679;&amp;#9679;&amp;#9679;&amp;#9679;&amp;#9679;&amp;#9679;&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="password-content"
+                            className={this.state.accordion.password ? "accordion-content open" : "accordion-content"}
+                            style={this.props.user.auth_provider == "password" ? (this.state.errorType.email ? errorStylePasswordAuth : null) : (this.state.errorType.email ? errorStyle : hideStyle)}&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;input
+                                        type="password"
+                                        id="edit-password"
+                                        ref="currentPassword"
+                                        style={this.state.errorType.currentPassword ? errorStyle : null}
+                                        onKeyPress={this.setUnsaved}
+                                        placeholder="Current Password"
+                                        required="true"
+                                        maxLength="100"
+                                        autoComplete="off" /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;input
+                                        type="password"
+                                        id="edit-password"
+                                        ref="password"
+                                        style={this.state.errorType.password ? errorStyle : null}
+                                        onKeyPress={this.setUnsaved}
+                                        placeholder="New Password"
+                                        required="true"
+                                        maxLength="100"
+                                        autoComplete="off" /&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;input
+                                        type="password"
+                                        id="edit-confirm-password"
+                                        ref="confirmPassword"
+                                        style={this.state.errorType.confirmPassword ? errorStyle : null}
+                                        onKeyPress={this.setUnsaved}
+                                        placeholder="Confirm Password"
+                                        required="true"
+                                        maxLength="100" /&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.paypal ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"paypal")}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;PayPal Email&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{this.props.userPrivate.paypal != "" ? this.props.userPrivate.paypal : "Unset"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="paypal-content"
+                            className={this.state.accordion.paypal ? "accordion-content open" : "accordion-content"}&gt;
+                            &lt;input
+                                type="email"
+                                id="edit-paypal"
+                                defaultValue={this.props.userPrivate.paypal}
+                                ref="paypal"
+                                style={this.state.errorType.paypal ? errorStyle : null}
+                                onKeyPress={this.setUnsaved}
+                                placeholder="PayPal Email"
+                                required="true"
+                                maxLength="100" /&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.age ? "accordion-item open" : "accordion-item"}
+                            onClick={this.toggleAccordion.bind({},"age")}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Age&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{this.props.userPrivate.dob != "" ? age : "Unset"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="age-content"
+                            className={this.state.accordion.age ? "accordion-content open" : "accordion-content"}&gt;
+                            &lt;div&gt;
+                                &lt;label htmlFor="edit-age"&gt;Date of Birth: &lt;/label&gt;
+                                &lt;div id="accordion-dob" className="accordion-dob"&gt;
+                                    &lt;div className="controls controls-month"&gt;
+                                        &lt;select
+                                            id="accordion-dob-month"
+                                            className="dob"
+                                            defaultValue={this.props.userPrivate.dob ? this.props.userPrivate.dob.split("-")[1] : null}
+                                            onChange={this.setUnsaved}
+                                            ref="dobMonth"
+                                            style={this.state.errorType.month? errorStyle : null}&gt;
+                                            &lt;option value="" disabled=""&gt;Month&lt;/option&gt;
+                                            &lt;option value="01"&gt;January&lt;/option&gt;
+                                            &lt;option value="02"&gt;February&lt;/option&gt;
+                                            &lt;option value="03"&gt;March&lt;/option&gt;
+                                            &lt;option value="04"&gt;April&lt;/option&gt;
+                                            &lt;option value="05"&gt;May&lt;/option&gt;
+                                            &lt;option value="06"&gt;June&lt;/option&gt;
+                                            &lt;option value="07"&gt;July&lt;/option&gt;
+                                            &lt;option value="08"&gt;August&lt;/option&gt;
+                                            &lt;option value="09"&gt;September&lt;/option&gt;
+                                            &lt;option value="10"&gt;October&lt;/option&gt;
+                                            &lt;option value="11"&gt;November&lt;/option&gt;
+                                            &lt;option value="12"&gt;December&lt;/option&gt;
+                                        &lt;/select&gt;
+                                    &lt;/div&gt;
+                                    &lt;div className="controls controls-day"&gt;
+                                        &lt;input
+                                            type="number"
+                                            id="accordion-dob-day"
+                                            defaultValue={this.props.userPrivate.dob ? this.props.userPrivate.dob.split("-")[0] : null}
+                                            className="dob"
+                                            ref="dobDay"
+                                            style={this.state.errorType.day ? errorStyle : null}
+                                            onChange={this.setUnsaved}
+                                            placeholder="Day"
+                                            pattern="[0-9]*"
+                                            maxLength="2"
+                                            min="1"
+                                            max="31" /&gt;
+                                    &lt;/div&gt;
+                                    &lt;div className="controls controls-year"&gt;
+                                        &lt;input
+                                            type="number"
+                                            id="accordion-dob-year"
+                                            defaultValue={this.props.userPrivate.dob ? this.props.userPrivate.dob.split("-")[2] : null}
+                                            className="dob"
+                                            ref="dobYear"
+                                            style={this.state.errorType.year ? errorStyle : null}
+                                            onChange={this.setUnsaved}
+                                            placeholder="Year"
+                                            pattern="[0-9]*"
+                                            maxLength="4" /&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;label className="age-confirm-label"&gt;
+                                    &lt;input
+                                        type="checkbox"
+                                        id="over-eighteen-checkbox"
+                                        ref="overEighteen"
+                                        defaultChecked={this.props.userPrivate.over_eighteen}
+                                        onChange={this.setUnsaved} /&gt;
+                                        I confirm that I am 18+
+                                &lt;/label&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            className={this.state.accordion.pronoun ? "accordion-item no-border-bottom open" : "accordion-item no-border-bottom"}
+                            onClick={this.toggleAccordion.bind({},"pronoun")}&gt;
+                            &lt;h2 className="accordion-item-heading"&gt;Preferred Gender Pronoun&lt;/h2&gt;
+                            &lt;h3 className="accordion-item-preview"&gt;{this.props.userPrivate.gender_pronoun != "" ? this.props.userPrivate.gender_pronoun : "Unset"}&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                            id="pronoun-content"
+                            className={this.state.accordion.pronoun ? "accordion-content open" : "accordion-content"}&gt;
+                            &lt;label
+                                htmlFor="edit-she"
+                                className="gender-radio control-inline"&gt;
+                                &lt;input
+                                    type="radio"
+                                    id="edit-she"
+                                    name="gender"
+                                    className="reg-radio"
+                                    defaultValue="She"
+                                    defaultChecked={this.props.userPrivate.gender_pronoun == "She"}
+                                    onChange={this.setGender}
+                                    required="" /&gt;
+                                She
+                          &lt;/label&gt;
+                          &lt;label
+                              htmlFor="edit-he"
+                              className="gender-radio control-inline"&gt;
+                              &lt;input
+                                  type="radio"
+                                  id="edit-he"
+                                  name="gender"
+                                  className="reg-radio"
+                                  defaultValue="He"
+                                  defaultChecked={this.props.userPrivate.gender_pronoun == "He"}
+                                  onChange={this.setGender}
+                                  required="" /&gt;
+                              He
+                        &lt;/label&gt;
+                        &lt;label
+                            htmlFor="edit-they"
+                            className="gender-radio control-inline"&gt;
+                                &lt;input
+                                    type="radio"
+                                    id="edit-they"
+                                    name="gender"
+                                    className="reg-radio"
+                                    defaultValue="They"
+                                    defaultChecked={this.props.userPrivate.gender_pronoun == "They"}
+                                    onChange={this.setGender}
+                                    required="" /&gt;
+                                They
+                            &lt;/label&gt;
+                        &lt;/div&gt;
+                    &lt;/article&gt;
+                    &lt;OverlayTrigger
+                        placement="right"
+                        overlay={saveTooltip}&gt;
+                        &lt;button
+                            className="edit-profile-save-button"
+                            type="submit"
+                            onClick={this.saveProfileInfo}&gt;
+                            &lt;img src="assets/images/icons/save.svg" /&gt;
+                        &lt;/button&gt;
+                    &lt;/OverlayTrigger&gt;
+                    &lt;OverlayTrigger
+                        placement="left"
+                        overlay={accordionTooltip}&gt;
+                        &lt;button
+                            className="edit-profile-open-accordion-button"
+                            type="submit"
+                            onClick={this.toggleAllAccordion}&gt;
+                            &lt;svg
+                                version="1.1"
+                                id="open-accordion"
+                                x="0px"
+                                y="0px"
+                                width="25px"
+                                height="25px"
+                                viewBox="12.5 12.5 25 25"
+                                enableBackground="new 12.5 12.5 25 25"&gt;
+                               &lt;polygon
+                                   id="up-arrow"
+                                   fill="#FFFFFF"
+                                   points="12.489,21.449 21.063,12.886 21.063,12.886 23.703,12.886 23.703,12.886 23.703,37.114 21.063,37.114 21.063,29.147 21.063,16.408 12.489,24.982 	"/&gt;
+                              &lt;polygon
+                                  id="down-arrow"
+                                  fill="#FFFFFF"
+                                  points="37.511,28.551 28.937,37.114 28.937,37.114 26.297,37.114 26.297,37.114 26.297,12.886 28.937,12.886 28.937,20.853 28.937,33.592 37.511,25.018 	"/&gt;
+                            &lt;/svg&gt;
+                        &lt;/button&gt;
+                    &lt;/OverlayTrigger&gt;
+                &lt;/div&gt;
+                &lt;MuiThemeProvider muiTheme={getMuiTheme()}&gt;
+                    &lt;Snackbar
+                        className="registration-error"
+                        open={this.state.errors.length &gt; 0}
+                        message={this.state.currentError}
+                        autoHideDuration={4000} /&gt;
+                &lt;/MuiThemeProvider&gt;
+            &lt;/div&gt;
+        );
+    }
+&nbsp;
+    componentDidMount() {
+        //pass
+    }
+&nbsp;
+    componentWillReceiveProps(nextProps) {
+        //pass
+    }
+&nbsp;
+    // ----------- METHODS --------------
+&nbsp;
+    /**
+     * TODO
+     * @param  {[type]} item [description]
+     * @return {[type]}      [description]
+     */
+    toggleAccordion = <span class="fstat-no" title="function not covered" >(item) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et accordion = this.state.accordion;
+<span class="cstat-no" title="statement not covered" >        a</span>ccordion[item] = !accordion[item];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            accordion: accordion
+        });
+    }
+&nbsp;
+    toggleAllAccordion = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        l</span>et allAccordion = this.state.allAccordion;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et accordion   = {
+            legal_name      : !allAccordion,
+            email           : !allAccordion,
+            emailVerified   : !allAccordion,
+            password        : !allAccordion,
+            paypal          : !allAccordion,
+            age             : !allAccordion,
+            pronoun         : !allAccordion
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            accordion: accordion,
+            allAccordion: !allAccordion
+        });
+    }
+&nbsp;
+    /**
+     * TODO
+     * @param  {[type]} e [description]
+     * @return {[type]}   [description]
+     */
+    setGender = <span class="fstat-no" title="function not covered" >(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+            gender: e.target.value
+        });
+<span class="cstat-no" title="statement not covered" >        t</span>his.props.setUnsaved();
+    }
+&nbsp;
+    setUnsaved = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        t</span>his.props.setUnsaved();
+    }
+&nbsp;
+    /**
+     * TODO
+     * @param  {[type]} e [description]
+     * @return {[type]}   [description]
+     */
+    saveProfileInfo = <span class="fstat-no" title="function not covered" >(e) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >{</span></span></span>
+<span class="cstat-no" title="statement not covered" >        e</span>.preventDefault();
+&nbsp;
+        // Clear errors from any previous form submission
+<span class="cstat-no" title="statement not covered" >        t</span>his.state.errors = [];
+<span class="cstat-no" title="statement not covered" >        l</span>et data = {};
+&nbsp;
+        // Private
+<span class="cstat-no" title="statement not covered" >        l</span>et legalName = this.refs.legalname.value;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et email = this.refs.email.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et emailPassword = this.refs.emailPassword.value;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et currentPassword = this.refs.currentPassword.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et password = this.refs.password.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et confirmPassword = this.refs.confirmPassword.value;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et paypal = this.refs.paypal.value;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et day          = this.refs.dobDay.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et month        = this.refs.dobMonth.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et year         = this.refs.dobYear.value;
+<span class="cstat-no" title="statement not covered" >        l</span>et overEighteen = this.refs.overEighteen.checked;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        l</span>et gender       = this.state.gender;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        d</span>ata.over_eighteen = overEighteen;
+&nbsp;
+        // ====== Private Validations ======
+&nbsp;
+        // Legal Name
+<span class="cstat-no" title="statement not covered" >        if(legalName.length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("To make use of Tekuma's services, we require your legal name.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.legalName = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        } else {
+<span class="cstat-no" title="statement not covered" >            d</span>ata.legal_name = legalName;
+        }
+&nbsp;
+        // Email
+&nbsp;
+        // Only test regex if user has typed in an email and has password
+<span class="cstat-no" title="statement not covered" >        if(email.length &gt; 0 &amp;&amp;</span>
+            email != this.props.userPrivate.email &amp;&amp;
+            !/.+@.+\..+/.test(email) &amp;&amp;
+            this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("The email address you supplied is invalid.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.email = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        } else <span class="cstat-no" title="statement not covered" >if (email != this.props.userPrivate.email &amp;&amp;</span>
+            emailPassword.length == 0 &amp;&amp;
+            this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("To change your email, you must enter your current password.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.emailPassword = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        } else <span class="cstat-no" title="statement not covered" >if (email != this.props.userPrivate.email &amp;&amp;</span>
+                email.length &gt; 0 &amp;&amp;
+                emailPassword.length &gt; 0 &amp;&amp;
+                this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >            d</span>ata.email = email;
+<span class="cstat-no" title="statement not covered" >            d</span>ata.email_password = emailPassword;
+        }
+&nbsp;
+        // Password
+&nbsp;
+        // Only test password length if typed in
+<span class="cstat-no" title="statement not covered" >        if(password.length &gt; 0 &amp;&amp; password.length &lt; 6 &amp;&amp; this.props.user.auth_provider == "password") {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Your password must be at least 6 characters long.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.password = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        }
+&nbsp;
+        // Only test confirm password length if password typed in
+<span class="cstat-no" title="statement not covered" >        if(password.length &gt; 0 &amp;&amp; confirmPassword.length == 0 &amp;&amp; this.props.user.auth_provider == "password") {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Please confirm your password.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.confirmPassword = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        }
+&nbsp;
+        // Only test passwords equal if typed in
+<span class="cstat-no" title="statement not covered" >        if(</span>
+            currentPassword.length &gt; 0
+            &amp;&amp; password.length &gt; 0
+            &amp;&amp; confirmPassword.length &gt; 0
+            &amp;&amp; password != confirmPassword
+            &amp;&amp; this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Passwords do not match.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.password = true;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.confirmPassword = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        } else <span class="cstat-no" title="statement not covered" >if (password.length &gt;= 6</span>
+        &amp;&amp; confirmPassword.length &gt;= 6
+        &amp;&amp; currentPassword.length == 0
+        &amp;&amp; this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >                t</span>his.state.errors.push("To change your password, you must enter your current password.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >                e</span>rrorType.currentPassword = true;
+<span class="cstat-no" title="statement not covered" >                t</span>his.setState({
+                    errorType: errorType
+                });
+        } else <span class="cstat-no" title="statement not covered" >if (currentPassword.length &gt;= 6</span>
+                    &amp;&amp; password.length &gt;= 6
+                    &amp;&amp; confirmPassword.length &gt;= 6
+                    &amp;&amp; password == confirmPassword
+                    &amp;&amp; this.props.user.auth_provider == "password") {
+<span class="cstat-no" title="statement not covered" >                        d</span>ata.current_password = currentPassword;
+<span class="cstat-no" title="statement not covered" >                        d</span>ata.password = password;
+                    }
+&nbsp;
+        // PayPal Email
+<span class="cstat-no" title="statement not covered" >        if (paypal.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            d</span>ata.paypal = paypal;
+        }
+&nbsp;
+        // Date of Birth
+<span class="cstat-no" title="statement not covered" >        if (day.length &gt; 0 &amp;&amp; day.length &gt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Please enter a valid day of the month.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.day = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(month.length &gt; 0 &amp;&amp; month.length &gt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Please enter a valid month.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.month = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(year.length &gt; 0 &amp;&amp; year.length &gt; 4 || eval(year) &gt; new Date().getFullYear()) {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.state.errors.push("Please enter a valid year.");
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            l</span>et errorType = this.state.errorType;
+<span class="cstat-no" title="statement not covered" >            e</span>rrorType.year = true;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                errorType: errorType
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if((day.length == 1 || day.length == 2) &amp;&amp;</span>
+            (month.length == 1 || month.length == 2) &amp;&amp;
+            year.length == 4) {
+<span class="cstat-no" title="statement not covered" >            d</span>ata.dob = day + "-" + month + "-" + year;
+        }
+&nbsp;
+        // Gender
+<span class="cstat-no" title="statement not covered" >        if(gender.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            d</span>ata.gender_pronoun =  gender;
+        }
+&nbsp;
+        // Rerender the component to show errors
+<span class="cstat-no" title="statement not covered" >        t</span>his.forceUpdate();
+&nbsp;
+        // gather inputs that have been entered
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(this.state.errors.length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.props.editPrivateUserInfo(data);
+<span class="cstat-no" title="statement not covered" >            t</span>his.refs.currentPassword.value = "";
+<span class="cstat-no" title="statement not covered" >            t</span>his.refs.password.value = "";
+<span class="cstat-no" title="statement not covered" >            t</span>his.refs.confirmPassword.value = "";
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            t</span>his.setState({
+                accordion: {
+                    legal_name: false,
+                    email: false,
+                    password: false,
+                    paypal: false,
+                    age: false,
+                    pronoun: false
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.props.setSaved(); // Used to track whether user has save info to show confirm dialog or not</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for(let i = 0; i &lt; this.state.errors.length; i++) <span class="cstat-no" title="statement not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >            s</span>etTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                t</span>his.setState({
+                    currentError: this.state.errors[i]
+                });
+<span class="cstat-no" title="statement not covered" >                c</span>onsole.log(this.state.errors[i]);
+            }, 3000 * i);
+        }
+    }
+&nbsp;
+&nbsp;
+    /**
+     * [description]
+     * @return {[type]} [description]
+     */
+    verifyEmail = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        f</span>irebase.auth().currentUser.sendEmailVerification().then(<span class="fstat-no" title="function not covered" >()=&gt;{</span>
+<span class="cstat-no" title="statement not covered" >            t</span>his.props.toggleVerifyEmailDialog();
+        });
+    }
+}
+&nbsp;
+// ============= PropTypes ==============
+&nbsp;
+PrivateEdit.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    userPrivate: React.PropTypes.object.isRequired,
+    editingPublic: React.PropTypes.bool.isRequired,
+    editPublic: React.PropTypes.func.isRequired,
+    editPrivate: React.PropTypes.func.isRequired,
+    editPrivateUserInfo: React.PropTypes.func.isRequired,
+    toggleVerifyEmailDialog: React.PropTypes.func.isRequired,
+    setSaved: React.PropTypes.func.isRequired,
+    setUnsaved: React.PropTypes.func.isRequired
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 23 2016 16:56:24 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
