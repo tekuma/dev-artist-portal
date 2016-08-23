@@ -701,7 +701,19 @@ export default class PrivateEdit extends React.Component {
         firebase.auth().currentUser.sendEmailVerification().then(()=>{
             this.props.toggleVerifyEmailDialog();
         });
-
     }
-
 }
+
+// ============= PropTypes ==============
+
+PrivateEdit.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    userPrivate: React.PropTypes.object.isRequired,
+    editingPublic: React.PropTypes.bool.isRequired,
+    editPublic: React.PropTypes.func.isRequired,
+    editPrivate: React.PropTypes.func.isRequired,
+    editPrivateUserInfo: React.PropTypes.func.isRequired,
+    toggleVerifyEmailDialog: React.PropTypes.func.isRequired,
+    setSaved: React.PropTypes.func.isRequired,
+    setUnsaved: React.PropTypes.func.isRequired
+};

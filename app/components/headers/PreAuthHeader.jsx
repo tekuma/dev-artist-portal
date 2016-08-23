@@ -67,3 +67,10 @@ export default class PreAuthHeader extends React.Component {
     }
 
 }
+
+// ============= PropTypes ==============
+
+PreAuthHeader.propTypes = {
+    returnToLandingPage: React.PropTypes.func.isRequired,
+    toggleLogin : React.PropTypes.func.isRequired
+};

@@ -78,3 +78,9 @@ export default class ReviewArtworks extends React.Component {
     componentWillUnmount () {
     }
 }
+
+// ============= PropTypes ==============
+
+ReviewArtworks.propTypes = {
+    managerIsOpen: React.PropTypes.bool.isRequired
+};

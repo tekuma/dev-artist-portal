@@ -168,3 +168,14 @@ export default class EditArtworkDialog extends React.Component {
         });
     }
 }
+
+// ============= PropTypes ==============
+
+EditArtworkDialog.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    editArtworkIsOpen: React.PropTypes.bool.isRequired,
+    toggleEditArtworkDialog: React.PropTypes.func.isRequired,
+    updateArtwork: React.PropTypes.func.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    currentEditArtworkInfo: React.PropTypes.object.isRequired
+};

@@ -137,5 +137,11 @@ export default class PostAuthHeader extends React.Component {
         this.props.changeAppLayout(Views.ARTWORKS);
         console.log('Set uploaded files: ', files);
     }
-
 }
+
+// ============= PropTypes ==============
+
+PostAuthHeader.propTypes = {
+    setUploadedFiles: React.PropTypes.func.isRequired,
+    changeAppLayout: React.PropTypes.func.isRequired
+};

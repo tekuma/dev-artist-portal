@@ -119,3 +119,19 @@ export default class Albums extends React.Component {
         });
     }
 }
+
+// ============= PropTypes ==============
+
+Albums.propTypes = {
+    albums: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    uploads: React.PropTypes.object.isRequired,
+    onEdit: React.PropTypes.func.isRequired,
+    editMisc: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    emptyMisc: React.PropTypes.func.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+    changeArtworkAlbum: React.PropTypes.func.isRequired
+};

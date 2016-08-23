@@ -148,5 +148,13 @@ export default class HiddenLogin extends React.Component {
             }, 3000 * i + 4000);
         }
     }
-
 }
+
+// ============= PropTypes ==============
+
+HiddenLogin.propTypes = {
+    authenticateWithPassword: React.PropTypes.func.isRequired,
+    toggleForgotPassword: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.array.isRequired,
+    clearErrors: React.PropTypes.func.isRequired
+};

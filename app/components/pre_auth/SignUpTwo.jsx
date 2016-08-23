@@ -199,3 +199,15 @@ export default class SignUpTwo extends React.Component {
         }
     }
 }
+
+// ============= PropTypes ==============
+
+SignUpTwo.propTypes = {
+    loginIsOpen: React.PropTypes.bool.isRequired,
+    errors: React.PropTypes.array.isRequired,
+    clearErrors: React.PropTypes.func.isRequired,
+    saveRegPublic: React.PropTypes.func.isRequired,
+    saveRegPrivate: React.PropTypes.func.isRequired,
+    submitRegistration: React.PropTypes.func.isRequired,
+    returnToLandingPage: React.PropTypes.func.isRequired
+};

@@ -158,3 +158,16 @@ export default class MiscAlbum extends React.Component {
         console.log("+++++MiscAlbum");
     }
 }
+
+// ============= PropTypes ==============
+
+MiscAlbum.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    uploads: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeArtworkAlbum: React.PropTypes.func.isRequired,
+    emptyMisc: React.PropTypes.func.isRequired,
+    editMisc: React.PropTypes.func.isRequired
+};

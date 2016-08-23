@@ -344,3 +344,15 @@ export default class SignUpOne extends React.Component {
         console.log(e.target.value);
     }
 }
+
+// ============= PropTypes ==============
+
+SignUpOne.propTypes = {
+    loginIsOpen: React.PropTypes.bool.isRequired,
+    errors: React.PropTypes.array.isRequired,
+    clearErrors: React.PropTypes.func.isRequired,
+    saveRegPrivate: React.PropTypes.func.isRequired,
+    saveRegPublic: React.PropTypes.func.isRequired,
+    nextStep: React.PropTypes.func.isRequired,
+    returnToLandingPage: React.PropTypes.func.isRequired
+};

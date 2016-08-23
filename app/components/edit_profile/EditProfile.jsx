@@ -56,7 +56,6 @@ export default class EditProfile extends React.Component {
                 editingPublic           ={this.state.editingPublic}
                 editPublic              ={this.editPublic}
                 editPrivate             ={this.editPrivate}
-                currentError            ={this.state.currentError}
                 editPrivateUserInfo     ={this.props.editPrivateUserInfo}
                 toggleVerifyEmailDialog ={this.props.toggleVerifyEmailDialog}
                 setSaved                ={this.setSaved}
@@ -142,5 +141,16 @@ export default class EditProfile extends React.Component {
             });
         }
     }
-
 }
+
+// ============= PropTypes ==============
+
+EditProfile.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    userPrivate: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    editPublicUserInfo: React.PropTypes.func.isRequired,
+    editPrivateUserInfo: React.PropTypes.func.isRequired,
+    toggleDeleteAccountDialog: React.PropTypes.func.isRequired,
+    toggleVerifyEmailDialog: React.PropTypes.func.isRequired
+};

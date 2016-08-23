@@ -58,3 +58,11 @@ export default class DeleteAccountDialog extends React.Component {
         this.props.deleteAccount();
     }
 }
+
+// ============= PropTypes ==============
+
+DeleteAccountDialog.propTypes = {
+    toggleDeleteAccountDialog: React.PropTypes.func.isRequired,
+    deleteAccountIsOpen: React.PropTypes.bool.isRequired,
+    deleteAccount: React.PropTypes.func.isRequired
+};

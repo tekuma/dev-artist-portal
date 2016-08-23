@@ -89,5 +89,14 @@ export default class HiddenNav extends React.Component {
     componentWillReceiveProps(nextProps) {
         //pass
     }
-
 }
+
+// ============= PropTypes ==============
+
+HiddenNav.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    navIsOpen: React.PropTypes.bool.isRequired,
+    changeAppLayout: React.PropTypes.func.isRequired,
+    signOutUser: React.PropTypes.func.isRequired,
+};

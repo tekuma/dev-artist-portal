@@ -86,9 +86,9 @@ export default class ArtworksAlbumManager extends React.Component {
 
             //Set albums to state
             this.setState({
-                albums    :albums,
-                uploads   :uploads,
-                albumNames:albumNames
+                albums    : albums,
+                uploads   : uploads,
+                albumNames: albumNames
             });
         }
     }
@@ -116,14 +116,12 @@ export default class ArtworksAlbumManager extends React.Component {
                     float           ={"left"}
                     background      ={"#222222"}
                     managerIsOpen   ={this.props.managerIsOpen}
-                    toggleManager   ={this.props.toggleManager}/>
+                    toggleManager   ={this.props.toggleManager} />
                 <Albums
                     albums             ={this.state.albums}
                     thumbnail          ={this.props.thumbnail}
                     uploads            ={this.state.uploads}
-                    onEditName         ={this.editAlbumName}
                     emptyMisc          ={this.emptyMisc}
-                    downloadAlbum      ={this.downloadAlbum}
                     onEdit             ={this.editAlbum}
                     editMisc           ={this.editMisc}
                     onDelete           ={this.deleteAlbum}
@@ -161,15 +159,17 @@ export default class ArtworksAlbumManager extends React.Component {
                     managerIsOpen   ={this.props.managerIsOpen}
                     toggleManager   ={this.props.toggleManager}/>
                 <Albums
-                    albums          ={this.state.albums}
-                    uploads         ={this.state.uploads}
-                    onEdit          ={this.editAlbum}
-                    editMisc        ={this.editMisc}
-                    onDelete        ={this.deleteAlbum}
-                    emptyMisc       ={this.emptyMisc}
-                    currentAlbum    ={this.props.currentAlbum}
-                    changeAlbum     ={this.props.changeAlbum}
-                    user            ={this.props.user} />
+                    albums             ={this.state.albums}
+                    thumbnail          ={this.props.thumbnail}
+                    uploads            ={this.state.uploads}
+                    emptyMisc          ={this.emptyMisc}
+                    onEdit             ={this.editAlbum}
+                    editMisc           ={this.editMisc}
+                    onDelete           ={this.deleteAlbum}
+                    currentAlbum       ={this.props.currentAlbum}
+                    changeAlbum        ={this.props.changeAlbum}
+                    user               ={this.props.user}
+                    changeArtworkAlbum ={this.props.changeArtworkAlbum} />
                 <div
                     onClick     ={this.addAlbum}
                     onTouchTap  ={this.addAlbum}
@@ -407,3 +407,19 @@ export default class ArtworksAlbumManager extends React.Component {
         return nextAlbumName;
     }
 }
+
+// ============= PropTypes ==============
+
+ArtworksAlbumManager.propTypes = {
+    thumbnail: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+    userPrivate : React.PropTypes.object.isRequired,
+    managerIsOpen: React.PropTypes.bool.isRequired,
+    toggleManager: React.PropTypes.func.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    toggleEditAlbumDialog: React.PropTypes.func.isRequired,
+    toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
+    changeCurrentEditAlbum: React.PropTypes.func.isRequired,
+    changeArtworkAlbum: React.PropTypes.func.isRequired
+};

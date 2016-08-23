@@ -370,3 +370,12 @@ export default class ReviewAlbumManager extends React.Component {
         );
     }
 }
+
+// ============= PropTypes ==============
+
+ReviewAlbumManager.propTypes = {
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    managerIsOpen: React.PropTypes.bool.isRequired,
+    toggleManager: React.PropTypes.func.isRequired
+};

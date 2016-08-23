@@ -65,7 +65,6 @@ export default class PortalMain extends React.Component {
                 <ArtworksAlbumManager
                     thumbnail              ={this.props.thumbnail}
                     user                   ={this.props.user}
-                    uid                    ={this.props.uid}
                     userPrivate            ={this.props.userPrivate}
                     managerIsOpen          ={this.props.managerIsOpen}
                     toggleManager          ={this.props.toggleManager}
@@ -105,8 +104,8 @@ export default class PortalMain extends React.Component {
                 <div className="edit-profile-layout">
                     <EditProfile
                         user                      ={this.props.user}
-                        thumbnail                 ={this.props.thumbnail}
                         userPrivate               ={this.props.userPrivate}
+                        thumbnail                 ={this.props.thumbnail}
                         editPublicUserInfo        ={this.props.editPublicUserInfo}
                         editPrivateUserInfo       ={this.props.editPrivateUserInfo}
                         toggleDeleteAccountDialog ={this.props.toggleDeleteAccountDialog}
@@ -131,17 +130,14 @@ export default class PortalMain extends React.Component {
                 <ReviewAlbumManager
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
-                    currentAppLayout   ={this.props.currentAppLayout}
                     managerIsOpen   ={this.props.managerIsOpen}
                     toggleManager   ={this.props.toggleManager} />
                 <TransitionGroup>
                     <ReviewArtworks
-                        managerIsOpen   ={this.props.managerIsOpen}
-                        currentAppLayout   ={this.props.currentAppLayout} />
+                        managerIsOpen   ={this.props.managerIsOpen}/>
                 </TransitionGroup>
                 <TransitionGroup>
-                    <ReviewArtworkInfo
-                            currentAppLayout   ={this.props.currentAppLayout} />
+                    <ReviewArtworkInfo />
                 </TransitionGroup>
                 <div
                     onClick     ={this.props.toggleNav}
@@ -161,12 +157,25 @@ export default class PortalMain extends React.Component {
 // ============= PropTypes ==============
 
 PortalMain.propTypes = {
+    thumbnail: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+    userPrivate: React.PropTypes.object.isRequired,
+    toggleNav: React.PropTypes.func.isRequired,
     navIsOpen: React.PropTypes.bool.isRequired,
-    managerIsOpen: React.PropTypes.bool.isRequired,
+    deleteArtwork: React.PropTypes.func.isRequired,
+    toggleEditArtworkDialog: React.PropTypes.func.isRequired,
+    toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
+    changeCurrentEditArtwork: React.PropTypes.func.isRequired,
+    changeCurrentEditAlbum: React.PropTypes.func.isRequired,
     toggleManager: React.PropTypes.func.isRequired,
+    managerIsOpen: React.PropTypes.bool.isRequired,
+    changeAppLayout: React.PropTypes.func.isRequired,
     currentAlbum: React.PropTypes.string.isRequired,
     changeAlbum: React.PropTypes.func.isRequired,
-    changeAppLayout: React.PropTypes.func.isRequired,
-    toggleEditArtworkDialog: React.PropTypes.func.isRequired,
-    changeCurrentEditArtwork: React.PropTypes.func.isRequired
+    setUploadedFiles: React.PropTypes.func.isRequired,
+    editPublicUserInfo: React.PropTypes.func.isRequired,
+    editPrivateUserInfo: React.PropTypes.func.isRequired,
+    toggleDeleteAccountDialog: React.PropTypes.func.isRequired,
+    toggleVerifyEmailDialog: React.PropTypes.func.isRequired,
+    changeArtworkAlbum: React.PropTypes.func.isRequired
 };

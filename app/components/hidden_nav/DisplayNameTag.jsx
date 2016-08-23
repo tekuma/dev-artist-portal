@@ -1,7 +1,7 @@
 // Libs
 import React  from 'react';
 
-export default class HiddenNav extends React.Component {
+export default class DisplayNameTag extends React.Component {
 
     constructor(props) {
         super(props);
@@ -38,3 +38,10 @@ export default class HiddenNav extends React.Component {
         );
     }
 }
+
+// ============= PropTypes ==============
+
+DisplayNameTag.propTypes = {
+    displayName: React.PropTypes.string.isRequired,
+    navIsOpen: React.PropTypes.bool.isRequired
+};

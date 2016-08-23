@@ -18,7 +18,7 @@
   },
   "test_settings": {
     "default": {
-      "launch_url": "https://dashboard.syncano.io",
+      "launch_url": "http://artist.tekuma.io",
       "selenium_port": 4444,
       "selenium_host": "localhost",
       "silent": true,

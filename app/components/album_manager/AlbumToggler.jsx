@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * TODO
  */
-export default ({managerIsOpen, toggleManager, height, float, background}) => {
+export default ({height, float, background, managerIsOpen, toggleManager}) => {
     let componentStyle = {
         height: height,
         float: float,

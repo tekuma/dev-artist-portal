@@ -577,3 +577,16 @@ export default class PublicEdit extends React.Component {
         this.props.setUnsaved();
     }
 }
+
+// ============= PropTypes ==============
+
+PublicEdit.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    thumbnail: React.PropTypes.func.isRequired,
+    editingPublic: React.PropTypes.bool.isRequired,
+    editPublic: React.PropTypes.func.isRequired,
+    editPrivate: React.PropTypes.func.isRequired,
+    editPublicUserInfo: React.PropTypes.func.isRequired,
+    setSaved: React.PropTypes.func.isRequired,
+    setUnsaved: React.PropTypes.func.isRequired
+};

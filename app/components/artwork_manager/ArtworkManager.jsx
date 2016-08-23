@@ -189,7 +189,6 @@ export default class ArtworkManager extends React.Component {
                             key         ={artwork.id}
                             onEdit      ={this.editArtwork}
                             onDelete    ={this.deleteArtwork}
-                            onDownload  ={this.downloadArtwork}
                             onMove      ={this.move}
                             artwork     ={artwork} />
                     );
@@ -394,5 +393,19 @@ export default class ArtworkManager extends React.Component {
             console.log('Set uploaded files: ', files);
         }
     }
-
 }
+
+// ============= PropTypes ==============
+
+ArtworkManager.propTypes = {
+    thumbnail: React.PropTypes.func.isRequired,
+    deleteArtwork: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    changeAlbum: React.PropTypes.func.isRequired,
+    toggleEditArtworkDialog: React.PropTypes.func.isRequired,
+    changeCurrentEditArtwork: React.PropTypes.func.isRequired,
+    changeAppLayout: React.PropTypes.func.isRequired,
+    managerIsOpen: React.PropTypes.bool.isRequired,
+    setUploadedFiles: React.PropTypes.func.isRequired
+};

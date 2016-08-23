@@ -98,3 +98,13 @@ export default class EditMiscAlbumDialog extends React.Component {
         this.props.updateAlbum(id, this.state.albumInfo);
     }
 }
+
+// ============= PropTypes ==============
+
+EditMiscAlbumDialog.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    editMiscAlbumIsOpen: React.PropTypes.bool.isRequired,
+    toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
+    updateAlbum: React.PropTypes.func.isRequired,
+    currentEditAlbumInfo: React.PropTypes.object.isRequired
+};

@@ -136,5 +136,13 @@ export default class UploadDialog extends React.Component {
                 return evalSize + "bytes";
         }
     }
-
 }
+
+// ============= PropTypes ==============
+
+UploadDialog.propTypes = {
+    thumbnail: React.PropTypes.func.isRequired,
+    closeUploadDialog: React.PropTypes.func.isRequired,
+    uploadedPreviews: React.PropTypes.array.isRequired,
+    uploadDialogIsOpen: React.PropTypes.bool.isRequired
+};

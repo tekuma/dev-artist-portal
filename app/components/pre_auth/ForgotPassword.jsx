@@ -190,3 +190,12 @@ export default class ForgotPassword extends React.Component {
 
     }
 }
+
+// ============= PropTypes ==============
+
+ForgotPassword.propTypes = {
+    authenticateWithPassword: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.array.isRequired,
+    toggleForgotPassword: React.PropTypes.func.isRequired,
+    returnToLandingPage: React.PropTypes.func.isRequired
+};

@@ -39,3 +39,10 @@ export default class EditProfileDialog extends React.Component {
         );
     }
 }
+
+// ============= PropTypes ==============
+
+EditProfileDialog.propTypes = {
+    closeProfileDialog: React.PropTypes.func.isRequired,
+    editProfileDialogIsOpen: React.PropTypes.bool.isRequired
+};

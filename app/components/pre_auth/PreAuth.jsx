@@ -164,3 +164,18 @@ export default class PreAuth extends React.Component {
         this.props.clearRegistration();
     }
 }
+
+// ============= PropTypes ==============
+
+PreAuth.propTypes = {
+    authenticateWithPassword: React.PropTypes.func.isRequired,
+    authenticateWithGoogle: React.PropTypes.func.isRequired,
+    authenticateWithFB: React.PropTypes.func.isRequired,
+    submitRegistration: React.PropTypes.func.isRequired,
+    saveRegPublic: React.PropTypes.func.isRequired,
+    saveRegPrivate: React.PropTypes.func.isRequired,
+    clearRegistration: React.PropTypes.func.isRequired,
+    toggleForgotPassword: React.PropTypes.func.isRequired,
+    clearErrors: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.array.isRequired
+};

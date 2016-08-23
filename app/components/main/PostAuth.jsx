@@ -52,8 +52,7 @@ export default class PostAuth extends React.Component {
         uploadPreviews: [],                         // Used to store files uploaded momentarily, to be previewed once uploaded
         user  : {},                                 // public/onboarders/{UID} node
         userPrivate : {},                            // _private/onboarders/{UID} node
-        currentError: "",
-        uid: ""
+        currentError: ""
     };
 
     constructor(props) {
@@ -79,9 +78,7 @@ export default class PostAuth extends React.Component {
                 <PortalMain
                     thumbnail                 ={this.props.thumbnail}
                     user                      ={this.state.user}
-                    uid                       ={this.state.uid}
                     userPrivate               ={this.state.userPrivate}
-                    albums                    ={this.state.albums}
                     toggleNav                 ={this.toggleNav}
                     navIsOpen                 ={this.state.navIsOpen}
                     deleteArtwork             ={this.deleteArtwork}
@@ -104,7 +101,6 @@ export default class PostAuth extends React.Component {
                     changeArtworkAlbum        ={this.changeArtworkAlbum} />
                 <EditArtworkDialog
                     user={this.state.user}
-                    albums={this.state.albums}
                     editArtworkIsOpen={this.state.editArtworkIsOpen}
                     toggleEditArtworkDialog={this.toggleEditArtworkDialog}
                     updateArtwork={this.updateArtwork}
@@ -151,9 +147,6 @@ export default class PostAuth extends React.Component {
     componentDidMount() {
         console.log("++++++PostAuth");
         const thisUID   = firebase.auth().currentUser.uid;
-        this.setState({
-            uid: thisUID
-        });
         const  userPath = `public/onboarders/${thisUID}`;
         const userPrivatePath = `_private/onboarders/${thisUID}`;
 
@@ -1043,3 +1036,11 @@ export default class PostAuth extends React.Component {
 
     }
 }
+
+// ============= PropTypes ==============
+
+PostAuth.propTypes = {
+    signOutUser: React.PropTypes.func.isRequired,
+    clearVerifyEmailMessage: React.PropTypes.func.isRequired,
+    thumbnail: React.PropTypes.func.isRequired
+};

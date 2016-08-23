@@ -125,3 +125,14 @@ export default class Artwork extends React.Component {
         console.log("+++++++Artwork");
     }
 }
+
+// ============= PropTypes ==============
+
+Artwork.propTypes = {
+    thumbnail: React.PropTypes.func.isRequired,
+    currentAlbum: React.PropTypes.string.isRequired,
+    onEdit: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    onMove: React.PropTypes.func.isRequired,
+    artwork: React.PropTypes.object.isRequired
+};

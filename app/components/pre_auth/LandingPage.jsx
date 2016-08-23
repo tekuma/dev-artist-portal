@@ -250,3 +250,15 @@ export default class LandingPage extends React.Component {
         }
     }
 }
+
+// ============= PropTypes ==============
+
+LandingPage.propTypes = {
+    loginIsOpen: React.PropTypes.bool.isRequired,
+    errors: React.PropTypes.array.isRequired,
+    clearErrors: React.PropTypes.func.isRequired,
+    saveRegPrivate: React.PropTypes.func.isRequired,
+    nextStep: React.PropTypes.func.isRequired,
+    authenticateWithGoogle: React.PropTypes.func.isRequired,
+    authenticateWithFB: React.PropTypes.func.isRequired
+};

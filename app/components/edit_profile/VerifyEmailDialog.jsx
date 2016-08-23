@@ -38,3 +38,10 @@ export default class VerifyEmailDialog extends React.Component {
         );
     }
 }
+
+// ============= PropTypes ==============
+
+VerifyEmailDialog.propTypes = {
+    toggleVerifyEmailDialog: React.PropTypes.func.isRequired,
+    verifyEmailDialogIsOpen: React.PropTypes.bool.isRequired
+};

@@ -139,3 +139,13 @@ export default class EditAlbumDialog extends React.Component {
         });
     }
 }
+
+// ============= PropTypes ==============
+
+EditAlbumDialog.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    editAlbumIsOpen: React.PropTypes.bool.isRequired,
+    toggleEditAlbumDialog: React.PropTypes.func.isRequired,
+    updateAlbum: React.PropTypes.func.isRequired,
+    currentEditAlbumInfo: React.PropTypes.object.isRequired,
+};
