@@ -51,5 +51,6 @@ module.exports = {
             .pause(4000)    // Each message shows for 3 secs. Message will have changed 1s later
             .waitForElementVisible('div.registration-error span', 1000)
             .assert.containsText('div.registration-error span', 'Passwords do not match')
+            .end();
     }
 };

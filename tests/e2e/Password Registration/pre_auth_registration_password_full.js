@@ -40,7 +40,8 @@ module.exports = {
             .click('button.hamburger')
             .pause(400)
             .click('li.nav-item.Profile')
-            .expect.element('article.edit-accordion > div:nth-child(3) > div').to.have.css('background-image').which.does.not.equal('url("assets/images/default-avatar.png")');
+            .pause(2000) // We need to pause so that Avatar can load
+            .expect.element('article.edit-accordion > div:nth-child(3) > div > div').to.have.css('background-image').which.does.not.equal('url("https://project-7614141605200030275.firebaseapp.com/assets/images/default-avatar.png")');
 
         browser
             .assert.containsText('article.edit-accordion > div:nth-child(1) > h3', 'Tekuma Test')
