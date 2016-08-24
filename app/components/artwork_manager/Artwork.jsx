@@ -60,6 +60,14 @@ export default class Artwork extends React.Component {
             </Tooltip>
         );
 
+        const submitTooltip = (
+            <Tooltip
+                id="download-artwork-tooltip"
+                className="tooltip">
+                Submit
+            </Tooltip>
+        );
+
         const editTooltip = (
             <Tooltip
                 id="edit-artwork-tooltip"
@@ -90,6 +98,22 @@ export default class Artwork extends React.Component {
                 <div className="artwork-info">
                     <h3 className="artwork-name">{this.props.artwork.title}</h3>
                     <div className="artwork-tools">
+                        <OverlayTrigger placement="bottom" overlay={submitTooltip}>
+                            <img
+                                className="artwork-tool"
+                                src='assets/images/icons/submit-black.svg'
+                                onClick={this.props.onSubmit.bind(null, this.props.artwork.id)}
+                                onTouchTap={this.props.onSubmit.bind(null, this.props.artwork.id)}
+                                 />
+                        </OverlayTrigger>
+                        <OverlayTrigger placement="bottom" overlay={editTooltip}>
+                            <img
+                                className="artwork-tool"
+                                src='assets/images/icons/edit-black.svg'
+                                onClick={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
+                                onTouchTap={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
+                                 />
+                        </OverlayTrigger>
                         <a
                             href={this.props.artwork.fullsize_url}
                             download={this.props.artwork.filename} >
@@ -99,14 +123,6 @@ export default class Artwork extends React.Component {
                                     src='assets/images/icons/download-black.svg' />
                             </OverlayTrigger>
                         </a>
-                        <OverlayTrigger placement="bottom" overlay={editTooltip}>
-                            <img
-                                className="artwork-tool"
-                                src='assets/images/icons/edit-black.svg'
-                                onClick={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
-                                onTouchTap={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
-                                 />
-                        </OverlayTrigger>
                         <OverlayTrigger placement="bottom" overlay={deleteTooltip}>
                             <img
                                 className="artwork-tool"
@@ -134,5 +150,6 @@ Artwork.propTypes = {
     onEdit: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
     onMove: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func.isRequired,
     artwork: React.PropTypes.object.isRequired
 };

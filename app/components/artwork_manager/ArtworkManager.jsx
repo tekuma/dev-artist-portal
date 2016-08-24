@@ -173,8 +173,16 @@ export default class ArtworkManager extends React.Component {
                 ref             ="dropzone"
                 >
                 <Masonry
+                    style={this.props.managerIsOpen ?
+                                (window.innerWidth * 0.3 > 440) ?
+                                    styleLargeScreen :
+                                    (window.innerWidth * 0.3 > 250) ?
+                                        styleManagerOpen :
+                                        (window.innerWidth > 410) ?
+                                            styleSmallScreen :
+                                            fixedWidth
+                                    : styleManagerClosed}
                     className       ="artworks no-margin"
-                    style           ={this.props.managerIsOpen ? (window.innerWidth * 0.3 > 250) ? null : styleSmallScreen : styleManagerClosed}
                     elementType={'div'}
                     options={masonryOptions}
                     disableImagesLoaded={false}
@@ -189,6 +197,7 @@ export default class ArtworkManager extends React.Component {
                             key         ={artwork.id}
                             onEdit      ={this.editArtwork}
                             onDelete    ={this.deleteArtwork}
+                            onSubmit    ={this.submitArtwork}
                             onMove      ={this.move}
                             artwork     ={artwork} />
                     );
@@ -305,6 +314,16 @@ export default class ArtworkManager extends React.Component {
         this.props.changeCurrentEditArtwork(id, oldAlbumName);  // Attach Artwork ID to View
         this.props.toggleEditArtworkDialog();    // Open Edit Dialog
     }
+    /**
+     * [submitArtwork description]
+     * @param  {[type]} id [description]
+     * @return {[type]}    [description]
+     */
+    submitArtwork = (id, e) => {
+        // Avoid bubbling to edit
+        e.stopPropagation();
+        this.props.submitArtwork(id);
+    }
 
     /**
      * Deletes a given artwork from the firebase DB.
@@ -400,6 +419,7 @@ export default class ArtworkManager extends React.Component {
 ArtworkManager.propTypes = {
     thumbnail: React.PropTypes.func.isRequired,
     deleteArtwork: React.PropTypes.func.isRequired,
+    submitArtwork: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
     currentAlbum: React.PropTypes.string.isRequired,
     changeAlbum: React.PropTypes.func.isRequired,
