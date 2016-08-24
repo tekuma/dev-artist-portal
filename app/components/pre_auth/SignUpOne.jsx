@@ -195,7 +195,7 @@ export default class SignUpOne extends React.Component {
                                             <h3>Next</h3>
                                         </button>
                                         <li
-                                            className="solo-links left"
+                                            className="solo-links left skip-link"
                                             onClick={this.props.nextStep}>
                                             <h3>Skip</h3>
                                         </li>

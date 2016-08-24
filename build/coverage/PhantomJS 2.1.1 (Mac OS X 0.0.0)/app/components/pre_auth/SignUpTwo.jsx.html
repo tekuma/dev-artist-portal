@@ -20,32 +20,32 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.67% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>49/105</span>
+        <span class='fraction'>60/105</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">63.27% </span>
+        <span class="strong">71.43% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>31/49</span>
+        <span class='fraction'>35/49</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">81.25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>12/16</span>
+        <span class='fraction'>13/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.79% </span>
+        <span class="strong">24.14% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/58</span>
+        <span class='fraction'>14/58</span>
       </div>
       <div class='fl pad1y'>
-        <span class="strong">7 statements, 6 functions, 16 branches</span>
+        <span class="strong">4 statements, 12 branches</span>
         <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -278,20 +278,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,12 +371,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -492,20 +492,20 @@ export default class SignUpTwo extends React.Component {
         currentError    : ""                    // Used to store the current error to be displayed in the snackbar
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    constructor(props) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span></span></span></span>
+    constructor(props) {
         super(props);
     }
 &nbsp;
     componentWillMount() {
-<span class="cstat-no" title="statement not covered" >        c</span>onsole.log('-----SignUpTwo');
+        console.log('-----SignUpTwo');
     }
 &nbsp;
     render() {
-<span class="cstat-no" title="statement not covered" >        l</span>et errorStyle = {
+        let errorStyle = {
             border: '1px solid #ec167c'
         };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        r</span>eturn (
+        return (
             &lt;div&gt;
                 &lt;div className="main-wrapper login"&gt;
                     &lt;div className="login-layout"&gt;
@@ -524,7 +524,7 @@ export default class SignUpTwo extends React.Component {
                                                 type="text"
                                                 id="register-legalname"
                                                 ref="legalname"
-                                                style={this.state.errorType.name ? errorStyle : null}
+                                                style={t</span>his.state.errorType.name ? <span class="branch-0 cbranch-no" title="branch not covered" >errorStyle : null}
                                                 placeholder="Legal Name"
                                                 required="true"
                                                 maxLength="50"
@@ -537,7 +537,7 @@ export default class SignUpTwo extends React.Component {
                                                 className="bio"
                                                 placeholder="Bio"
                                                 ref="bio"
-                                                style={this.state.errorType.bio ? errorStyle : null} /&gt;
+                                                style={t</span>his.state.errorType.bio ? <span class="branch-0 cbranch-no" title="branch not covered" >errorStyle : null} /&gt;
                                         &lt;/li&gt;
                                         &lt;li&gt;
                                             &lt;input
@@ -545,7 +545,7 @@ export default class SignUpTwo extends React.Component {
                                                 id="register-location"
                                                 ref="location"
                                                 placeholder="Location"
-                                                style={this.state.errorType.location ? errorStyle : null} /&gt;
+                                                style={t</span>his.state.errorType.location ? <span class="branch-0 cbranch-no" title="branch not covered" >errorStyle : null} /&gt;
                                         &lt;/li&gt;
                                         &lt;li&gt;
                                             &lt;input
@@ -553,7 +553,7 @@ export default class SignUpTwo extends React.Component {
                                                 id="register-portfolio"
                                                 ref="portfolio"
                                                 placeholder="Portfolio/Website"
-                                                style={this.state.errorType.portfolio ? errorStyle : null} /&gt;
+                                                style={t</span>his.state.errorType.portfolio ? <span class="branch-0 cbranch-no" title="branch not covered" >errorStyle : null} /&gt;
                                         &lt;/li&gt;
 &nbsp;
                                         &lt;button
@@ -563,7 +563,7 @@ export default class SignUpTwo extends React.Component {
                                             &lt;h3&gt;Done&lt;/h3&gt;
                                         &lt;/button&gt;
                                         &lt;li
-                                            className="solo-links center"
+                                            className="solo-links center skip-link"
                                             onClick={this.props.submitRegistration}&gt;
                                             &lt;h3&gt;Skip&lt;/h3&gt;
                                         &lt;/li&gt;
@@ -585,12 +585,12 @@ export default class SignUpTwo extends React.Component {
     }
 &nbsp;
     componentDidMount() {
-<span class="cstat-no" title="statement not covered" >        c</span>onsole.log('+++++SignUpTwo');
+        console.log('+++++SignUpTwo');
     }
 &nbsp;
     componentWillReceiveProps(nextProps) {
-<span class="cstat-no" title="statement not covered" >        c</span>onsole.log("Errors willReceive, SignUpTwo: ", nextProps.errors);
-<span class="cstat-no" title="statement not covered" >        t</span>his.setState({
+        console.log("Errors willReceive, SignUpTwo: ", nextProps.errors);
+        this.setState({
             errors: this.state.errors.concat(nextProps.errors),
             currentError: nextProps.errors[0]
         });
@@ -695,7 +695,7 @@ SignUpTwo.propTypes = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 23 2016 16:56:24 GMT-0400 (EDT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 24 2016 10:46:03 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

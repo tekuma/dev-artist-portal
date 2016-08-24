@@ -86,7 +86,7 @@ export default class SignUpTwo extends React.Component {
                                             <h3>Done</h3>
                                         </button>
                                         <li
-                                            className="solo-links center"
+                                            className="solo-links center skip-link"
                                             onClick={this.props.submitRegistration}>
                                             <h3>Skip</h3>
                                         </li>

@@ -84,6 +84,7 @@ export default class LandingPage extends React.Component {
                                             <input
                                                 type="email"
                                                 id="register-email"
+                                                className="register-email"
                                                 style={this.state.errorType.email ? errorStyle : null}
                                                 ref="email"
                                                 placeholder="Email"
@@ -95,6 +96,7 @@ export default class LandingPage extends React.Component {
                                             <input
                                                 type="password"
                                                 id="register-password"
+                                                className="register-password"
                                                 ref="password"
                                                 style={this.state.errorType.password ? errorStyle : null}
                                                 placeholder="Password"
@@ -107,6 +109,7 @@ export default class LandingPage extends React.Component {
                                             <input
                                                 type="password"
                                                 id="register-confirm-password"
+                                                className="register-confirm-password"
                                                 ref="confirmPassword"
                                                 style={this.state.errorType.confirmPassword ? errorStyle : null}
                                                 placeholder="Confirm Password"

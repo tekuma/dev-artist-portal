@@ -3,7 +3,7 @@ import React  from 'react';
 export default ({navItem, changeAppLayout}) => {
     return (
         <li
-            className="nav-item"
+            className={`nav-item ${navItem.href}`}
             onClick={changeAppLayout.bind(null, navItem.href)}
             title={navItem.title}>
 			<div>
