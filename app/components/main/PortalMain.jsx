@@ -1,18 +1,18 @@
 // Libs
 import React             from 'react';
 import firebase          from 'firebase';
-import TransitionGroup from 'react-addons-transition-group';
+import TransitionGroup   from 'react-addons-transition-group';
 
 
 //Files
-import PostAuthHeader    from '../headers/PostAuthHeader';
-import ArtworksAlbumManager      from '../album_manager/ArtworksAlbumManager';
-import ReviewAlbumManager      from '../album_manager/ReviewAlbumManager';
-import ReviewArtworkInfo from '../review_albums/ReviewArtworkInfo';
-import ReviewArtworks from '../review_albums/ReviewArtworks';
-import ArtworkManager    from '../artwork_manager/ArtworkManager';
-import EditProfile       from '../edit_profile/EditProfile';
-import Views             from '../../constants/Views';
+import PostAuthHeader        from '../headers/PostAuthHeader';
+import ArtworksAlbumManager  from '../album_manager/ArtworksAlbumManager';
+import ReviewAlbumManager    from '../album_manager/ReviewAlbumManager';
+import ReviewArtworkInfo     from '../review_albums/ReviewArtworkInfo';
+import ReviewArtworks        from '../review_albums/ReviewArtworks';
+import ArtworkManager        from '../artwork_manager/ArtworkManager';
+import EditProfile           from '../edit_profile/EditProfile';
+import Views                 from '../../constants/Views';
 
 
 export default class PortalMain extends React.Component {

@@ -25,15 +25,7 @@ import SubmitArtworkDialog   from '../artwork_manager/SubmitArtworkDialog';
 import UploadDialog        from './UploadDialog';
 
 
-// ====== Global Variables ======
-const colorCount            = 64;  // ->amount of possible color swatches to start with when
-                                   // determining dominant vibrant and muted colors (64 default)
-const paletteDownscaling    = 1 ;  // how much to downscale the image before processing.
-                                   //  1 means no downscaling, 5 is default.
 
-/**
- * TODO
- */
 @DragDropContext(HTML5Backend)     // Adds Drag & Drop to App
 export default class PostAuth extends React.Component {
     state = {
@@ -53,7 +45,9 @@ export default class PostAuth extends React.Component {
         currentEditAlbumInfo: {},                   // Used to store information of album being edit momentarily
         uploadPreviews: [],                         // Used to store files uploaded momentarily, to be previewed once uploaded
         user  : {},                                 // public/onboarders/{UID} node
-        userPrivate : {},                            // _private/onboarders/{UID} node
+        userPrivate : {},                           // _private/onboarders/{UID} node
+        thisUID: "",
+        paths: {},
         currentError: ""
     };
 
@@ -70,14 +64,16 @@ export default class PostAuth extends React.Component {
             <div className="app">
                 <HiddenNav
                     user           ={this.state.user}
+                    thisUID        ={this.state.thisUID}
                     thumbnail      ={this.props.thumbnail}
                     navIsOpen      ={this.state.navIsOpen}
-                    changeAppLayout={this.changeAppLayout}
-                    signOutUser    ={this.props.signOutUser} />
+                    changeAppLayout={this.changeAppLayout} />
                 <HamburgerIcon
                     toggleNav={this.toggleNav}
                     navIsOpen={this.state.navIsOpen} />
                 <PortalMain
+                    thisUID                   ={this.state.thisUID}
+                    paths                     ={this.state.paths}
                     thumbnail                 ={this.props.thumbnail}
                     user                      ={this.state.user}
                     userPrivate               ={this.state.userPrivate}
@@ -153,13 +149,21 @@ export default class PostAuth extends React.Component {
     componentDidMount() {
         console.log("++++++PostAuth");
         const thisUID   = firebase.auth().currentUser.uid;
-        const  userPath = `public/onboarders/${thisUID}`;
         const userPrivatePath = `_private/onboarders/${thisUID}`;
+
+        this.setState({
+            thisUID:  firebase.auth().currentUser.uid,
+            paths:{
+                user    : `public/onboarders/${thisUID}`,
+                albums  : `public/onboarders/${thisUID}/albums`,
+                artworks: `public/onboarders/${thisUID}/artworks`
+            }
+        });
 
         //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
         // these 2 on-methods listen for any change to the database and
         // trigger a re-render on 'value'
-        firebase.database().ref(userPath).on('value', (snapshot)=>{
+        firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
             this.setState({
                 user:snapshot.val()
             });
@@ -204,9 +208,8 @@ export default class PostAuth extends React.Component {
         //TODO
     }
 
-
     componentWillUnmount() {
-        // Moved the Unmount Firebase calls to SignOutUser() method in App.jsx
+        //pass
     }
 
 // -------------- METHODS -------------- //
@@ -349,15 +352,14 @@ export default class PostAuth extends React.Component {
     uploadArtToTekuma = (blob) => {
         const fileName  = blob.name;
         const fileSize  = blob.size;
-        const thisUID   = firebase.auth().currentUser.uid;
+
 
         //Now, we have all needed async-data. Set it to the DB.
-        let artPath          = `public/onboarders/${thisUID}`
-        const artRef         = firebase.database().ref(artPath).child('artworks');
-        const artworkUID     = artRef.push().key;
+        const artRef      = firebase.database().ref(this.state.paths.artworks);
+        const artworkUID  = artRef.push().key;
 
         //*Store the original upload, un-changed.
-        let uploadPath = `portal/${thisUID}/uploads/${artworkUID}`;
+        let uploadPath = `portal/${this.state.thisUID}/uploads/${artworkUID}`;
         const fullRef  = firebase.storage().ref(uploadPath);
         fullRef.put(blob).on(
             firebase.storage.TaskEvent.STATE_CHANGED,
@@ -404,7 +406,7 @@ export default class PostAuth extends React.Component {
                         }
                     }
 
-                    let albumPath  = `public/onboarders/${thisUID}/albums/${albumIndex}/artworks`;
+                    let albumPath  = `${this.state.paths.albums}/${albumIndex}/artworks`;
                     const albumRef = firebase.database().ref(albumPath);
 
 
@@ -535,9 +537,8 @@ export default class PostAuth extends React.Component {
      * @param  {Array} oldAlbumName - name of the albums the artwork is currently in
      */
     changeCurrentEditArtwork = (id, oldAlbumName) => {
-        const thisUID = firebase.auth().currentUser.uid;
-        let path = `public/onboarders/${thisUID}/artworks/${id}`;
-        let artRef = firebase.database().ref(path);
+        let artworkPath = `${this.state.paths.artworks}/${id}`;
+        let artRef = firebase.database().ref(artworkPath);
         artRef.once("value", (snapshot) => {
             let data = snapshot.val();
             data["oldAlbumName"] = oldAlbumName;
@@ -554,10 +555,8 @@ export default class PostAuth extends React.Component {
      * @param  {String} id [the unique id of the artwork being edited]
      */
     changeCurrentEditAlbum = (id) => {
-        console.log("Entered changeCurrentEditAlbum");
-        const thisUID = firebase.auth().currentUser.uid;
-        let path = `public/onboarders/${thisUID}/albums/${id}`;
-        let albumRef = firebase.database().ref(path);
+        let albumPath = `${this.state.paths.albums}/${id}`;
+        let albumRef = firebase.database().ref(albumPath);
         albumRef.once("value", (snapshot) => {
             let data = snapshot.val();
             data["id"] = id;
@@ -581,11 +580,9 @@ export default class PostAuth extends React.Component {
      */
     editPublicUserInfo = (data) => {
         const thisUser    = firebase.auth().currentUser;
-        const thisUID     = thisUser.uid;
-        const userPath    = `public/onboarders/${thisUID}`;
 
         if (data.hasOwnProperty('avatar')) {
-            const avatarPath  = `portal/${thisUID}/avatars/${data.avatar.name}`;
+            const avatarPath  = `portal/${this.state.thisUID}/avatars/${data.avatar.name}`;
             const avatarRef   = firebase.storage().ref(avatarPath);
 
             avatarRef.put(data.avatar).on(
@@ -596,7 +593,7 @@ export default class PostAuth extends React.Component {
                     console.log(">> New Avatar Uploaded successfully");
                     avatarRef.getDownloadURL().then( (avatarURL)=>{
                         data.avatar = avatarURL;
-                        firebase.database().ref(userPath).update(data)
+                        firebase.database().ref(this.state.paths.user).update(data)
                         .then( ()=>{
                             //FIXME use a toggle method?
                             this.setState({
@@ -608,7 +605,7 @@ export default class PostAuth extends React.Component {
             );
         }
         else {
-            firebase.database().ref(userPath).update(data)
+            firebase.database().ref(this.state.paths.user).update(data)
             .then(()=>{
                 //FIXME use a toggle method?
                 this.setState({
@@ -627,8 +624,7 @@ export default class PostAuth extends React.Component {
      */
     editPrivateUserInfo = (data) => {
         const thisUser    = firebase.auth().currentUser;
-        const thisUID     = thisUser.uid;
-        const userPrivatePath   = `_private/onboarders/${thisUID}`;
+        const userPrivatePath   = `_private/onboarders/${this.state.thisUID}`;
 
         if (data.hasOwnProperty('email')) {
             if (data.email != thisUser.email) {
@@ -750,10 +746,8 @@ export default class PostAuth extends React.Component {
      * to delete a user's information and artworks from the Firebase Database
      */
     deleteAccount = () => {
-        const thisUID = firebase.auth().currentUser.uid;
-        firebase.auth().signOut().then(function() {
-            console.log(thisUID, "this id here >>>>");
-            thisPromise = firebase.database().ref(`public/onboarders/${thisUID}`)
+        firebase.auth().signOut().then(()=>{
+            thisPromise = firebase.database().ref(this.state.paths.user)
             .set(null, function(error) {console.log(error.message);})
             .then(function() {console.log("Account has been Deleted!");});
           // Sign-out successful.
@@ -786,8 +780,8 @@ export default class PostAuth extends React.Component {
         let oldAlbumName = artworkInfo.oldAlbumName;
         artworkInfo.oldAlbumName = null;
 
-        const thisUID = firebase.auth().currentUser.uid;
-        let thisArtworkRef = firebase.database().ref(`public/onboarders/${thisUID}/artworks/${data.id}`);
+        let artworkPath = `${this.state.paths.artworks}/${data.id}`;
+        let thisArtworkRef = firebase.database().ref(artworkPath);
         thisArtworkRef.set(artworkInfo).then( () => {
             this.toggleEditArtworkDialog();
             console.log("Set new artwork info");
@@ -805,8 +799,8 @@ export default class PostAuth extends React.Component {
      * the database.
      */
     updateAlbum = (id,data) => {
-        const thisUID = firebase.auth().currentUser.uid;
-        let thisAlbumRef = firebase.database().ref(`public/onboarders/${thisUID}/albums/${id}`);
+        let albumPath    = `${this.state.paths.albums}/${id}`;
+        let thisAlbumRef = firebase.database().ref(albumPath);
 
         // Change the name of associated artworks if album changed
         if(data['name'] != this.state.user.albums[id]['name']) {
@@ -816,7 +810,8 @@ export default class PostAuth extends React.Component {
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = this.state.user.albums[id]['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
+                    let artworkRef  = firebase.database().ref(artworkPath);
                     artworkRef.transaction((node) => {
                         node['album'] = data['name'];
                         return node;
@@ -833,7 +828,8 @@ export default class PostAuth extends React.Component {
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = this.state.user.albums[id]['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
+                    let artworkRef  = firebase.database().ref(artworkPath);
                     artworkRef.transaction((node) => {
                         node['artist'] = data['artist'];
                         return node;
@@ -850,7 +846,8 @@ export default class PostAuth extends React.Component {
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = this.state.user.albums[id]['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
+                    let artworkRef  = firebase.database().ref(artworkPath);
                     artworkRef.transaction((node) => {
                         node['year'] = data['year'];
                         return node;
@@ -866,8 +863,9 @@ export default class PostAuth extends React.Component {
                 // change the artist field for each artwork object
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
-                    let thisArtKey = this.state.user.albums[id]['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let thisArtKey  = this.state.user.albums[id]['artworks'][i];
+                    let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
+                    let artworkRef  = firebase.database().ref(artworkRef);
                     artworkRef.transaction((node) => {
                         let albumTagsLength = data['tags'].length;
 
@@ -923,7 +921,8 @@ export default class PostAuth extends React.Component {
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = this.state.user.albums[id]['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
+                    let artworkRef  = firebase.database().ref(artworkPath);
                     artworkRef.transaction((node) => {
                         node['description'] = data['description'];
                         return node;
@@ -954,10 +953,7 @@ export default class PostAuth extends React.Component {
      * @param  {[type]} newName [description]
      */
     changeArtworkAlbum = (artworkUID, oldName, newName) => {
-        const thisUID    = firebase.auth().currentUser.uid;
-        const albumsPath = `public/onboarders/${thisUID}/albums`;
-        const albumsRef  = firebase.database().ref(albumsPath);
-
+        const albumsRef  = firebase.database().ref(this.state.paths.albums);
         albumsRef.transaction((node) => {
             let albumsCount = Object.keys(node).length;
 
@@ -1000,9 +996,7 @@ export default class PostAuth extends React.Component {
      * @param  {String} id [UID of artwork to be deleted]
      */
     deleteArtwork = (id) => {
-        const thisUID  = firebase.auth().currentUser.uid;
-        const userPath = `public/onboarders/${thisUID}`
-        const userRef  = firebase.database().ref(userPath);
+        const userRef  = firebase.database().ref(this.state.paths.user);
         let artwork;
         // Remove the artwork pointer from the album via transaction, then
         // shift indexes bc firebase uses de-abstracted arrays
