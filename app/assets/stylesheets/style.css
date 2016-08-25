@@ -1865,7 +1865,7 @@ textarea.bio {
 .profile-form input.error,
 .signup-form input.error,
 .artist-form input.error {
-	border: 1px solid #ec167c;
+	border: 2px solid #ec167c;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
