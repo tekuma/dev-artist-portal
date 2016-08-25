@@ -6,7 +6,7 @@ import {Tooltip, OverlayTrigger}    from 'react-bootstrap';
 import update                       from 'react-addons-update';
 
 // Files
-import MiscAlbum   from './MiscAlbum';
+import MiscAlbum      from './MiscAlbum';
 import Album          from './Album';
 import ItemTypes      from '../../constants/itemTypes';
 
@@ -53,6 +53,7 @@ export default class Albums extends React.Component {
             <ul style={(window.innerWidth * 0.3 > 250) ? styleResponsive : styleFixed} className="album-locker right">
                 <MiscAlbum
                     user               ={this.props.user}
+                    paths              ={this.props.paths}
                     uploads            ={this.props.uploads}
                     thumbnail          ={this.props.thumbnail}
                     changeAlbum        ={this.props.changeAlbum.bind(null, "Miscellaneous")}
@@ -66,6 +67,7 @@ export default class Albums extends React.Component {
                     return (
                         <Album
                             key                 ={album.id}
+                            paths               ={this.props.paths}
                             album               ={album}
                             user                ={this.props.user}
                             thumbnail           ={this.props.thumbnail}
@@ -91,14 +93,12 @@ export default class Albums extends React.Component {
 
     moveAlbum = (source, target) => {
         console.log("Entered move");
-        const thisUID = firebase.auth().currentUser.uid;
-        const albumPath = `public/onboarders/${thisUID}/albums`;
-        const albumRef = firebase.database().ref(albumPath);
+        const albumRef = firebase.database().ref(this.props.paths.albums);
 
         albumRef.transaction((data) => {
             let sourceIndex = source['album']['id'];
             let targetIndex = target['id'];
-            let sourceData = data[sourceIndex];
+            let sourceData  = data[sourceIndex];
 
             let albums = update(data, {
                 $splice: [[sourceIndex, 1],[targetIndex, 0, sourceData]]

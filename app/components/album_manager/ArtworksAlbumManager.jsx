@@ -118,6 +118,7 @@ export default class ArtworksAlbumManager extends React.Component {
                     managerIsOpen   ={this.props.managerIsOpen}
                     toggleManager   ={this.props.toggleManager} />
                 <Albums
+                    paths              ={this.props.paths}
                     albums             ={this.state.albums}
                     thumbnail          ={this.props.thumbnail}
                     uploads            ={this.state.uploads}
@@ -189,14 +190,10 @@ export default class ArtworksAlbumManager extends React.Component {
      * @return {[type]} [description]
      */
     addAlbum = () => {
-        const thisUID    = firebase.auth().currentUser.uid;
         let newAlbumName = this.getUniqueNewAlbumName();
         let albums       = this.state.albums;
 
-
-        console.log(this.state.albums, "thisstatealbums");
-        let albumPath = `public/onboarders/${thisUID}/albums`;
-        let albumRef  = firebase.database().ref(albumPath);
+        let albumRef  = firebase.database().ref(this.props.paths.albums);
 
         albumRef.transaction( (data) => {
             let albumLength = Object.keys(data).length;
@@ -257,9 +254,7 @@ export default class ArtworksAlbumManager extends React.Component {
             console.log(">>>ERROR: attempting to delete 'Miscellaneous' album");
             return;
         }
-        const thisUID = firebase.auth().currentUser.uid;
         confirm('Are you sure you want to delete this album?').then( () => {
-
                 // # they clicked "yes", so
                 // First, Delete all attributed artworks
                 // check if album is empty, if so bi-pass first step.
@@ -268,8 +263,9 @@ export default class ArtworksAlbumManager extends React.Component {
                 if (this.props.user.albums[index]['artworks']) {
                     let artLength = Object.keys(this.props.user.albums[index]['artworks']).length;
                     for (let i = 0; i < artLength; i++) {
-                        let thisArtKey = this.props.user.albums[index]['artworks'][i];
-                        let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                        let thisArtKey  = this.props.user.albums[index]['artworks'][i];
+                        let artworkPath = `${this.props.paths.artworks}/${thisArtKey}`;
+                        let artworkRef  = firebase.database().ref(artworkPath);
                         artworkRef.set(null).then(()=>{
                             console.log(">> Artwork deleted successfully");
                         });
@@ -277,8 +273,7 @@ export default class ArtworksAlbumManager extends React.Component {
                 }
 
                 // then Delete this album branch, and manually update indexes.
-                let path = `public/onboarders/${thisUID}/albums`;
-                let albumRef = firebase.database().ref(path);
+                let albumRef = firebase.database().ref(this.props.paths.albums);
                 albumRef.transaction((data) => {
                     let albums = update(data, {
                         $splice: [[index, 1]]
@@ -304,9 +299,7 @@ export default class ArtworksAlbumManager extends React.Component {
         e.stopPropagation();
         confirm('Are you sure you want to empty the Miscellaneous album?').then( () => {
             const Misc  =  this.props.user.albums[0];
-            const thisUID  = firebase.auth().currentUser.uid;
-            const userPath = `public/onboarders/${thisUID}`;
-            const userRef  = firebase.database().ref(userPath);
+            const userRef  = firebase.database().ref(this.props.paths.user);
 
             // Set Miscellaneous artwork branch to null
             userRef.child("albums/0/artworks").set(null).then(()=>{
@@ -319,7 +312,7 @@ export default class ArtworksAlbumManager extends React.Component {
                 let artLength = Object.keys(Misc['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = Misc['artworks'][i];
-                    let artworkRef =firebase.database().ref(`public/onboarders/${thisUID}/artworks/${thisArtKey}`);
+                    let artworkRef = firebase.database().ref(`${this.props.paths.artworks}/${thisArtKey}`);
                     artworkRef.set(null).then(()=>{
                         console.log(">> Artwork deleted successfully");
                     });
@@ -338,7 +331,6 @@ export default class ArtworksAlbumManager extends React.Component {
      * @param  {Int} index [the index of the album to download]
      */
     downloadAlbum = (index) => {
-
         let album = this.props.user.albums[index];
 
         let blobs = [];
@@ -375,8 +367,8 @@ export default class ArtworksAlbumManager extends React.Component {
      */
     getUniqueNewAlbumName = () => {
         let untitledIntegersUsed = [];
-        let untitledAlbumIndex = 1;
-        let nextAlbumName = "Untitled ";
+        let untitledAlbumIndex   = 1;
+        let nextAlbumName        = "Untitled ";
 
         let albumKeys = Object.keys(this.state.albums);
 
@@ -413,16 +405,18 @@ export default class ArtworksAlbumManager extends React.Component {
 // ============= PropTypes ==============
 
 ArtworksAlbumManager.propTypes = {
-    thumbnail: React.PropTypes.func.isRequired,
-    user: React.PropTypes.object.isRequired,
-    userPrivate : React.PropTypes.object.isRequired,
-    managerIsOpen: React.PropTypes.bool.isRequired,
-    toggleManager: React.PropTypes.func.isRequired,
-    currentAlbum: React.PropTypes.string.isRequired,
-    changeAlbum: React.PropTypes.func.isRequired,
-    toggleEditAlbumDialog: React.PropTypes.func.isRequired,
+    paths                    : React.PropTypes.object.isRequired,
+    thisUID                  : React.PropTypes.string.isRequired,
+    thumbnail                : React.PropTypes.func.isRequired,
+    user                     : React.PropTypes.object.isRequired,
+    userPrivate              : React.PropTypes.object.isRequired,
+    managerIsOpen            : React.PropTypes.bool.isRequired,
+    toggleManager            : React.PropTypes.func.isRequired,
+    currentAlbum             : React.PropTypes.string.isRequired,
+    changeAlbum              : React.PropTypes.func.isRequired,
+    toggleEditAlbumDialog    : React.PropTypes.func.isRequired,
     toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
-    changeCurrentEditAlbum: React.PropTypes.func.isRequired,
-    changeArtworkAlbum: React.PropTypes.func.isRequired,
-    submitAlbum: React.PropTypes.func.isRequired
+    changeCurrentEditAlbum   : React.PropTypes.func.isRequired,
+    changeArtworkAlbum       : React.PropTypes.func.isRequired,
+    submitAlbum              : React.PropTypes.func.isRequired
 };

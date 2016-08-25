@@ -350,9 +350,8 @@ export default class ArtworkManager extends React.Component {
         console.log("Entered move");
         console.log("Source ID: ", sourceId);
         console.log("Target ID: ", targetId);
-        const thisUID = firebase.auth().currentUser.uid;
-        const albumPath = `public/onboarders/${thisUID}/albums`;
-        const albumRef = firebase.database().ref(albumPath);
+
+        const albumRef = firebase.database().ref(this.props.paths.albums);
 
         albumRef.transaction((data) => {
             let albumIndex;

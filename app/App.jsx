@@ -52,7 +52,6 @@ const userPath  = 'public/onboarders/';
 
 const providerG = new firebase.auth.GoogleAuthProvider();
 const providerF = new firebase.auth.FacebookAuthProvider();
-//TODO  Add 'scopes'? to google/fb auth
 
 /**
  * a
@@ -123,7 +122,6 @@ export default class App extends React.Component {
         return(
             <div>
                 <PostAuth
-                  signOutUser             ={this.signOutUser}
                   clearVerifyEmailMessage ={this.clearVerifyEmailMessage}
                   thumbnail               ={this.thumbnail}
                 />
@@ -622,31 +620,6 @@ export default class App extends React.Component {
         }, this);
     }
 
-    /**
-     * Signs the user out from firebase auth().
-     * Listener in Render() will detect change.
-     */
-    signOutUser = () => {
-        const thisUID   = firebase.auth().currentUser.uid;
-        const  userPath = `public/onboarders/${thisUID}`;
-        const userPrivatePath = `_private/onboarders/${thisUID}`;
-        firebase.database().ref(userPath).off();
-        firebase.database().ref(userPrivatePath).off();
-
-        firebase.auth().signOut().then( () => {
-          console.log("User signed out");
-          this.setState({
-              loggedIn  : false,
-              loaded    : false
-          });
-        }, (error) => {
-          console.error(error);
-          this.setState({
-              errors: this.state.errors.concat(error.message)
-          });
-        });
-
-    }
 
     /**
      * [description]
@@ -657,4 +630,5 @@ export default class App extends React.Component {
             verifyEmailMessage: ""
         });
     }
+    
 }//END App

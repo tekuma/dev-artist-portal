@@ -1,16 +1,18 @@
 var FirebaseServer = require('firebase-server');
 
-let db = {
-	public:{
-		onboarders:{
-}
-}
-}
+const db = {
+	public : {
+		onboarders: {
+			abc123:{
+				name: "stephen"
+			}
+		}
+	},
+	_private : {
+		email: "stephen@email.com"
+	}
+};
 
-new FirebaseServer(5000, 'localhost.firebaseio.test', {
-    states: {
-        CA: 'California',
-        AL: 'Alabama',
-        KY: 'Kentucky'
-    }
+new FirebaseServer(8000, '127.0.0.1', {
+	db
 });

@@ -77,7 +77,7 @@ export default class HiddenNav extends React.Component {
                     navItems={navItems}
                     changeAppLayout={this.props.changeAppLayout} />
                 <LogoutButton
-                    signOutUser={this.props.signOutUser} />
+                    signOutUser={this.signOutUser} />
             </nav>
         );
     }
@@ -89,12 +89,42 @@ export default class HiddenNav extends React.Component {
     componentWillReceiveProps(nextProps) {
         //pass
     }
+
+    // ========== Methods ===========
+
+    /**
+     * Signs the user out from firebase auth().
+     * Listener in Render() will detect change.
+     */
+    signOutUser = () => {
+        const  userPath = `public/onboarders/${this.props.thisUID}`;
+        const userPrivatePath = `_private/onboarders/${this.props.thisUID}`;
+        firebase.database().ref(userPath).off();
+        firebase.database().ref(userPrivatePath).off();
+
+        firebase.auth().signOut().then( () => {
+          console.log("User signed out");
+          this.setState({
+              loggedIn  : false,
+              loaded    : false
+          });
+        }, (error) => {
+          console.error(error);
+          this.setState({
+              errors: this.state.errors.concat(error.message)
+          });
+        });
+    }
+
+
+
 }
 
 // ============= PropTypes ==============
 
 HiddenNav.propTypes = {
     user: React.PropTypes.object.isRequired,
+    thisUID: React.PropTypes.string.isRequired,
     thumbnail: React.PropTypes.func.isRequired,
     navIsOpen: React.PropTypes.bool.isRequired,
     changeAppLayout: React.PropTypes.func.isRequired,

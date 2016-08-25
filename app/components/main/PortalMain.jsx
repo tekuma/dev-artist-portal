@@ -1,18 +1,18 @@
 // Libs
 import React             from 'react';
 import firebase          from 'firebase';
-import TransitionGroup from 'react-addons-transition-group';
+import TransitionGroup   from 'react-addons-transition-group';
 
 
 //Files
-import PostAuthHeader    from '../headers/PostAuthHeader';
-import ArtworksAlbumManager      from '../album_manager/ArtworksAlbumManager';
-import ReviewAlbumManager      from '../album_manager/ReviewAlbumManager';
-import ReviewArtworkInfo from '../review_albums/ReviewArtworkInfo';
-import ReviewArtworks from '../review_albums/ReviewArtworks';
-import ArtworkManager    from '../artwork_manager/ArtworkManager';
-import EditProfile       from '../edit_profile/EditProfile';
-import Views             from '../../constants/Views';
+import PostAuthHeader        from '../headers/PostAuthHeader';
+import ArtworksAlbumManager  from '../album_manager/ArtworksAlbumManager';
+import ReviewAlbumManager    from '../album_manager/ReviewAlbumManager';
+import ReviewArtworkInfo     from '../review_albums/ReviewArtworkInfo';
+import ReviewArtworks        from '../review_albums/ReviewArtworks';
+import ArtworkManager        from '../artwork_manager/ArtworkManager';
+import EditProfile           from '../edit_profile/EditProfile';
+import Views                 from '../../constants/Views';
 
 
 export default class PortalMain extends React.Component {
@@ -63,6 +63,8 @@ export default class PortalMain extends React.Component {
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
                 <ArtworksAlbumManager
+                    thisUID                ={this.props.thisUID}
+                    paths                  ={this.props.paths}
                     thumbnail              ={this.props.thumbnail}
                     user                   ={this.props.user}
                     userPrivate            ={this.props.userPrivate}
@@ -71,12 +73,13 @@ export default class PortalMain extends React.Component {
                     currentAlbum           ={this.props.currentAlbum}
                     changeAlbum            ={this.props.changeAlbum}
                     toggleEditAlbumDialog  ={this.props.toggleEditAlbumDialog}
-                    toggleEditMiscAlbumDialog  ={this.props.toggleEditMiscAlbumDialog}
+                    toggleEditMiscAlbumDialog={this.props.toggleEditMiscAlbumDialog}
                     changeCurrentEditAlbum ={this.props.changeCurrentEditAlbum}
                     changeArtworkAlbum     ={this.props.changeArtworkAlbum}
                     submitAlbum            ={this.props.submitAlbum}
                     />
                 <ArtworkManager
+                    paths                    ={this.props.paths}
                     thumbnail                ={this.props.thumbnail}
                     deleteArtwork            ={this.props.deleteArtwork}
                     submitArtwork            ={this.props.submitArtwork}
