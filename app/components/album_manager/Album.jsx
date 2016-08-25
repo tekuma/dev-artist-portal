@@ -128,6 +128,14 @@ export default class Album extends React.Component {
             </Tooltip>
         );
 
+        const submitTooltip = (
+            <Tooltip
+                id="download-tooltip-regular"
+                className="tooltip">
+                Submit
+            </Tooltip>
+        );
+
         const editTooltip = (
             <Tooltip
                 id="edit-artwork-tooltip"
@@ -159,6 +167,14 @@ export default class Album extends React.Component {
                     {this.props.album.name}
                 </h3>
                 <div className="album-tools bottom">
+                    <OverlayTrigger placement="bottom" overlay={submitTooltip}>
+                        <img
+                            className="artwork-tool"
+                            src='assets/images/icons/submit-white.svg'
+                            onClick={this.props.onSubmit.bind(null, this.props.album.name)}
+                            onTouchTap={this.props.onSubmit.bind(null, this.props.album.name)}
+                             />
+                    </OverlayTrigger>
                     <OverlayTrigger
                         placement="bottom"
                         overlay={editTooltip}>

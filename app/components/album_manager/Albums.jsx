@@ -61,6 +61,7 @@ export default class Albums extends React.Component {
                     changeArtworkAlbum ={this.props.changeArtworkAlbum}
                     emptyMisc          ={this.props.emptyMisc}
                     editMisc           ={this.props.editMisc}
+                    onSubmit           ={this.props.submitAlbum}
                     />
                 {albumArray.map(album => {
                     return (
@@ -75,7 +76,8 @@ export default class Albums extends React.Component {
                             onMove              ={this.moveAlbum}
                             currentAlbum        ={this.props.currentAlbum}
                             changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
-                            changeArtworkAlbum  ={this.props.changeArtworkAlbum} />
+                            changeArtworkAlbum  ={this.props.changeArtworkAlbum}
+                            onSubmit            ={this.props.submitAlbum} />
                     );
                 })}
             </ul>
@@ -133,5 +135,6 @@ Albums.propTypes = {
     currentAlbum: React.PropTypes.string.isRequired,
     changeAlbum: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
-    changeArtworkAlbum: React.PropTypes.func.isRequired
+    changeArtworkAlbum: React.PropTypes.func.isRequired,
+    submitAlbum: React.PropTypes.func.isRequired
 };
