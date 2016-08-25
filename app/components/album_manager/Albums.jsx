@@ -66,6 +66,7 @@ export default class Albums extends React.Component {
                     return (
                         <Album
                             key                 ={album.id}
+                            paths               ={this.props.paths}
                             album               ={album}
                             user                ={this.props.user}
                             thumbnail           ={this.props.thumbnail}

@@ -63,6 +63,8 @@ export default class PortalMain extends React.Component {
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
                 <ArtworksAlbumManager
+                    thisUID                ={this.props.thisUID}
+                    paths                  ={this.props.paths}
                     thumbnail              ={this.props.thumbnail}
                     user                   ={this.props.user}
                     userPrivate            ={this.props.userPrivate}
@@ -71,11 +73,12 @@ export default class PortalMain extends React.Component {
                     currentAlbum           ={this.props.currentAlbum}
                     changeAlbum            ={this.props.changeAlbum}
                     toggleEditAlbumDialog  ={this.props.toggleEditAlbumDialog}
-                    toggleEditMiscAlbumDialog  ={this.props.toggleEditMiscAlbumDialog}
+                    toggleEditMiscAlbumDialog={this.props.toggleEditMiscAlbumDialog}
                     changeCurrentEditAlbum ={this.props.changeCurrentEditAlbum}
                     changeArtworkAlbum     ={this.props.changeArtworkAlbum}
                     />
                 <ArtworkManager
+                    paths                    ={this.props.paths}
                     thumbnail                ={this.props.thumbnail}
                     deleteArtwork            ={this.props.deleteArtwork}
                     submitArtwork            ={this.props.submitArtwork}
