@@ -74,6 +74,7 @@ export default class PortalMain extends React.Component {
                     toggleEditMiscAlbumDialog  ={this.props.toggleEditMiscAlbumDialog}
                     changeCurrentEditAlbum ={this.props.changeCurrentEditAlbum}
                     changeArtworkAlbum     ={this.props.changeArtworkAlbum}
+                    submitAlbum            ={this.props.submitAlbum}
                     />
                 <ArtworkManager
                     thumbnail                ={this.props.thumbnail}
@@ -165,6 +166,7 @@ PortalMain.propTypes = {
     navIsOpen: React.PropTypes.bool.isRequired,
     deleteArtwork: React.PropTypes.func.isRequired,
     submitArtwork: React.PropTypes.func.isRequired,
+    submitAlbum: React.PropTypes.func.isRequired,
     toggleEditArtworkDialog: React.PropTypes.func.isRequired,
     toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
     changeCurrentEditArtwork: React.PropTypes.func.isRequired,

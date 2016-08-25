@@ -128,7 +128,8 @@ export default class ArtworksAlbumManager extends React.Component {
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     user               ={this.props.user}
-                    changeArtworkAlbum ={this.props.changeArtworkAlbum} />
+                    changeArtworkAlbum ={this.props.changeArtworkAlbum}
+                    submitAlbum        ={this.props.submitAlbum} />
                 <OverlayTrigger
                     placement   ="left"
                     overlay     ={addAlbumTooltip}>
@@ -169,7 +170,8 @@ export default class ArtworksAlbumManager extends React.Component {
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     user               ={this.props.user}
-                    changeArtworkAlbum ={this.props.changeArtworkAlbum} />
+                    changeArtworkAlbum ={this.props.changeArtworkAlbum}
+                    submitAlbum        ={this.props.submitAlbum} />
                 <div
                     onClick     ={this.addAlbum}
                     onTouchTap  ={this.addAlbum}
@@ -421,5 +423,6 @@ ArtworksAlbumManager.propTypes = {
     toggleEditAlbumDialog: React.PropTypes.func.isRequired,
     toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
     changeCurrentEditAlbum: React.PropTypes.func.isRequired,
-    changeArtworkAlbum: React.PropTypes.func.isRequired
+    changeArtworkAlbum: React.PropTypes.func.isRequired,
+    submitAlbum: React.PropTypes.func.isRequired
 };
