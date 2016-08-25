@@ -79,17 +79,17 @@ export default class App extends React.Component {
 
     render() {
         if (!this.state.loaded) {
-            console.log("Showing Loading Screen");
+            console.log("Entering Loading Screen Branch");
             return this.goToLoadingScreen();
         } else {
             if (this.state.loggedIn) {
-                console.log("Showing PostAuth");
+                console.log("Entering PostAuth Branch");
                 return this.goToPostAuth();
             } else if (this.state.forgotPass) {
-                console.log("Showing ForgotPassword");
+                console.log("Entering ForgotPassword Branch");
                 return this.goToForgotPassword();
             } else {
-                console.log("Showing PreAuth");
+                console.log("Entering PreAuth Branch");
                 return this.goToPreAuth();
             }
         }

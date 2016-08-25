@@ -21,6 +21,7 @@ import EditAlbumDialog     from '../edit_album/EditAlbumDialog';
 import EditMiscAlbumDialog from '../edit_misc/EditMiscAlbumDialog';
 import EditProfileDialog   from '../edit_profile/EditProfileDialog';
 import VerifyEmailDialog   from '../edit_profile/VerifyEmailDialog';
+import SubmitArtworkDialog   from '../artwork_manager/SubmitArtworkDialog';
 import UploadDialog        from './UploadDialog';
 
 
@@ -45,6 +46,7 @@ export default class PostAuth extends React.Component {
         uploadDialogIsOpen: false,                  // Used to track whether Upload Dialog is open
         editProfileDialogIsOpen: false,             // Used to track whether Edit Profile Dialog is open
         verifyEmailDialogIsOpen: false,             // Used to track whether Verify Email Dialog is open
+        submitArtworkDialogIsOpen: false,           // Used to track whether Submit Artwork Dialog is open
         currentAlbum: "Miscellaneous",              // Used to track the current album open
         currentAppLayout: Views.ARTWORKS,           // Used to track the current layout being displayed in PortalMain
         currentEditArtworkInfo: {},                 // Used to store information of artwork being edit momentarily
@@ -82,6 +84,7 @@ export default class PostAuth extends React.Component {
                     toggleNav                 ={this.toggleNav}
                     navIsOpen                 ={this.state.navIsOpen}
                     deleteArtwork             ={this.deleteArtwork}
+                    submitArtwork             ={this.submitArtwork}
                     toggleEditArtworkDialog   ={this.toggleEditArtworkDialog}
                     toggleEditAlbumDialog     ={this.toggleEditAlbumDialog}
                     toggleEditMiscAlbumDialog ={this.toggleEditMiscAlbumDialog}
@@ -133,6 +136,9 @@ export default class PostAuth extends React.Component {
                 <VerifyEmailDialog
                     toggleVerifyEmailDialog={this.toggleVerifyEmailDialog}
                     verifyEmailDialogIsOpen={this.state.verifyEmailDialogIsOpen} />
+                <SubmitArtworkDialog
+                    closeSubmitArtworkDialog={this.closeSubmitArtworkDialog}
+                    submitArtworkDialogIsOpen={this.state.submitArtworkDialogIsOpen} />
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <Snackbar
                         className="registration-error"
@@ -312,6 +318,17 @@ export default class PostAuth extends React.Component {
     closeProfileDialog = () => {
         this.setState({
             editProfileDialogIsOpen: !this.state.editProfileDialogIsOpen
+        });
+    }
+
+    /**
+     * This method is used to change the boolean value of
+     * this.state.submitArtworkDialogIsOpen to false to
+     * close the Submit Artwork Dialog component
+     */
+    closeSubmitArtworkDialog = () => {
+        this.setState({
+            submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
         });
     }
 
@@ -1034,6 +1051,18 @@ export default class PostAuth extends React.Component {
             });
         });
 
+    }
+
+    /**
+     * Submit artwork object from /artworks and
+     * @param  {String} id [UID of artwork to be submitted]
+     */
+    submitArtwork = (id) => {
+        console.log("Entered submitArtwork method in PostAuth");
+        this.setState({
+            submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
+        });
+        console.log("..... Submitting Artwork");
     }
 }
 
