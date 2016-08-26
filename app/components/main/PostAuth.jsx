@@ -1065,17 +1065,71 @@ export default class PostAuth extends React.Component {
     }
 
     /**
+     * This method creates a "submit" object in the
+     *  artwork-submit-print object lifecycle
+     * @param  {[string]} id [artworkUID]
+     * @return {[obj]}    [the submit object]
+     */
+    createSubmitObject = (id) => {
+        let submit = this.state.user.artworks[id];
+        submit['message']     = "Recieved";
+        submit['submit_date'] = new Date().toISOString();
+        submit['status']      = "unseen"; //unseen, aproved, held, deferred
+        submit['artwork_uid']  = id;
+        return submit;
+    }
+
+    /**
+     * @param  {[type]} id [description]
+     * @return {[type]}    [description]
+     */
+    addSubmitPointers = (submit_id) => {
+        //TODO
+        let albumIndex = this.findAlbumIndex(this.state.currentAlbum);
+        if (albumIndex == -1) {
+            console.log("Error. Album not found...");
+        }
+        let album = this.state.user.albums[albumIndex];
+        if (album['submits'] == undefined || album['submits'] == null) {
+            album['submits'] = [];
+        }
+        album['submits'].push(submit_id)
+    }
+
+
+    findAlbumIndex = (name) => {
+        let albums = this.state.user.albums;
+        for (var i = 0; i < albums.length; i++) {
+            if (albums[i].name === name) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    /**
      * Submit artwork object from /artworks
      * @param  {String} id [UID of artwork to be submitted]
      */
-    submitArtwork = (id, e) => {
-        e.stopPropagation();
-        console.log("Entered submitArtwork method in PostAuth");
-        this.setState({
-            submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
+    submitArtwork = (id) => {
+        console.log(">>>Submitting Artwork:", id);
+        // Create a Submit Object and set it to DB
+        let submit    = this.createSubmitObject(id);
+        let submitRef = firebase.database().ref("submits");
+        let submit_id = submitRef.push().key;
+        submitRef.child(submit_id).set(submit).then(()=>{
+            console.log(`Submit: ${submit_id} was submitted (haha)`);
+            this.setState({
+                submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
+            });
         });
-        console.log("..... Submitting Artwork");
+
+        // Add pointers to the Object in the user/albums
+        this.addSubmitPointers(submit_id,id);
     }
+
+
 
     /**
      * Submit artwork object from an album
@@ -1083,11 +1137,15 @@ export default class PostAuth extends React.Component {
      */
     submitAlbum = (name, e) => {
         e.stopPropagation();
-        console.log("Entered submitAlbum method in PostAuth");
+        console.log("Submitting Entire Album");
         this.setState({
             submitAlbumDialogIsOpen: !this.state.submitAlbumDialogIsOpen
         });
-        console.log("..... Submitting Album Artworks from: ", name);
+        let albums = this.state.user.albums;
+
+        for (var i = 0; i < album.artworks.length; i++) {
+            this.submitArtwork(album.artworks[i]);
+        }
     }
 }
 
