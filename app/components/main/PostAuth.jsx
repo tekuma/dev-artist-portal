@@ -157,14 +157,14 @@ export default class PostAuth extends React.Component {
         const thisUID   = firebase.auth().currentUser.uid;
         const userPrivatePath = `_private/onboarders/${thisUID}`;
 
-        this.setState({
-            thisUID:  firebase.auth().currentUser.uid,
-            paths:{
-                user    : `public/onboarders/${thisUID}`,
-                albums  : `public/onboarders/${thisUID}/albums`,
-                artworks: `public/onboarders/${thisUID}/artworks`
-            }
-        });
+        let state = this.state;
+        state['paths'] = {
+            user    : `public/onboarders/${thisUID}`,
+            albums  : `public/onboarders/${thisUID}/albums`,
+            artworks: `public/onboarders/${thisUID}/artworks`
+        };
+        state['thisUID'] = firebase.auth().currentUser.uid;
+        this.setState(state);
 
         //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
         // these 2 on-methods listen for any change to the database and
