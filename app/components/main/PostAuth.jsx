@@ -74,6 +74,7 @@ export default class PostAuth extends React.Component {
                     toggleNav={this.toggleNav}
                     navIsOpen={this.state.navIsOpen} />
                 <PortalMain
+                    findAlbumIndex            ={this.findAlbumIndex}
                     thisUID                   ={this.state.thisUID}
                     paths                     ={this.state.paths}
                     thumbnail                 ={this.props.thumbnail}
@@ -1070,12 +1071,13 @@ export default class PostAuth extends React.Component {
      * @param  {[string]} id [artworkUID]
      * @return {[obj]}    [the submit object]
      */
-    createSubmitObject = (id) => {
+    createSubmitObject = (id,submit_id) => {
         let submit = this.state.user.artworks[id];
-        submit['message']     = "Recieved";
-        submit['submit_date'] = new Date().toISOString();
-        submit['status']      = "unseen"; //unseen, aproved, held, deferred
-        submit['artwork_uid']  = id;
+        submit['message']      = "Recieved";
+        submit['submit_date']  = new Date().toISOString();
+        submit['status']       = "unseen"; //unseen, aproved, held, deferred
+        submit['submit_id']    = submit_id;
+        submit['artist_uid']   = this.state.thisUID;
         return submit;
     }
 
@@ -1083,9 +1085,9 @@ export default class PostAuth extends React.Component {
      * @param  {[type]} id [description]
      * @return {[type]}    [description]
      */
-    addSubmitPointers = (submit_id) => {
-        //TODO
+    addSubmitPointer = (submit_id) => {
         let albumIndex = this.findAlbumIndex(this.state.currentAlbum);
+        console.log(">adding pointer to album:", albumIndex);
         if (albumIndex == -1) {
             console.log("Error. Album not found...");
         }
@@ -1094,6 +1096,9 @@ export default class PostAuth extends React.Component {
             album['submits'] = [];
         }
         album['submits'].push(submit_id)
+        firebase.database()
+            .ref(`${this.state.paths.albums}/${albumIndex}`)
+            .set(album, ()=>{console.log("pointer added ()");});
     }
 
 
@@ -1115,9 +1120,10 @@ export default class PostAuth extends React.Component {
     submitArtwork = (id) => {
         console.log(">>>Submitting Artwork:", id);
         // Create a Submit Object and set it to DB
-        let submit    = this.createSubmitObject(id);
+
         let submitRef = firebase.database().ref("submits");
         let submit_id = submitRef.push().key;
+        let submit    = this.createSubmitObject(id, submit_id);
         submitRef.child(submit_id).set(submit).then(()=>{
             console.log(`Submit: ${submit_id} was submitted (haha)`);
             this.setState({
@@ -1126,7 +1132,7 @@ export default class PostAuth extends React.Component {
         });
 
         // Add pointers to the Object in the user/albums
-        this.addSubmitPointers(submit_id,id);
+        this.addSubmitPointer(submit_id);
     }
 
 

@@ -620,7 +620,6 @@ export default class App extends React.Component {
         }, this);
     }
 
-
     /**
      * [description]
      * @return {[type]} [description]
@@ -630,5 +629,5 @@ export default class App extends React.Component {
             verifyEmailMessage: ""
         });
     }
-    
+
 }//END App
