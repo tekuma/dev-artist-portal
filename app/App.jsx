@@ -30,12 +30,23 @@ import ForgotPassword     from './components/pre_auth/ForgotPassword';
 //Initialize Firebase  SDK in root JSX (here)
 
 // // ====== Staging ======
+// var config = {
+//     apiKey: "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
+//     authDomain: "project-7614141605200030275.firebaseapp.com",
+//     databaseURL: "https://project-7614141605200030275.firebaseio.com",
+//     storageBucket: "project-7614141605200030275.appspot.com",
+// };
+
+// // ====== Connecting to current DB ======
+
 var config = {
-    apiKey: "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
-    authDomain: "project-7614141605200030275.firebaseapp.com",
-    databaseURL: "https://project-7614141605200030275.firebaseio.com",
-    storageBucket: "project-7614141605200030275.appspot.com",
+    apiKey       : "AIzaSyAOS1ZTz4YcbIpTNNihtr-FeLb_905GefM",
+    authDomain   : "artist-tekuma-4a697.firebaseapp.com",
+    databaseURL  : "https://artist-tekuma-4a697.firebaseio.com",
+    storageBucket: "art-uploads"
 };
+
+
 
 firebase.initializeApp(config);
 
@@ -630,5 +641,5 @@ export default class App extends React.Component {
             verifyEmailMessage: ""
         });
     }
-    
+
 }//END App

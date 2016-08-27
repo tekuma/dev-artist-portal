@@ -101,6 +101,7 @@ export default class PostAuth extends React.Component {
                     toggleDeleteAccountDialog ={this.toggleDeleteAccountDialog}
                     toggleVerifyEmailDialog   ={this.toggleVerifyEmailDialog}
                     changeArtworkAlbum        ={this.changeArtworkAlbum} />
+                    searchArtistUID           ={this.searchArtistUID} />
                 <EditArtworkDialog
                     user={this.state.user}
                     editArtworkIsOpen={this.state.editArtworkIsOpen}
@@ -219,6 +220,14 @@ export default class PostAuth extends React.Component {
     }
 
 // -------------- METHODS -------------- //
+    /**
+     * Search Artist with UID
+     */
+
+    searchArtistUID = (artistUID) => {
+      console.log(artistUID);
+    }
+
 
     //  # Toggle Methods
 
