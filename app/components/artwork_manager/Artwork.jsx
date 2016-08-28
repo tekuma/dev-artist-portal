@@ -100,7 +100,7 @@ export default class Artwork extends React.Component {
                     <div className="artwork-tools">
                         <OverlayTrigger placement="bottom" overlay={submitTooltip}>
                             <img
-                                className="artwork-tool"
+                                className="artwork-tool submit"
                                 src='assets/images/icons/submit-black.svg'
                                 onClick={this.props.onSubmit.bind(null, this.props.artwork.id)}
                                 onTouchTap={this.props.onSubmit.bind(null, this.props.artwork.id)}
@@ -108,7 +108,7 @@ export default class Artwork extends React.Component {
                         </OverlayTrigger>
                         <OverlayTrigger placement="bottom" overlay={editTooltip}>
                             <img
-                                className="artwork-tool"
+                                className="artwork-tool edit"
                                 src='assets/images/icons/edit-black.svg'
                                 onClick={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
                                 onTouchTap={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
@@ -119,13 +119,13 @@ export default class Artwork extends React.Component {
                             download={this.props.artwork.filename} >
                             <OverlayTrigger placement="bottom" overlay={downloadTooltip}>
                                 <img
-                                    className="artwork-tool"
+                                    className="artwork-tool download"
                                     src='assets/images/icons/download-black.svg' />
                             </OverlayTrigger>
                         </a>
                         <OverlayTrigger placement="bottom" overlay={deleteTooltip}>
                             <img
-                                className="artwork-tool"
+                                className="artwork-tool delete"
                                 src='assets/images/icons/delete-black.svg'
                                 onClick={this.props.onDelete.bind(null, this.props.artwork.id)}
                                 onTouchTap={this.props.onDelete.bind(null, this.props.artwork.id)}

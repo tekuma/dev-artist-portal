@@ -5,9 +5,9 @@
 
   <testsuite name="pre_auth_send_forgot"
     errors="2" failures="1" hostname="" id="" package="pre-auth" skipped="0"
-    tests="1" time="4.492" timestamp="Thu, 25 Aug 2016 20:32:48 GMT">
+    tests="1" time="3.718" timestamp="Fri, 26 Aug 2016 13:35:42 GMT">
   
-    <testcase name="Test Forgot Password/Send Email" time="4.492" assertions="3">
+    <testcase name="Test Forgot Password/Send Email" time="3.718" assertions="3">
 
     
 

@@ -111,8 +111,8 @@ export default class ForgotPassword extends React.Component {
     sendResetEmail = (e) =>{
         e.preventDefault();
 
-        console.log("Entered Reset Email", this.refs.email.value);
-        let emailAddress = this.refs.email.value;
+        console.log("Entered Reset Email", this.refs.forgotEmail.value);
+        let emailAddress = this.refs.forgotEmail.value;
 
         if(emailAddress.length == 0) {
             this.state.errors.push("Please enter an email address");
