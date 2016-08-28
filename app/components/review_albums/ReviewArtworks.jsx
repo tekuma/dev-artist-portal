@@ -11,12 +11,28 @@ import Views             from '../../constants/Views';
  * TODO
  */
 export default class ReviewArtworks extends React.Component {
+    state = {
+        albumIndex : null,
+        submits : []
+    }
+
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
         console.log("-----ReviewArtworks");
+        this.setState({
+            albumIndex: this.props.albumIndex
+        });
+        let currentAlbum = this.props.user.albums[albumIndex];
+        let submits;
+        if (currentAlbum.submits == undefined) {
+            submits = []
+        } else {
+            submits = currentAlbum.submits;
+        }
+        this.setState({submits:submits});
     }
 
     render() {
@@ -69,6 +85,7 @@ export default class ReviewArtworks extends React.Component {
 
     componentDidMount() {
         console.log("+++++ReviewArtworks");
+
     }
 
     componentWillReceiveProps(nextProps) {

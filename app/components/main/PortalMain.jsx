@@ -126,6 +126,7 @@ export default class PortalMain extends React.Component {
     }
 
     goToSubmissions = () => {
+        let submits = this.getSubmitObjects(this.getSubmitIDs());
         return (
             <div className={this.props.navIsOpen ? "main-wrapper open" : "main-wrapper"}>
                 <PostAuthHeader
@@ -133,17 +134,17 @@ export default class PortalMain extends React.Component {
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
                 <ReviewAlbumManager
-                    currentAlbum       ={this.props.currentAlbum}
-                    changeAlbum        ={this.props.changeAlbum}
-                    managerIsOpen   ={this.props.managerIsOpen}
-                    toggleManager   ={this.props.toggleManager} />
-                <TransitionGroup>
-                    <ReviewArtworks
-                        managerIsOpen   ={this.props.managerIsOpen}/>
-                </TransitionGroup>
-                <TransitionGroup>
-                    <ReviewArtworkInfo />
-                </TransitionGroup>
+                    currentAlbum  ={this.props.currentAlbum}
+                    changeAlbum   ={this.props.changeAlbum}
+                    managerIsOpen ={this.props.managerIsOpen}
+                    toggleManager ={this.props.toggleManager} />
+                <ReviewArtworks
+                    managerIsOpen ={this.props.managerIsOpen}
+                    submits = {submits}
+                    user          ={this.props.user} />
+                <ReviewArtworkInfo
+
+                         />
                 <div
                     onClick     ={this.props.toggleNav}
                     onTouchTap  ={this.props.toggleNav}
@@ -157,6 +158,31 @@ export default class PortalMain extends React.Component {
     rerender = () => {
         this.setState({});
     }
+
+    getSubmitIDs = () => {
+        let albumName    = this.props.currentAlbum;
+        let albumIndex   = this.props.findAlbumIndex(albumName);
+        let currentAlbum = this.props.user.albums[albumIndex];
+        let ids;
+        if (currentAlbum.submits == undefined) {
+            ids = []
+        } else {
+            ids = currentAlbum.submits;
+        }
+        return ids;
+    }
+
+    getSubmitObjects = (ids) => {
+        let retlst = [];
+        for (var i = 0; i < ids.length; i++) {
+            let id = ids[i];
+
+        }
+    }
+
+
+
+
 }
 
 // ============= PropTypes ==============

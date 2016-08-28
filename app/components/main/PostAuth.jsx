@@ -74,6 +74,7 @@ export default class PostAuth extends React.Component {
                     toggleNav={this.toggleNav}
                     navIsOpen={this.state.navIsOpen} />
                 <PortalMain
+                    findAlbumIndex            ={this.findAlbumIndex}
                     thisUID                   ={this.state.thisUID}
                     paths                     ={this.state.paths}
                     thumbnail                 ={this.props.thumbnail}
@@ -159,7 +160,7 @@ export default class PostAuth extends React.Component {
 
         let state = this.state;
 
-        state["paths"] = {
+        state['paths'] = {
             user    : `public/onboarders/${thisUID}`,
             albums  : `public/onboarders/${thisUID}/albums`,
             artworks: `public/onboarders/${thisUID}/artworks`
@@ -1067,16 +1068,76 @@ export default class PostAuth extends React.Component {
     }
 
     /**
+     * This method creates a "submit" object in the
+     *  artwork-submit-print object lifecycle
+     * @param  {[string]} id [artworkUID]
+     * @return {[obj]}    [the submit object]
+     */
+    createSubmitObject = (id,submit_id) => {
+        let submit = this.state.user.artworks[id];
+        submit['message']      = "Recieved";
+        submit['submit_date']  = new Date().toISOString();
+        submit['status']       = "unseen"; //unseen, aproved, held, deferred
+        submit['submit_id']    = submit_id;
+        submit['artist_uid']   = this.state.thisUID;
+        return submit;
+    }
+
+    /**
+     * @param  {[type]} id [description]
+     * @return {[type]}    [description]
+     */
+    addSubmitPointer = (submit_id) => {
+        let albumIndex = this.findAlbumIndex(this.state.currentAlbum);
+        console.log(">adding pointer to album:", albumIndex);
+        if (albumIndex == -1) {
+            console.log("Error. Album not found...");
+        }
+        let album = this.state.user.albums[albumIndex];
+        if (album['submits'] == undefined || album['submits'] == null) {
+            album['submits'] = [];
+        }
+        album['submits'].push(submit_id)
+        firebase.database()
+            .ref(`${this.state.paths.albums}/${albumIndex}`)
+            .set(album, ()=>{console.log("pointer added ()");});
+    }
+
+
+    findAlbumIndex = (name) => {
+        let albums = this.state.user.albums;
+        for (var i = 0; i < albums.length; i++) {
+            if (albums[i].name === name) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    /**
      * Submit artwork object from /artworks
      * @param  {String} id [UID of artwork to be submitted]
      */
     submitArtwork = (id) => {
-        console.log("Entered submitArtwork method in PostAuth");
-        this.setState({
-            submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
+        console.log(">>>Submitting Artwork:", id);
+        // Create a Submit Object and set it to DB
+
+        let submitRef = firebase.database().ref("submits");
+        let submit_id = submitRef.push().key;
+        let submit    = this.createSubmitObject(id, submit_id);
+        submitRef.child(submit_id).set(submit).then(()=>{
+            console.log(`Submit: ${submit_id} was submitted (haha)`);
+            this.setState({
+                submitArtworkDialogIsOpen: !this.state.submitArtworkDialogIsOpen
+            });
         });
-        console.log("..... Submitting Artwork");
+
+        // Add pointers to the Object in the user/albums
+        this.addSubmitPointer(submit_id);
     }
+
+
 
     /**
      * Submit artwork object from an album
@@ -1084,11 +1145,15 @@ export default class PostAuth extends React.Component {
      */
     submitAlbum = (name, e) => {
         e.stopPropagation();
-        console.log("Entered submitAlbum method in PostAuth");
+        console.log("Submitting Entire Album");
         this.setState({
             submitAlbumDialogIsOpen: !this.state.submitAlbumDialogIsOpen
         });
-        console.log("..... Submitting Album Artworks from: ", name);
+        let albums = this.state.user.albums;
+
+        for (var i = 0; i < album.artworks.length; i++) {
+            this.submitArtwork(album.artworks[i]);
+        }
     }
 }
 
