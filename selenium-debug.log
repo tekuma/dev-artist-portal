@@ -1,56 +1,122 @@
-16:50:51.506 INFO - Launching a standalone Selenium Server
+15:10:03.205 INFO - Launching a standalone Selenium Server
 Setting system property webdriver.chrome.driver to ./node_modules/selenium-standalone/.selenium/chromedriver/2.22-x64-chromedriver
-16:50:51.536 INFO - Java: Oracle Corporation 25.71-b15
-16:50:51.536 INFO - OS: Mac OS X 10.11.3 x86_64
-16:50:51.546 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
-16:50:51.603 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+15:10:03.235 INFO - Java: Oracle Corporation 25.71-b15
+15:10:03.236 INFO - OS: Mac OS X 10.11.3 x86_64
+15:10:03.247 INFO - v2.53.1, with Core v2.53.1. Built from revision a36b8b1
+15:10:03.303 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
 registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-16:50:51.603 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+15:10:03.303 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
 registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-16:50:51.603 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-16:50:51.603 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-16:50:51.605 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
-16:50:51.605 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
-16:50:51.659 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
-16:50:51.659 INFO - Selenium Server is up and running
-16:50:52.058 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Pre Auth Send Forgot, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-16:50:52.065 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Pre Auth Send Forgot, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.22.397929 (fb72fb249a903a0b1041ea71eb4c8b3fa0d9be5a) on port 21210
+15:10:03.303 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+15:10:03.303 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+15:10:03.305 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
+15:10:03.305 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
+15:10:03.364 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+15:10:03.364 INFO - Selenium Server is up and running
+15:10:03.827 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=2 Post Auth / Albums / Post Auth Album, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:10:03.835 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=2 Post Auth / Albums / Post Auth Album, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.22.397929 (fb72fb249a903a0b1041ea71eb4c8b3fa0d9be5a) on port 24413
 Only local connections are allowed.
-16:50:52.909 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Pre Auth Send Forgot, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-16:50:52.921 INFO - Executing: [get: https://project-7614141605200030275.firebaseapp.com])
-16:50:53.857 INFO - Done: [get: https://project-7614141605200030275.firebaseapp.com]
-16:50:53.868 INFO - Executing: [find elements: By.cssSelector: body])
-16:50:53.900 INFO - Done: [find elements: By.cssSelector: body]
-16:50:53.904 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: body]])
-16:50:53.919 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: body]]
-16:50:53.924 INFO - Executing: [find element: By.cssSelector: div.header-writing.login])
-16:50:53.939 INFO - Done: [find element: By.cssSelector: div.header-writing.login]
-16:50:53.942 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.header-writing.login]])
-16:50:53.985 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.header-writing.login]]
-16:50:54.293 INFO - Executing: [find element: By.cssSelector: li.solo-links.center])
-16:50:54.313 INFO - Done: [find element: By.cssSelector: li.solo-links.center]
-16:50:54.316 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: li.solo-links.center]])
-16:50:54.359 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: li.solo-links.center]]
-16:50:54.369 INFO - Executing: [find elements: By.cssSelector: body])
-16:50:54.376 INFO - Done: [find elements: By.cssSelector: body]
-16:50:54.378 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: body]])
-16:50:54.384 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: body]]
-16:50:54.387 INFO - Executing: [find element: By.cssSelector: #forgot-email])
-16:50:54.401 INFO - Done: [find element: By.cssSelector: #forgot-email]
-16:50:54.404 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: #forgot-email], [t, e, s, t, @, t, e, k, u, m, a, ., i, o]])
-16:50:54.468 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: #forgot-email], [t, e, s, t, @, t, e, k, u, m, a, ., i, o]]
-16:50:54.471 INFO - Executing: [find element: By.cssSelector: button.signup-button.forgot])
-16:50:54.485 INFO - Done: [find element: By.cssSelector: button.signup-button.forgot]
-16:50:54.487 INFO - Executing: [click: 4 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: button.signup-button.forgot]])
-16:50:54.520 INFO - Done: [click: 4 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: button.signup-button.forgot]]
-16:50:54.523 INFO - Executing: [find elements: By.cssSelector: div.registration-error span])
-16:50:54.539 INFO - Done: [find elements: By.cssSelector: div.registration-error span]
-16:50:54.540 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]])
-16:50:54.551 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]]
-16:50:55.056 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]])
-16:50:55.063 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]]
-16:50:55.569 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]])
-16:50:55.576 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (df7162ef7d040984b9269c86b6b25a2b)] -> css selector: div.registration-error span]]
-16:50:55.582 INFO - Executing: [delete session: 5dade839-9732-4f01-b84e-11e233754d5c])
-16:50:55.653 INFO - Done: [delete session: 5dade839-9732-4f01-b84e-11e233754d5c]
+15:10:04.684 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=2 Post Auth / Albums / Post Auth Album, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:10:04.697 INFO - Executing: [get: https://project-7614141605200030275.firebaseapp.com])
+15:10:05.676 INFO - Done: [get: https://project-7614141605200030275.firebaseapp.com]
+15:10:05.685 INFO - Executing: [find elements: By.cssSelector: body])
+15:10:05.715 INFO - Done: [find elements: By.cssSelector: body]
+15:10:05.719 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: body]])
+15:10:05.731 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: body]]
+15:10:05.735 INFO - Executing: [find elements: By.cssSelector: div.header-writing.login])
+15:10:05.750 INFO - Done: [find elements: By.cssSelector: div.header-writing.login]
+15:10:05.753 INFO - Executing: [is displayed: 1 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.header-writing.login]])
+15:10:05.765 INFO - Done: [is displayed: 1 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.header-writing.login]]
+15:10:05.771 INFO - Executing: [find element: By.cssSelector: div.header-writing.login])
+15:10:05.785 INFO - Done: [find element: By.cssSelector: div.header-writing.login]
+15:10:05.789 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.header-writing.login]])
+15:10:05.847 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.header-writing.login]]
+15:10:05.856 INFO - Executing: [find elements: By.cssSelector: .hidden-login input[type=email]])
+15:10:05.869 INFO - Done: [find elements: By.cssSelector: .hidden-login input[type=email]]
+15:10:05.872 INFO - Executing: [is displayed: 2 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=email]]])
+15:10:05.885 INFO - Done: [is displayed: 2 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=email]]]
+15:10:05.888 INFO - Executing: [find element: By.cssSelector: .hidden-login input[type=email]])
+15:10:05.902 INFO - Done: [find element: By.cssSelector: .hidden-login input[type=email]]
+15:10:05.906 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=email]], [t, e, s, t, r, u, n, n, e, r, @, t, e, k, u, m, a, ., i, o]])
+15:10:05.983 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=email]], [t, e, s, t, r, u, n, n, e, r, @, t, e, k, u, m, a, ., i, o]]
+15:10:05.987 INFO - Executing: [find element: By.cssSelector: .hidden-login input[type=password]])
+15:10:06.007 INFO - Done: [find element: By.cssSelector: .hidden-login input[type=password]]
+15:10:06.012 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=password]], [p, a, s, s, w, o, r, d]])
+15:10:06.064 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: .hidden-login input[type=password]], [p, a, s, s, w, o, r, d]]
+15:10:06.068 INFO - Executing: [find elements: By.cssSelector: button.login-button])
+15:10:06.081 INFO - Done: [find elements: By.cssSelector: button.login-button]
+15:10:06.084 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.login-button]])
+15:10:06.100 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.login-button]]
+15:10:06.104 INFO - Executing: [find element: By.cssSelector: button.login-button])
+15:10:06.120 INFO - Done: [find element: By.cssSelector: button.login-button]
+15:10:06.124 INFO - Executing: [click: 4 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.login-button]])
+15:10:06.181 INFO - Done: [click: 4 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.login-button]]
+15:10:09.191 INFO - Executing: [find elements: By.cssSelector: body])
+15:10:09.205 INFO - Done: [find elements: By.cssSelector: body]
+15:10:09.208 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: body]])
+15:10:09.213 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: body]]
+15:10:09.217 INFO - Executing: [find elements: By.cssSelector: li.album.black:nth-child(1)])
+15:10:09.231 INFO - Done: [find elements: By.cssSelector: li.album.black:nth-child(1)]
+15:10:09.234 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:nth-child(1)]])
+15:10:09.246 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:nth-child(1)]]
+15:10:09.252 INFO - Executing: [find element: By.cssSelector: li.album.black:nth-child(1)])
+15:10:09.265 INFO - Done: [find element: By.cssSelector: li.album.black:nth-child(1)]
+15:10:09.268 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:nth-child(1)]])
+15:10:09.310 INFO - Done: [click: 5 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:nth-child(1)]]
+15:10:09.313 INFO - Executing: [find elements: By.cssSelector: div.artwork-upload-box])
+15:10:09.328 INFO - Done: [find elements: By.cssSelector: div.artwork-upload-box]
+15:10:09.331 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.artwork-upload-box]])
+15:10:09.344 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.artwork-upload-box]]
+15:10:09.347 INFO - Executing: [find element: By.cssSelector: div.artwork-upload-box input[type=file]])
+15:10:09.361 INFO - Done: [find element: By.cssSelector: div.artwork-upload-box input[type=file]]
+15:10:09.366 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.artwork-upload-box input[type=file]], [/, U, s, e, r, s, /, a, n, y, a, t, i, /, D, o, c, u, m, e, n, t, s, /, M, I, T, /, 2,  , -,  , S, o, p, h, o, m, o, r, e,  , Y, e, a, r, /, T, e, k, u, m, a, /, W, e, b,  , A, p, p, l, i, c, a, t, i, o, n, s, /, d, e, v, -, a, r, t, -, o, n, b, o, a, r, d, i, n, g, /, t, e, s, t, s, /, e, 2, e, /, 2, -, p, o, s, t, -, a, u, t, h, /, a, l, b, u, m, s, /, t, e, s, t, _, i, m, a, g, e, ., p, n, g]])
+15:10:09.432 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.artwork-upload-box input[type=file]], [/, U, s, e, r, s, /, a, n, y, a, t, i, /, D, o, c, u, m, e, n, t, s, /, M, I, T, /, 2,  , -,  , S, o, p, h, o, m, o, r, e,  , Y, e, a, r, /, T, e, k, u, m, a, /, W, e, b,  , A, p, p, l, i, c, a, t, i, o, n, s, /, d, e, v, -, a, r, t, -, o, n, b, o, a, r, d, i, n, g, /, t, e, s, t, s, /, e, 2, e, /, 2, -, p, o, s, t, -, a, u, t, h, /, a, l, b, u, m, s, /, t, e, s, t, _, i, m, a, g, e, ., p, n, g]]
+15:10:09.437 INFO - Executing: [find elements: By.cssSelector: article.dropzone-image-preview-container])
+15:10:09.453 INFO - Done: [find elements: By.cssSelector: article.dropzone-image-preview-container]
+15:10:09.961 INFO - Executing: [find elements: By.cssSelector: article.dropzone-image-preview-container])
+15:10:09.968 INFO - Done: [find elements: By.cssSelector: article.dropzone-image-preview-container]
+15:10:10.477 INFO - Executing: [find elements: By.cssSelector: article.dropzone-image-preview-container])
+15:10:10.488 INFO - Done: [find elements: By.cssSelector: article.dropzone-image-preview-container]
+15:10:10.491 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: article.dropzone-image-preview-container]])
+15:10:10.503 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: article.dropzone-image-preview-container]]
+15:10:10.506 INFO - Executing: [find element: By.cssSelector: button.upload-dialog-button])
+15:10:10.520 INFO - Done: [find element: By.cssSelector: button.upload-dialog-button]
+15:10:10.523 INFO - Executing: [click: 9 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.upload-dialog-button]])
+15:10:10.576 INFO - Done: [click: 9 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.upload-dialog-button]]
+15:10:11.585 INFO - Executing: [find elements: By.cssSelector: li.album.black:first-child img.album-tool.edit])
+15:10:11.602 INFO - Done: [find elements: By.cssSelector: li.album.black:first-child img.album-tool.edit]
+15:10:11.605 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:first-child img.album-tool.edit]])
+15:10:11.617 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:first-child img.album-tool.edit]]
+15:10:11.620 INFO - Executing: [find element: By.cssSelector: li.album.black:first-child div.album-tools img.album-tool.edit])
+15:10:11.634 INFO - Done: [find element: By.cssSelector: li.album.black:first-child div.album-tools img.album-tool.edit]
+15:10:11.637 INFO - Executing: [click: 10 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:first-child img.album-tool.edit]])
+15:10:11.714 INFO - Done: [click: 10 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: li.album.black:first-child img.album-tool.edit]]
+15:10:11.719 INFO - Executing: [find elements: By.cssSelector: div.edit-album-content .ReactTags__tagInput input[type=text]])
+15:10:11.735 INFO - Done: [find elements: By.cssSelector: div.edit-album-content .ReactTags__tagInput input[type=text]]
+15:10:11.736 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content .ReactTags__tagInput input[type=text]]])
+15:10:11.748 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content .ReactTags__tagInput input[type=text]]]
+15:10:11.751 INFO - Executing: [find element: By.cssSelector: div.edit-album-content .ReactTags__tagInput input[type=text]])
+15:10:11.768 INFO - Done: [find element: By.cssSelector: div.edit-album-content .ReactTags__tagInput input[type=text]]
+15:10:11.770 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content .ReactTags__tagInput input[type=text]], [t, e, k, u, m, a]])
+15:10:11.809 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content .ReactTags__tagInput input[type=text]], [t, e, k, u, m, a]]
+15:10:11.814 INFO - Executing: [send keys to active: []])
+15:10:11.827 INFO - Done: [send keys to active: []]
+15:10:11.844 INFO - Executing: [find element: By.cssSelector: button.edit-album-yes])
+15:10:11.858 INFO - Done: [find element: By.cssSelector: button.edit-album-yes]
+15:10:11.861 INFO - Executing: [click: 12 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.edit-album-yes]])
+15:10:11.892 INFO - Done: [click: 12 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: button.edit-album-yes]]
+15:10:11.895 INFO - Executing: [find elements: By.cssSelector: div.edit-album-content])
+15:10:11.911 INFO - Done: [find elements: By.cssSelector: div.edit-album-content]
+15:10:11.914 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]])
+15:10:11.931 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]]
+15:10:12.440 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]])
+15:10:12.448 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]]
+15:10:12.956 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]])
+15:10:12.964 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]]
+15:10:13.482 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]])
+15:10:13.490 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]]
+15:10:13.996 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]])
+15:10:14.004 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (edde9eabf84620ad837fbf8e2b50885e)] -> css selector: div.edit-album-content]]
+15:10:14.010 INFO - Executing: [delete session: a992853e-8f7c-421d-98dd-f654c35cf7f3])
+15:10:14.083 INFO - Done: [delete session: a992853e-8f7c-421d-98dd-f654c35cf7f3]

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="post_auth_album"
+    errors="0" failures="1" hostname="" id="" package="albums" skipped="0"
+    tests="1" time="10.42" timestamp="Mon, 29 Aug 2016 19:10:03 GMT">
+  
+    <testcase name="Test Album: Edit Misc Album (Edit Tags)" time="10.42" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Timed out while waiting for element &lt;div.edit-album-content&gt; to not be visible for 2000 milliseconds.">    at Object.&lt;anonymous&gt; (post_auth_album.js:352:22)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>
