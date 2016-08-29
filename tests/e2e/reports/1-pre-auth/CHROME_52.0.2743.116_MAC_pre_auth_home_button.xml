@@ -5,9 +5,9 @@
 
   <testsuite name="pre_auth_home_button"
     errors="0" failures="0" hostname="" id="" package="1-pre-auth" skipped="0"
-    tests="1" time="4.180" timestamp="Sun, 28 Aug 2016 21:22:03 GMT">
+    tests="1" time="4.190" timestamp="Mon, 29 Aug 2016 21:15:49 GMT">
   
-    <testcase name="Test Home Button Redirects to Tekuma Homepage" time="4.180" assertions="3">
+    <testcase name="Test Home Button Redirects to Tekuma Homepage" time="4.190" assertions="3">
 
     
 

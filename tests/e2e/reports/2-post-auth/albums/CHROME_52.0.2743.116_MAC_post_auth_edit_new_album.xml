@@ -3,11 +3,21 @@
             failures="0"
             tests="1">
 
-  <testsuite name="post_auth_album"
+  <testsuite name="post_auth_edit_new_album"
     errors="0" failures="0" hostname="" id="" package="albums" skipped="0"
-    tests="1" time="13.64" timestamp="Mon, 29 Aug 2016 20:13:29 GMT">
+    tests="1" time="14.22" timestamp="Mon, 29 Aug 2016 20:34:48 GMT">
   
-    <testcase name="Test Album: Edit New Album (Edit Description)" time="13.64" assertions="26">
+    <testcase name="Test Album: Edit New Album (Edit Tags - Two Tags)" time="14.22" assertions="31">
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
