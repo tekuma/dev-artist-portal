@@ -598,7 +598,7 @@ export default class PostAuth extends React.Component {
                     console.log(">> New Avatar Uploaded successfully");
                     avatarRef.getDownloadURL().then( (avatarURL)=>{
                         data.avatar = avatarURL;
-                        firebase.database().ref(this.state.paths.user).update(data)
+                        firebase.database().ref(this.state.paths.info).update(data)
                         .then( ()=>{
                             //FIXME use a toggle method?
                             this.setState({
@@ -610,7 +610,7 @@ export default class PostAuth extends React.Component {
             );
         }
         else {
-            firebase.database().ref(this.state.paths.user).update(data)
+            firebase.database().ref(this.state.paths.info).update(data)
             .then(()=>{
                 //FIXME use a toggle method?
                 this.setState({

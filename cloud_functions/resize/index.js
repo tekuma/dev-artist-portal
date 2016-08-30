@@ -3,17 +3,18 @@ const gcloud   = require('gcloud');
 const firebase = require('firebase');
 const jimp     = require('jimp');
 
-// gcloud alpha functions deploy resize --bucket art-functions --trigger-gs-uri art-uploads
+// for dev-artist use only
 // gcloud alpha functions deploy resize --stage-bucket dev-art-functions --trigger-bucket dev-art-uploads
 
 exports.resize = function resize (context,data) {
 
     // =========== Methods ===========
-    resizeAndUploadThumbnail = (image, width, quality) => {
+    resizeAndUploadThumbnail = (image, width, quality, bucket) => {
         console.log(">processing image:", width);
         image.resize(width,jimp.AUTO).quality(quality).getBuffer(jimp.MIME_PNG, (err, tbuffer)=>{
             if(err){console.log(err);}
-            let dest    = name.replace('uploads','thumb512');
+            let thumbString = `thumb${width}`;
+            let dest    = name.replace('uploads',thumbString);
             let thumb   = bucket.file(dest);
             let options = {
                 metadata:{
@@ -25,7 +26,7 @@ exports.resize = function resize (context,data) {
 
             thumb.save(tbuffer, options, (err)=>{
                 if (!err) {
-                    console.log(">>Thumbnail 512xAUTO success");
+                    console.log(`>>Thumbnail ${thumbString} success`);
                 } else {
                     console.log(err);
                 }
@@ -33,7 +34,7 @@ exports.resize = function resize (context,data) {
         });
     }
 
-    getFileThenResize = (small, large, quality) => {
+    getFileThenResize = (small, large, quality, projectId) => {
         const name      = data.name;
         let path        = name.split('/');
         let fromPortal  = path.indexOf('portal')  > -1; //file from artist portal UX
@@ -45,7 +46,7 @@ exports.resize = function resize (context,data) {
 
             let gcs = gcloud.storage({
                 keyFilename: './googleServiceKey.json',
-                projectId  : 'artist-tekuma-4a697'
+                projectId  : projectId
             });
             let bucket  = gcs.bucket(data.bucket);
             let master  = bucket.file(name);
@@ -54,8 +55,8 @@ exports.resize = function resize (context,data) {
                 jimp.read(buffer).then((image)=>{
                     console.log(">processing image");
 
-                    resizeAndUploadThumbnail(image.clone(), small, quality);
-                    resizeAndUploadThumbnail(image, large, quality);
+                    resizeAndUploadThumbnail(image.clone(), small, quality, bucket);
+                    resizeAndUploadThumbnail(image, large, quality, bucket);
 
                 }).catch((err)=>{
                     console.log(err);
@@ -66,10 +67,12 @@ exports.resize = function resize (context,data) {
 
     // ========== Logic =========
 
-    const small   = 128;
-    const large   = 512;
-    const quality = 85;
+    const small     = 128;
+    const large     = 512;
+    const quality   = 85;
+    // const projectId = 'artist-tekuma-4a697';
+    const projectId = 'project-7614141605200030275';
 
-    getFileThenResize(small, large, quality);
+    getFileThenResize(small, large, quality, projectId);
 
 }
