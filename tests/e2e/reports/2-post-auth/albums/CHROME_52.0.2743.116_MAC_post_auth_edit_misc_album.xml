@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="post_auth_edit_misc_album"
+    errors="0" failures="0" hostname="" id="" package="albums" skipped="0"
+    tests="1" time="15.33" timestamp="Mon, 29 Aug 2016 20:39:01 GMT">
+  
+    <testcase name="Test Album: Edit Misc Album (Edit Tags - Two Tags)" time="15.33" assertions="28">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

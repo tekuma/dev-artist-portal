@@ -15,10 +15,12 @@ module.exports = {
             .waitForElementVisible('body', 2000)
             .setValue('input[type=file]', require('path').resolve(__dirname + '/test_image.png'))
             .setValue('input[type=text]#register-displayname', 'Tekuma Test')
+            .waitForElementVisible('select#register-dob-month', 2000)
             .click('select#register-dob-month')
             .click('option[value="01"]')
             .setValue('input[type=number]#register-dob-day', '1')
             .setValue('input[type=number]#register-dob-year', '1990')
+            .waitForElementVisible('input[type=radio]#register-he', 2000)
             .click('input[type=radio]#register-he')
             .click('button.signup-button')
     },
@@ -30,17 +32,20 @@ module.exports = {
             .setValue('textarea.bio', 'Hello, this is an End-2-End Test!')
             .setValue('input[type=text]#register-location', 'Boston, MA')
             .setValue('input[type=text]#register-portfolio', 'http://tekuma.io')
+            .waitForElementVisible('button.signup-button', 2000)
             .click('button.signup-button')
             .pause(2000)
     },
 
     'Test Full Email Registration: Step 4 (Confirm Details in Profile Page)' : function (browser) {
         browser
-            .waitForElementVisible('body', 3000)
+            .waitForElementVisible('button.hamburger', 3000)
             .click('button.hamburger')
             .pause(400)
+            .waitForElementVisible('li.nav-item.Profile', 2000)
             .click('li.nav-item.Profile')
             .pause(2000) // We need to pause so that Avatar can load
+            .waitForElementVisible('article.edit-accordion > div:nth-child(3) > div > div', 2000)
             .expect.element('article.edit-accordion > div:nth-child(3) > div > div').to.have.css('background-image').which.does.not.equal('url("https://project-7614141605200030275.firebaseapp.com/assets/images/default-avatar.png")');
 
         browser

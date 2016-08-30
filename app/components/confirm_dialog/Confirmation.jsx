@@ -52,6 +52,7 @@ export default class Confirmation extends React.Component {
                         open                        ={show}
                         onRequestClose              ={dismiss}
                         actionsContainerClassName   ="confirm-actions"
+                        contentClassName            ="confirm-content"
                         bodyClassName               ="confirm-body" >
                             {confirmation}
                     </Dialog>

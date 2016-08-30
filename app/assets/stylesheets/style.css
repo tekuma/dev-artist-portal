@@ -1303,11 +1303,16 @@ main, .artworks {
 .artwork-status {
 	display: inline-block;
 	vertical-align: top;
-	background: #ffffff;
 	width: 80px;
 	height: 80px;
 	padding: 10px;
+	background: #cccccc;
 }
+
+.artwork-status.approved {
+	background: #ffffff;
+}
+
 
 
 .artwork-review-tools {
@@ -1485,8 +1490,15 @@ input.slide-square + label:after {
 	left: 3px;
 	width: 25px;
 	height: 25px;
-	background-color: #ffffff;
 	transition: background 0.4s, margin 0.4s;
+}
+
+input.slide-square.active + label:after {
+	background-color: #ffffff;
+}
+
+input.slide-square.inactive + label:after {
+	background-color: #cccccc;
 }
 
 input.slide-square.small + label:after {
@@ -1865,7 +1877,7 @@ textarea.bio {
 .profile-form input.error,
 .signup-form input.error,
 .artist-form input.error {
-	border: 1px solid #ec167c;
+	border: 2px solid #ec167c;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -2453,12 +2465,14 @@ login-button.left {
 	font-size: 1em;
 }
 
-.registration-error {
+.registration-error,
+.login-error {
 	text-align: center !important;
 	background: #000000;
 }
 
-.registration-error span {
+.registration-error span,
+.login-error span {
 	font-family: "Nexa" , "Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	font-weight: 500;

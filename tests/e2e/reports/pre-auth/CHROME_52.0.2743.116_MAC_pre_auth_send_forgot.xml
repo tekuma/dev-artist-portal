@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="2"
+            failures="1"
+            tests="1">
+
+  <testsuite name="pre_auth_send_forgot"
+    errors="2" failures="1" hostname="" id="" package="pre-auth" skipped="0"
+    tests="1" time="3.718" timestamp="Fri, 26 Aug 2016 13:35:42 GMT">
+  
+    <testcase name="Test Forgot Password/Send Email" time="3.718" assertions="3">
+
+    
+
+      <failure message="Timed out while waiting for element &lt;div.registration-error span&gt; to be visible for 1000 milliseconds.">    at Object.TestForgotPasswordSendEmail [as Test Forgot Password/Send Email] (pre_auth_send_forgot.js:11:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

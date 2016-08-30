@@ -23,26 +23,24 @@ export default class HiddenLogin extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="hidden-login-wrapper">
                 <div
                     className="hidden-login">
                     <div className="login-header">
                         <h2>Login</h2>
                     </div>
                     <ul>
-                        <li>
+                        <li id="login-email">
                             <input
                                 type="email"
-                                id="register-email"
                                 ref="email"
                                 placeholder="Email"
                                 required="true"
                                 maxLength="100" />
                         </li>
-                        <li>
+                        <li id="login-password">
                             <input
                                 type        ="password"
-                                id          ="register-password"
                                 ref         ="password"
                                 placeholder ="Password"
                                 required    ="true"
@@ -65,7 +63,7 @@ export default class HiddenLogin extends React.Component {
                 </div>
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <Snackbar
-                        className="registration-error"
+                        className="login-error"
                         open={this.state.currentError.length > 0}
                         message={this.state.currentError}
                         autoHideDuration={4000} />

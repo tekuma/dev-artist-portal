@@ -138,7 +138,7 @@ export default class MiscAlbum extends React.Component {
                 <div className="album-tools bottom">
                     <OverlayTrigger placement="bottom" overlay={submitTooltip}>
                         <img
-                            className="artwork-tool"
+                            className="artwork-tool submit"
                             src='assets/images/icons/submit-white.svg'
                             onClick={this.props.onSubmit.bind(null, "Miscellaneous")}
                             onTouchTap={this.props.onSubmit.bind(null, "Miscellaneous")}
@@ -148,7 +148,7 @@ export default class MiscAlbum extends React.Component {
                         placement="bottom"
                         overlay={editTooltip}>
                         <img
-                            className="album-tool"
+                            className="album-tool edit"
                             src='assets/images/icons/edit-white.svg'
                             onClick={this.props.editMisc}
                             onTouchTap={this.props.editMisc}
@@ -158,7 +158,7 @@ export default class MiscAlbum extends React.Component {
                         placement   ="bottom"
                         overlay     ={emptyTooltip}>
                         <img
-                            className   ="album-tool"
+                            className   ="album-tool delete"
                             src         ='assets/images/icons/delete-white.svg'
                             onClick     = {this.props.emptyMisc}
                             onTouchTap  ={this.props.changeAlbum} />

@@ -123,7 +123,7 @@ export default class ReviewAlbumBanner extends React.Component {
                                 Publish to Discover
                             </h3>
                             <div className="status-info-wrapper center">
-                                <input id="publish-button" className="button slide-square" type="checkbox" />
+                                <input id="publish-button" className="button slide-square inactive" type="checkbox" />
                                 <label htmlFor="publish-button"></label>
                             </div>
                         </div>

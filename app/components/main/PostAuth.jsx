@@ -160,13 +160,15 @@ export default class PostAuth extends React.Component {
         const thisUID   = firebase.auth().currentUser.uid;
 
         let state = this.state;
+
         state['paths'] = {
             user    : `onboarders/${thisUID}`,
             info    : `onboarders/${thisUID}/info`,
             albums  : `onboarders/${thisUID}/albums`,
             artworks: `onboarders/${thisUID}/artworks`
         };
-        state['thisUID'] = firebase.auth().currentUser.uid;
+
+        state["thisUID"] = firebase.auth().currentUser.uid;
         this.setState(state);
 
         //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
@@ -802,7 +804,9 @@ export default class PostAuth extends React.Component {
      * the database.
      */
     updateAlbum = (id,data) => {
+        console.log("Data: ", data);
         let albumPath    = `${this.state.paths.albums}/${id}`;
+        console.log("Album Path: ", albumPath);
         let thisAlbumRef = firebase.database().ref(albumPath);
 
         // Change the name of associated artworks if album changed
@@ -843,9 +847,9 @@ export default class PostAuth extends React.Component {
 
         // Change the year of associated artworks if album changed
         if(data['year'] && data['year'] != this.state.user.albums[id]['year']) {
-            // Change the name of associated artworks
+            // Change the year of associated artworks
             if (this.state.user.albums[id]['artworks']) {
-                // change the artist field for each artwork object
+                // change the year field for each artwork object
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey = this.state.user.albums[id]['artworks'][i];
@@ -861,17 +865,17 @@ export default class PostAuth extends React.Component {
 
         // Change the tags of associated artworks if album changed
         if(data['tags'] && data['tags'] != this.state.user.albums[id]['tags']) {
-            // Change the name of associated artworks
+            // Change the tags of associated artworks
             if (this.state.user.albums[id]['artworks']) {
-                // change the artist field for each artwork object
+                // change the tags field for each artwork object
                 let artLength = Object.keys(this.state.user.albums[id]['artworks']).length;
                 for (let i = 0; i < artLength; i++) {
                     let thisArtKey  = this.state.user.albums[id]['artworks'][i];
                     let artworkPath = `${this.state.paths.artworks}/${thisArtKey}`;
-                    let artworkRef  = firebase.database().ref(artworkRef);
+
+                    let artworkRef  = firebase.database().ref(artworkPath);
                     artworkRef.transaction((node) => {
                         let albumTagsLength = data['tags'].length;
-
                         let tagInArtwork = false;
 
                         // Loops through all album tags
@@ -907,9 +911,7 @@ export default class PostAuth extends React.Component {
                                 node['tags'] = {0 : newTag};
                             }
                         }
-
                         console.log("Here is the modified artwork: ", node);
-
                         return node;
                     });
                 }

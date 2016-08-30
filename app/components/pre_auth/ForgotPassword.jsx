@@ -51,8 +51,8 @@ export default class ForgotPassword extends React.Component {
                                             <li id="email-landing">
                                                 <input
                                                     type="email"
-                                                    id="email"
-                                                    ref="email"
+                                                    id="forgot-email"
+                                                    ref="forgotEmail"
                                                     style={this.state.errorType.email ? errorStyle : null}
                                                     placeholder="Email"
                                                     required="true"
@@ -111,8 +111,8 @@ export default class ForgotPassword extends React.Component {
     sendResetEmail = (e) =>{
         e.preventDefault();
 
-        console.log("Entered Reset Email", this.refs.email.value);
-        let emailAddress = this.refs.email.value;
+        console.log("Entered Reset Email", this.refs.forgotEmail.value);
+        let emailAddress = this.refs.forgotEmail.value;
 
         if(emailAddress.length == 0) {
             this.state.errors.push("Please enter an email address");
@@ -139,7 +139,7 @@ export default class ForgotPassword extends React.Component {
             console.log("Entered if statement");
             firebase.auth().sendPasswordResetEmail(emailAddress).then( ()=>{
                 console.log("Password reset Email Sent to:", emailAddress);
-                this.state.errors.push(`Password reset Email Sent to: ${emailAddress}`);
+                this.state.errors.push(`Password Reset Email sent to: ${emailAddress}`);
 
                 for(let i = 0; i < this.state.errors.length; i++) {
                     setTimeout(() => {

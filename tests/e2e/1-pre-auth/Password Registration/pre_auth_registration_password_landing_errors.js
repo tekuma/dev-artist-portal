@@ -9,6 +9,7 @@ module.exports = {
             .click('button.signup-button')
             .waitForElementVisible('div.registration-error span', 1000)
             .assert.containsText('div.registration-error span', 'Please enter an email address')
+            .end();
     },
     'Test Invalid Email Error' : function (browser) {
         browser
@@ -21,6 +22,7 @@ module.exports = {
             .click('button.signup-button')
             .waitForElementVisible('div.registration-error span', 1000)
             .assert.containsText('div.registration-error span', 'The email address you supplied is invalid')
+            .end();
     },
     'Test No Password and Password Dont Match' : function (browser) {
         browser
@@ -36,6 +38,7 @@ module.exports = {
             .pause(4000)    // Each message shows for 3 secs. Message will have changed 1s later
             .waitForElementVisible('div.registration-error span', 1000)
             .assert.containsText('div.registration-error span', 'Passwords do not match')
+            .end();
     },
     'Test No Confirm Password and Password Dont Match' : function (browser) {
         browser

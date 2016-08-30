@@ -1,6 +1,7 @@
 // Libs
 import React    from 'react';
 import firebase from 'firebase';
+import uuid from 'node-uuid';
 import {DragSource, DropTarget} from 'react-dnd';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
@@ -29,13 +30,17 @@ export default class Artwork extends React.Component {
                     style={artworkImage}
                     className="artwork-image review">
                 </div>
-                <div className="artwork-status">
+                <div
+                    className={this.props.artworkApproved ? "artwork-status approved" : "artwork-status"}>
                     <div className="review-status">
                         <h5>
                             In Review
                         </h5>
                     </div>
-                    <input id="publish-button1" className="button slide-square small" type="checkbox" />
+                    <input
+                        id="publish-button1"
+                        className={!this.props.artworkPublished ? "button slide-square small inactive" : "button slide-square small active"}
+                        type="checkbox" />
                     <label
                         style={{
                             marginTop: 10
@@ -46,7 +51,8 @@ export default class Artwork extends React.Component {
                     <div className="review-delete">
                         <img src="assets/images/icons/delete-white.svg" />
                     </div>
-                    <div className="review-message received">
+                    <div
+                        className={this.props.messageReceived ? "review-message received" : "review-message"}>
                         <svg
                             version="1.1"
                             id="Layer_1"
