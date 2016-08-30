@@ -1062,6 +1062,7 @@ export default class PostAuth extends React.Component {
         submit['status']       = "unseen"; //unseen, aproved, held, deferred
         submit['submit_id']    = submit_id;
         submit['artist_uid']   = this.state.thisUID;
+        submit['published']    = false;
         return submit;
     }
 
