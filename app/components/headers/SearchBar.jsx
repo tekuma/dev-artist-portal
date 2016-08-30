@@ -56,12 +56,7 @@ export default class SearchBar extends React.Component {
          let searchTerm = this.refs.searchTerm.value;
          if(e.key === 'Enter') {
              e.preventDefault();
-             this.searchArtistUIDtestFunction(searchTerm);
              this.props.searchArtistUID(searchTerm);
          }
      };
-
-    searchArtistUIDtestFunction = (artistUID) => {
-       console.log(artistUID + " testing testing");
-    }
 }

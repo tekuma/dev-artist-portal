@@ -100,7 +100,7 @@ export default class PostAuth extends React.Component {
                     editPrivateUserInfo       ={this.editPrivateUserInfo}
                     toggleDeleteAccountDialog ={this.toggleDeleteAccountDialog}
                     toggleVerifyEmailDialog   ={this.toggleVerifyEmailDialog}
-                    changeArtworkAlbum        ={this.changeArtworkAlbum} />
+                    changeArtworkAlbum        ={this.changeArtworkAlbum}
                     searchArtistUID           ={this.searchArtistUID} />
                 <EditArtworkDialog
                     user={this.state.user}
@@ -155,7 +155,8 @@ export default class PostAuth extends React.Component {
 
     componentDidMount() {
         console.log("++++++PostAuth");
-        const thisUID   = firebase.auth().currentUser.uid;
+        let thisUID   = firebase.auth().currentUser.uid;
+      //  thisUID   = state['thisUID'];
         const userPrivatePath = `_private/onboarders/${thisUID}`;
 
         let state = this.state;
@@ -223,9 +224,42 @@ export default class PostAuth extends React.Component {
     /**
      * Search Artist with UID
      */
-
     searchArtistUID = (artistUID) => {
-      console.log(artistUID);
+      console.log("searching " + artistUID);
+
+      const thisUID   = artistUID;
+  //        const thisUID   = "0TrUNZxGz2UrTUrudssoOT0drtf1";
+      const userPrivatePath = `_private/onboarders/${thisUID}`;
+
+      let state = this.state;
+      state['paths'] = {
+          user    : `public/onboarders/${thisUID}`,
+          albums  : `public/onboarders/${thisUID}/albums`,
+          artworks: `public/onboarders/${thisUID}/artworks`
+      };
+      state['thisUID'] = artistUID;
+      this.setState(state);
+      this.forceUpdate();
+      console.log(this.state.thisUID);
+      console.log(this.state.paths);
+      console.log(this.state.user)
+      firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
+          this.setState({
+              user:snapshot.val()
+          });
+          console.log("FIREBASE: user info updated");
+      }, (error)=>{
+          console.error(error);
+          this.setState({
+              currentError: error.message
+          });
+
+          setTimeout(() => {
+              this.setState({
+                  currentError: ""
+              });
+          }, 4500);   // Clear error once it has been shown
+      }, this);
     }
 
 
