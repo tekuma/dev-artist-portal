@@ -17,6 +17,7 @@ export default class Artwork extends React.Component {
 
     render() {
 
+        //replace with storage thumb512
         let artworkImage = {
             backgroundImage: 'url(assets/starry.jpg)'
         }

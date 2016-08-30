@@ -155,14 +155,16 @@ export default class PostAuth extends React.Component {
 
     componentDidMount() {
         console.log("++++++PostAuth");
+
+        //NOTE Static paths / uid
         const thisUID   = firebase.auth().currentUser.uid;
-        const userPrivatePath = `_private/onboarders/${thisUID}`;
 
         let state = this.state;
         state['paths'] = {
-            user    : `public/onboarders/${thisUID}`,
-            albums  : `public/onboarders/${thisUID}/albums`,
-            artworks: `public/onboarders/${thisUID}/artworks`
+            user    : `onboarders/${thisUID}`,
+            info    : `onboarders/${thisUID}/info`,
+            albums  : `onboarders/${thisUID}/albums`,
+            artworks: `onboarders/${thisUID}/artworks`
         };
         state['thisUID'] = firebase.auth().currentUser.uid;
         this.setState(state);
@@ -188,23 +190,6 @@ export default class PostAuth extends React.Component {
             }, 4500);   // Clear error once it has been shown
         }, this);
 
-        firebase.database().ref(userPrivatePath).on('value', (snapshot)=>{
-            this.setState({
-                userPrivate:snapshot.val()
-            });
-            this.forceUpdate(); //FIXME in theory this line is un-needed.
-        }, (error)=>{
-            console.error(error);
-            this.setState({
-                currentError: error.message
-            });
-
-            setTimeout(() => {
-                this.setState({
-                    currentError: ""
-                });
-            }, 4500);   // Clear error once it has been shown
-        }, this);
 
         this.forceUpdate(); //FIXME TODO  is this needed?
 

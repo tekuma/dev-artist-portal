@@ -31,10 +31,10 @@ import ForgotPassword     from './components/pre_auth/ForgotPassword';
 
 // // ====== Staging ======
 var config = {
-    apiKey: "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
-    authDomain: "project-7614141605200030275.firebaseapp.com",
-    databaseURL: "https://project-7614141605200030275.firebaseio.com",
-    storageBucket: "project-7614141605200030275.appspot.com",
+    apiKey       : "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
+    authDomain   : "project-7614141605200030275.firebaseapp.com",
+    databaseURL  : "https://project-7614141605200030275.firebaseio.com",
+    storageBucket: "dev-art-uploads",
 };
 
 firebase.initializeApp(config);
@@ -374,6 +374,92 @@ export default class App extends React.Component {
 
     }
 
+    createUserObject  = () => {
+        // email and password WILL be non-null
+        let bio            = "",
+            location       = "",
+            portfolio      = "",
+            display_name   = "",
+            avatar         = "",
+            social_media   = {
+                facebook    : "",
+                twitter     : "",
+                instagram   : "",
+                pinterest   : "",
+                behance     : ""
+            };
+
+        //FIXME do this with a forloop and .hasOwnProperty()
+        //Check for info Submitted, if so override defaults
+
+        if (this.state.reg.bio) {
+           bio = this.state.reg.bio;
+        }
+        if (this.state.reg.location) {
+           location = this.state.reg.location;
+        }
+        if (this.state.reg.portfolio) {
+           portfolio = this.state.reg.portfolio;
+        }
+        if (this.state.reg.display_name) {
+           display_name = this.state.reg.display_name;
+        }
+
+        let legal_name = "Legal Name not provided";
+        if (this.state._reg.legal_name) {
+           legal_name = this.state._reg.legal_name;
+        }
+
+        let email = "";
+        if (this.state._reg.email) {
+           email = this.state._reg.email;
+        }
+
+        let gender_pronoun = "";
+        if (this.state._reg.gender_pronoun) {
+           gender_pronoun = this.state._reg.gender_pronoun;
+        }
+
+        let dob = "";
+        if (this.state._reg.dob) {
+           dob = this.state._reg.dob;
+        }
+
+        // now create the object
+        let userObject = {
+            albums        : { 0: {
+                name:"Miscellaneous",
+                artist: "",
+                year: "",
+                tags: [],
+                description: ""
+            }},
+            info : {
+                auth_provider   : "password",
+                display_name    : display_name,
+                avatar          : "",
+                bio             : bio,
+                location        : location,
+                portfolio       : portfolio,
+                social_media    : social_media,
+                joined          : new Date().toISOString()
+                legal_name      : legal_name,
+                email           : email,
+                gender_pronoun  : gender_pronoun,
+                paypal          : "",
+                dob             : dob,
+                over_eighteen   : false
+            }
+
+        };
+
+        return userObject;
+
+
+    }
+
+
+
     /**
      * If a new user decides to sign-up with email/password, they will be sent
      * to a text interface to submit registration information, which is saved
@@ -404,10 +490,11 @@ export default class App extends React.Component {
 
 
             //>>>> Instantiate 'public/onboarders/{uid}'
-            let onboarderPath = `public/onboarders/${thisUID}`;
+            //NOTE Static path::
+            let onboarderPath = `onboarders/${thisUID}`;
             const userRef     = firebase.database().ref(onboarderPath);
-            const onboarder   = this.createPublicOnboarderObject();
-            if (this.state.reg.avatar){
+            const onboarder   = this.createUserObject();
+            if (this.state.reg.avatar){ // With Avatar
                 //If the user chose to upload an avatar, we have to asynchronously upload it
                 const avatarPath = `portal/${thisUID}/avatars/${this.state.reg.avatar.name}`;
                 const avatarRef  = firebase.storage().ref(avatarPath);
@@ -436,56 +523,8 @@ export default class App extends React.Component {
                 });
             }
 
-            //>>>> Instantiate public/products/thisUID
-            let  productPath  = `public/products/${thisUID}`;
-            firebase.database().ref(productPath).set({
-                on_shopify: false
-            }).then( ()=>{
-                console.log("product node created");
-            });
 
-            //>>>> Instantiate _private/onboarders/thisUID
-            let userPrivatePath  = `_private/onboarders/${thisUID}`;
 
-            let legal_name = "Legal Name not provided";
-            if (this.state._reg.legal_name) {
-               legal_name = this.state._reg.legal_name;
-            }
-
-            let email = "";
-            if (this.state._reg.email) {
-               email = this.state._reg.email;
-            }
-
-            let gender_pronoun = "";
-            if (this.state._reg.gender_pronoun) {
-               gender_pronoun = this.state._reg.gender_pronoun;
-            }
-
-            let dob = "";
-            if (this.state._reg.dob) {
-               dob = this.state._reg.dob;
-            }
-
-            firebase.database().ref(userPrivatePath).set({
-                legal_name      : legal_name,
-                email           : email,
-                gender_pronoun  : gender_pronoun,
-                paypal          : "",
-                dob             : dob,
-                over_eighteen   : false // Registration doesn't ask to confirm over 18.
-            }).then( ()=>{
-                console.log("private onboarder node created");
-            });
-
-            //>>>> Instantiate _private/products/thisUID
-            const _productsRef = firebase.database().ref('_private/products');
-            let _productPath = `_private/products/${thisUID}`;
-            firebase.database().ref(_productPath).set({
-                on_shopify: false
-            }).then(()=>{
-                console.log("private product node created");
-            });
 
         }).catch((error) => {
             console.log("user not created :(");
@@ -493,26 +532,6 @@ export default class App extends React.Component {
                 errors: this.state.errors.concat(error.message)
             })
         });
-    }
-
-    /**
-     * Cloudinary Method. This method takes in a fullsize_url or any image url,
-     * sends the image to be used by cloudinary, and returns a dynamic link
-     * that can be used in the UX.
-     * @param  {String} url [a raw or fullsize url directing to an image file]
-     * @return {String}     [a dynamic URL safe for use inside of the UI/UX]
-     */
-    thumbnail = (url,width) => {
-        let args = {
-            width       :width,
-            fetch_format: "auto",
-            type        : "fetch"
-        };
-        let theImage = cloudinary.image(url, args);
-        let regex    = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/ig;
-        let theURL   = theImage.match(regex)[0];
-        theURL       = theURL.replace("http:", "https:"); //FIXME hacky
-        return theURL;
     }
 
     /**
@@ -526,91 +545,27 @@ export default class App extends React.Component {
      * - branch of sales information in '_private/products/{UID}'
      */
     socialLoginToTekuma = (provider) => {
+        //NOTE Static path / uid
         const user      = firebase.auth().currentUser;
         const thisUID   = user.uid;
-
-        //>>>> Instantiate public/onboarders/thisUID
-        const usersRef = firebase.database().ref('public/onboarders');
+        const userPath  = `onboarders/${thisUID}`;
+        const userRef  = firebase.database().ref(userPath);
         usersRef.once('value').then( (snapshot) => {
             //check if user already exists at node
-            if (!snapshot.child(thisUID).exists()) {
-
-                // Setting Onboarder name
-                let thisDisplayName = "Untitled Artist";
+            if (!snapshot.exists()) {
+                let onboarder = this.createUserObject();
                 if (user.displayName) {
-                    thisDisplayName = user.displayName;
+                    onboarder.display_name = user.displayName;
                 }
-
-                // Setting onboarder info (if registered)
-                let avatar         = "",
-                    gender_pronoun = "",
-                    bio            = "",
-                    location       = "",
-                    portfolio      = "",
-                    dob            = "",
-                    social_media   = {
-                        facebook    : "",
-                        twitter     : "",
-                        instagram   : "",
-                        pinterest   : "",
-                        behance     : ""
-                    };
-
-
                 if (user.photoURL) {
-                    avatar = user.photoURL;
+                    onboarder.avatar = user.photoURL;
                 }
-
-                usersRef.child(thisUID).set({
-                    albums        : { 0: {
-                        name:"Miscellaneous",
-                        artist: "",
-                        year: "",
-                        tags: [],
-                        description: ""
-                    }},
-                    auth_provider   : provider,
-                    display_name    : thisDisplayName,
-                    avatar          : avatar,
-                    bio             : bio,
-                    location        : location,
-                    social_media    : social_media,
-                    portfolio       : portfolio,
-                    joined          : new Date().toISOString()
-                }).then( ()=>{
+                userRef.set(onboarder).then( ()=>{
                     console.log("//node set in public user (1/4)");
                 });
 
-                //>>>> Instantiate public/products/thisUID
-                let  productPath  = `public/products/${thisUID}`;
-                firebase.database().ref(productPath).set({
-                    on_shopify: false
-                }).then(()=>{
-                    console.log("//node set in public products (2/4)");
-                });
-                //>>>> Instantiate _private/onboarders/thisUID
-                let userPrivatePath = `_private/onboarders/${thisUID}`;
-                firebase.database().ref(userPrivatePath).set({
-                    legal_name      : "",
-                    email           : user.email,
-                    gender_pronoun  : gender_pronoun,
-                    paypal          : "",
-                    dob             : dob,
-                    over_eighteen   : false
-                }).then(()=>{
-                    console.log("//node set in private user (3/4)");
-                });
-
-                //>>>> Instantiate _private/products/thisUID
-                let  _productPath  = `_private/products/${thisUID}`;
-                firebase.database().ref(_productPath).set({
-                    on_shopify: false
-                }).then(()=>{
-                    console.log("//node set in private products (4/4)");
-                });
-
             } else {
-                console.log("welcome back!");
+                console.log(">Welcome back user:", thisUID);
             }
         }, (error) => {
             console.error("Social Login Error: ", error);
