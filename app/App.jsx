@@ -29,7 +29,7 @@ import ForgotPassword     from './components/pre_auth/ForgotPassword';
 
 //Initialize Firebase  SDK in root JSX (here)
 
-// // ====== Staging ======
+// // ====== Staging ====== NOTE bucket is not firebase bucket 
 var config = {
     apiKey       : "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
     authDomain   : "project-7614141605200030275.firebaseapp.com",
@@ -48,14 +48,10 @@ cloudinary.config({
 });
 
 //  # Global Variables
-const userPath  = 'public/onboarders/';
-
 const providerG = new firebase.auth.GoogleAuthProvider();
 const providerF = new firebase.auth.FacebookAuthProvider();
 
-/**
- * a
- */
+
 export default class App extends React.Component {
     state = {
         errors      : [],    // error logs, snackbar display?
@@ -538,7 +534,6 @@ export default class App extends React.Component {
           theURL       = theURL.replace("http:", "https:"); //FIXME hacky
           return theURL;
       }
-
 
     /**
      * [description]
