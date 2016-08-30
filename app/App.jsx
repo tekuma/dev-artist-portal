@@ -319,61 +319,6 @@ export default class App extends React.Component {
      * legal_name, legal_age, bio, location, portfolio.
      * @return {Object} [object will all non-null'd fields]
      */
-    createPublicOnboarderObject = () => {
-        // email and password WILL be non-null
-        let bio            = "",
-            location       = "",
-            portfolio      = "",
-            display_name   = "",
-            avatar         = "",
-            social_media   = {
-                facebook    : "",
-                twitter     : "",
-                instagram   : "",
-                pinterest   : "",
-                behance     : ""
-            };
-
-        //FIXME do this with a forloop and .hasOwnProperty()
-        //Check for info Submitted, if so override defaults
-
-        if (this.state.reg.bio) {
-           bio = this.state.reg.bio;
-        }
-        if (this.state.reg.location) {
-           location = this.state.reg.location;
-        }
-        if (this.state.reg.portfolio) {
-           portfolio = this.state.reg.portfolio;
-        }
-        if (this.state.reg.display_name) {
-           display_name = this.state.reg.display_name;
-        }
-
-        // now create the object
-        let onboarder = {
-            albums        : { 0: {
-                name:"Miscellaneous",
-                artist: "",
-                year: "",
-                tags: [],
-                description: ""
-            }},
-            auth_provider   : "password",
-            display_name    : display_name,
-            avatar          : "",
-            bio             : bio,
-            location        : location,
-            portfolio       : portfolio,
-            social_media    : social_media,
-            joined          : new Date().toISOString()
-        };
-
-        return onboarder;
-
-
-    }
-
     createUserObject  = () => {
         // email and password WILL be non-null
         let bio            = "",
@@ -419,12 +364,10 @@ export default class App extends React.Component {
         if (this.state._reg.gender_pronoun) {
            gender_pronoun = this.state._reg.gender_pronoun;
         }
-
         let dob = "";
         if (this.state._reg.dob) {
            dob = this.state._reg.dob;
         }
-
         // now create the object
         let userObject = {
             albums        : { 0: {
@@ -435,14 +378,14 @@ export default class App extends React.Component {
                 description: ""
             }},
             info : {
-                auth_provider   : "password",
+                auth_provider   : "default",
                 display_name    : display_name,
                 avatar          : "",
                 bio             : bio,
                 location        : location,
                 portfolio       : portfolio,
                 social_media    : social_media,
-                joined          : new Date().toISOString()
+                joined          : new Date().toISOString(),
                 legal_name      : legal_name,
                 email           : email,
                 gender_pronoun  : gender_pronoun,
@@ -450,15 +393,12 @@ export default class App extends React.Component {
                 dob             : dob,
                 over_eighteen   : false
             }
-
         };
 
         return userObject;
 
 
     }
-
-
 
     /**
      * If a new user decides to sign-up with email/password, they will be sent
@@ -494,6 +434,8 @@ export default class App extends React.Component {
             let onboarderPath = `onboarders/${thisUID}`;
             const userRef     = firebase.database().ref(onboarderPath);
             const onboarder   = this.createUserObject();
+            onboarder.auth_provider = "password";
+
             if (this.state.reg.avatar){ // With Avatar
                 //If the user chose to upload an avatar, we have to asynchronously upload it
                 const avatarPath = `portal/${thisUID}/avatars/${this.state.reg.avatar.name}`;
@@ -550,18 +492,20 @@ export default class App extends React.Component {
         const thisUID   = user.uid;
         const userPath  = `onboarders/${thisUID}`;
         const userRef  = firebase.database().ref(userPath);
-        usersRef.once('value').then( (snapshot) => {
+        userRef.once('value').then( (snapshot) => {
             //check if user already exists at node
             if (!snapshot.exists()) {
                 let onboarder = this.createUserObject();
+
+                onboarder.info.auth_provider = provider;
                 if (user.displayName) {
-                    onboarder.display_name = user.displayName;
+                    onboarder.info.display_name = user.displayName;
                 }
                 if (user.photoURL) {
-                    onboarder.avatar = user.photoURL;
+                    onboarder.info.avatar = user.photoURL;
                 }
                 userRef.set(onboarder).then( ()=>{
-                    console.log("//node set in public user (1/4)");
+                    console.log("//node set in public user");
                 });
 
             } else {
@@ -574,6 +518,27 @@ export default class App extends React.Component {
             });
         }, this);
     }
+
+    /**
+       * Cloudinary Method. This method takes in a fullsize_url or any image url,
+       * sends the image to be used by cloudinary, and returns a dynamic link
+       * that can be used in the UX.
+       * @param  {String} url [a raw or fullsize url directing to an image file]
+       * @return {String}     [a dynamic URL safe for use inside of the UI/UX]
+       */
+      thumbnail = (url,width) => {
+          let args = {
+              width       :width,
+              fetch_format: "auto",
+              type        : "fetch"
+          };
+          let theImage = cloudinary.image(url, args);
+          let regex    = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/ig;
+          let theURL   = theImage.match(regex)[0];
+          theURL       = theURL.replace("http:", "https:"); //FIXME hacky
+          return theURL;
+      }
+
 
     /**
      * [description]

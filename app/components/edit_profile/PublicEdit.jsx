@@ -59,8 +59,8 @@ export default class PublicEdit extends React.Component {
 
         let socialSet = false;
 
-        for (let social_media in this.props.user.social_media) {
-            if (this.props.user.social_media[social_media].length > 0) {
+        for (let social_media in this.props.user.info.social_media) {
+            if (this.props.user.info.social_media[social_media].length > 0) {
                 showSocialIconPreview[social_media] = true;
                 socialSet = true;
             }
@@ -282,7 +282,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="facebook"
                                     placeholder="tekuma.world"
-                                    defaultValue={this.props.user.social_media.facebook}
+                                    defaultValue={this.props.user.info.social_media.facebook}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -299,7 +299,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="instagram"
                                     placeholder="tekuma.io"
-                                    defaultValue={this.props.user.social_media.instagram}
+                                    defaultValue={this.props.user.info.social_media.instagram}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -316,7 +316,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="twitter"
                                     placeholder="tekuma_"
-                                    defaultValue={this.props.user.social_media.twitter}
+                                    defaultValue={this.props.user.info.social_media.twitter}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -333,7 +333,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="pinterest"
                                     placeholder="Tekumaio"
-                                    defaultValue={this.props.user.social_media.pinterest}
+                                    defaultValue={this.props.user.info.social_media.pinterest}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -350,7 +350,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="behance"
                                     placeholder="tekuma.io"
-                                    defaultValue={this.props.user.social_media.behance}
+                                    defaultValue={this.props.user.info.social_media.behance}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>

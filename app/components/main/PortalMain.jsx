@@ -108,8 +108,8 @@ export default class PortalMain extends React.Component {
                     changeAppLayout={this.props.changeAppLayout} />
                 <div className="edit-profile-layout">
                     <EditProfile
+                        paths                     ={this.props.paths}
                         user                      ={this.props.user}
-                        userPrivate               ={this.props.userPrivate}
                         thumbnail                 ={this.props.thumbnail}
                         editPublicUserInfo        ={this.props.editPublicUserInfo}
                         editPrivateUserInfo       ={this.props.editPrivateUserInfo}

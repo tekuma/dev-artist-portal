@@ -7,7 +7,7 @@ const gcloud     = require('gcloud');
 // For Dev-artist Use
 
 // upload with ```bash
-// gcloud alpha functions deploy autotag --bucket art-functions --trigger-gs-uri art-uploads
+// gcloud alpha functions deploy autotag --stage-bucket art-functions --trigger-bucket art-uploads
 
  /*  Testing sample Data objects
 {

@@ -21,7 +21,7 @@ import EditAlbumDialog     from '../edit_album/EditAlbumDialog';
 import EditMiscAlbumDialog from '../edit_misc/EditMiscAlbumDialog';
 import EditProfileDialog   from '../edit_profile/EditProfileDialog';
 import VerifyEmailDialog   from '../edit_profile/VerifyEmailDialog';
-import SubmitArtworkDialog   from '../artwork_manager/SubmitArtworkDialog';
+import SubmitArtworkDialog from '../artwork_manager/SubmitArtworkDialog';
 import SubmitAlbumDialog   from '../album_manager/SubmitAlbumDialog';
 import UploadDialog        from './UploadDialog';
 
@@ -46,8 +46,7 @@ export default class PostAuth extends React.Component {
         currentEditArtworkInfo: {},                 // Used to store information of artwork being edit momentarily
         currentEditAlbumInfo: {},                   // Used to store information of album being edit momentarily
         uploadPreviews: [],                         // Used to store files uploaded momentarily, to be previewed once uploaded
-        user  : {},                                 // public/onboarders/{UID} node
-        userPrivate : {},                           // _private/onboarders/{UID} node
+        user  : {},                                 // onboarders/{UID} node
         thisUID: "",
         paths: {},
         currentError: ""
@@ -79,7 +78,6 @@ export default class PostAuth extends React.Component {
                     paths                     ={this.state.paths}
                     thumbnail                 ={this.props.thumbnail}
                     user                      ={this.state.user}
-                    userPrivate               ={this.state.userPrivate}
                     toggleNav                 ={this.toggleNav}
                     navIsOpen                 ={this.state.navIsOpen}
                     deleteArtwork             ={this.deleteArtwork}
@@ -362,6 +360,7 @@ export default class PostAuth extends React.Component {
         //Now, we have all needed async-data. Set it to the DB.
         const artRef      = firebase.database().ref(this.state.paths.artworks);
         const artworkUID  = artRef.push().key;
+        console.log(artworkUID);
 
         //*Store the original upload, un-changed.
         let uploadPath = `portal/${this.state.thisUID}/uploads/${artworkUID}`;
@@ -418,8 +417,8 @@ export default class PostAuth extends React.Component {
                     //Build the artwork object
                     let title = fileName.split(".")[0];
                     let artist = "Self";
-                    if (this.state.user && this.state.user.display_name != "Untitled Artist") {
-                        artist = this.state.user.display_name;
+                    if (this.state.user && this.state.user.info.display_name != "Untitled Artist") {
+                        artist = this.state.user.info.display_name;
                     }
 
                     let artObject = {
@@ -628,18 +627,16 @@ export default class PostAuth extends React.Component {
      * - legal_name
      */
     editPrivateUserInfo = (data) => {
-        const thisUser    = firebase.auth().currentUser;
-        const userPrivatePath   = `_private/onboarders/${this.state.thisUID}`;
-
+        const thisEmail = firebase.auth().currentUser.email;
         if (data.hasOwnProperty('email')) {
-            if (data.email != thisUser.email) {
+            if (data.email != thisEmail) {
                 console.log(">>> Updating Email Address");
-                let thisCredential = firebase.auth.EmailAuthProvider.credential(thisUser.email, data.email_password);
+                let thisCredential = firebase.auth.EmailAuthProvider.credential(thisEmail, data.email_password);
                 thisUser.reauthenticate(thisCredential).then( ()=>{
                     thisUser.updateEmail(data.email).then(
                         ()=>{
                             console.log("change email request sent to email");
-                            firebase.database().ref(userPrivatePath).update({
+                            firebase.database().ref(this.state.paths.info).update({
                                 email: data.email
                             }).then(()=>{
                                 //FIXME use a toggle method?
@@ -664,7 +661,7 @@ export default class PostAuth extends React.Component {
         }//END EMAIL
 
         if (data.hasOwnProperty('password') && data.hasOwnProperty('current_password')) {
-            let thisCredential = firebase.auth.EmailAuthProvider.credential(thisUser.email, data.current_password);
+            let thisCredential = firebase.auth.EmailAuthProvider.credential(thisEmail, data.current_password);
             thisUser.reauthenticate(thisCredential).then( ()=>{
                 thisUser.updatePassword(data.password).then(
                     () => {
@@ -685,7 +682,7 @@ export default class PostAuth extends React.Component {
         }
 
         if (data.hasOwnProperty('legal_name')) {
-            firebase.database().ref(userPrivatePath).update({
+            firebase.database().ref(this.state.paths.info).update({
                 legal_name: data.legal_name
             }).then(()=>{
                 //FIXME use a toggle method?
@@ -697,7 +694,7 @@ export default class PostAuth extends React.Component {
         }
 
         if (data.hasOwnProperty('dob')) {
-            firebase.database().ref(userPrivatePath).update({
+            firebase.database().ref(this.state.paths.info).update({
                 dob: data.dob
             }).then(()=>{
                 //FIXME use a toggle method?
@@ -709,7 +706,7 @@ export default class PostAuth extends React.Component {
         }
 
         if (data.hasOwnProperty('paypal')) {
-            firebase.database().ref(userPrivatePath).update({
+            firebase.database().ref(this.state.paths.info).update({
                 paypal: data.paypal
             }).then(()=>{
                 //FIXME use a toggle method?
@@ -721,7 +718,7 @@ export default class PostAuth extends React.Component {
         }
 
         if (data.hasOwnProperty('gender_pronoun')) {
-            firebase.database().ref(userPrivatePath).update({
+            firebase.database().ref(this.state.paths.info).update({
                 gender_pronoun: data.gender_pronoun
             }).then(()=>{
                 //FIXME use a toggle method?
@@ -733,7 +730,7 @@ export default class PostAuth extends React.Component {
         }
 
         if (data.hasOwnProperty('over_eighteen')) {
-            firebase.database().ref(userPrivatePath).update({
+            firebase.database().ref(this.state.paths.info).update({
                 over_eighteen: data.over_eighteen
             }).then(()=>{
                 //FIXME use a toggle method?
@@ -1099,7 +1096,6 @@ export default class PostAuth extends React.Component {
         return -1;
     }
 
-
     /**
      * Submit artwork object from /artworks
      * @param  {String} id [UID of artwork to be submitted]
@@ -1121,8 +1117,6 @@ export default class PostAuth extends React.Component {
         // Add pointers to the Object in the user/albums
         this.addSubmitPointer(submit_id);
     }
-
-
 
     /**
      * Submit artwork object from an album
