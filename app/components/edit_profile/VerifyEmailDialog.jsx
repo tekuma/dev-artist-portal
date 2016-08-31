@@ -13,6 +13,10 @@ import ConfirmButton    from '../confirm_dialog/ConfirmButton';
 export default class VerifyEmailDialog extends React.Component {
     //NOTE: Class left with incomplete code-styling for efficency
 
+    componentWillMount() {
+        console.log("-----VerifyEmailDialog");
+    }
+
     render() {
         const actions = [
               <ConfirmButton
@@ -36,6 +40,10 @@ export default class VerifyEmailDialog extends React.Component {
                 </MuiThemeProvider>
             </div>
         );
+    }
+
+    componentDidMount() {
+        console.log("+++++VerifyEmailDialog");
     }
 }
 

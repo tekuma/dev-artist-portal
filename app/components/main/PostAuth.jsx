@@ -79,9 +79,9 @@ export default class PostAuth extends React.Component {
         firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
 
             this.setState({
-                user:snapshot.val()
+                user: snapshot.val()
             });
-            console.log("FIREBASE: user info updated", snapshot.val());
+                console.log("FIREBASE: user info updated", this.state);
         }, (error)=>{
             console.error(error);
             this.setState({
@@ -194,6 +194,7 @@ export default class PostAuth extends React.Component {
 
     componentDidMount() {
         console.log("++++++PostAuth");
+        console.log("State: ", this.state);
     }
 
     componentWillReceiveProps(nextProps) {

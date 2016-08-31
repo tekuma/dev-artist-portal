@@ -14,6 +14,10 @@ import ConfirmButton    from '../confirm_dialog/ConfirmButton';
 export default class SubmitArtworkDialog extends React.Component {
     //NOTE: Class left with incomplete code-styling for efficency
 
+    componentWillMount() {
+        console.log("-----SubmitArtworkDialog");
+    }
+
     render() {
         const actions = [
               <ConfirmButton
@@ -37,6 +41,10 @@ export default class SubmitArtworkDialog extends React.Component {
                 </MuiThemeProvider>
             </div>
         );
+    }
+
+    componentDidMount() {
+        console.log("+++++SubmitArtworkDialog");
     }
 }
 

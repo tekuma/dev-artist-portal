@@ -47,10 +47,10 @@ export default class HiddenNav extends React.Component {
         const navItems = this.navItems;
         let avatar;
 
-        if(this.props.user != null &&
-            this.props.user.hasOwnProperty('avatar') &&
-            this.props.user.avatar != "") {
-                avatar = this.props.thumbnail(this.props.user.avatar, 500);
+        if(this.props.user.info != null &&
+            this.props.user.info.hasOwnProperty('avatar') &&
+            this.props.user.info.avatar != "") {
+                avatar = this.props.thumbnail(this.props.user.info.avatar, 500);
             } else {
                 avatar = 'assets/images/default-avatar.png';
             }
@@ -60,8 +60,8 @@ export default class HiddenNav extends React.Component {
         }
         let displayName = "Untitled Artist";
 
-        if (this.props.user && this.props.user.display_name) {
-            displayName = this.props.user.display_name; // This is here because of the initial split second an account isn't created
+        if (this.props.user.info && this.props.user.info.display_name) {
+            displayName = this.props.user.info.display_name; // This is here because of the initial split second an account isn't created
         }
 
         return (

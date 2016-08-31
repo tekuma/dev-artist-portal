@@ -44,10 +44,15 @@ export default class PortalMain extends React.Component {
     componentDidMount() {
         console.log("+++++PortalMain");
         window.addEventListener("resize", this.rerender);
-        this.getSubmitObjects(this.getSubmitIDs()).then( (submits)=>{
-            this.setState({submits:submits});
-        });
 
+        if (Object.keys(this.props.user).length > 0) {
+            let ids = this.getSubmitIDs();
+            this.getSubmitObjects(ids).then( (submits)=>{
+                this.setState({
+                    submits: submits
+                });
+            });
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -137,18 +142,7 @@ export default class PortalMain extends React.Component {
                     setUploadedFiles ={this.props.setUploadedFiles}
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
-                <ReviewAlbumManager
-                    currentAlbum  ={this.props.currentAlbum}
-                    changeAlbum   ={this.props.changeAlbum}
-                    managerIsOpen ={this.props.managerIsOpen}
-                    toggleManager ={this.props.toggleManager} />
-                <ReviewArtworks
-                    managerIsOpen ={this.props.managerIsOpen}
-                    submits       ={this.state.submits}
-                    user          ={this.props.user} />
-                <ReviewArtworkInfo
 
-                         />
                 <div
                     onClick     ={this.props.toggleNav}
                     onTouchTap  ={this.props.toggleNav}
@@ -169,10 +163,12 @@ export default class PortalMain extends React.Component {
         let currentAlbum = this.props.user.albums[albumIndex];
         let ids;
         if (currentAlbum.submits == undefined) {
-            ids = []
+            ids = [];
         } else {
             ids = currentAlbum.submits;
         }
+
+        console.log("IDs: ", ids);
         return ids;
     }
 

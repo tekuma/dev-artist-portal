@@ -38,10 +38,10 @@ export default class PublicEdit extends React.Component {
     render() {
         let avatar;
 
-        if (this.props.user &&
-            this.props.user.hasOwnProperty('avatar') &&
-            this.props.user.avatar != "") {
-                avatar = this.props.thumbnail(this.props.user.avatar, 250);
+        if (this.props.user.info &&
+            this.props.user.info.hasOwnProperty('avatar') &&
+            this.props.user.info.avatar != "") {
+                avatar = this.props.thumbnail(this.props.user.info.avatar, 250);
             } else {
                 avatar = 'assets/images/default-avatar.png';
             }
@@ -123,7 +123,7 @@ export default class PublicEdit extends React.Component {
                             className={this.state.accordion.display_name ? "accordion-item open" : "accordion-item"}
                             onClick={this.toggleAccordion.bind({},"display_name")}>
                             <h2 className="accordion-item-heading">Display Name</h2>
-                            <h3 className="accordion-item-preview">{this.props.user.display_name != "" ? this.props.user.display_name : "Unset"}</h3>
+                            <h3 className="accordion-item-preview">{this.props.user.info.display_name != "" ? this.props.user.info.display_name : "Unset"}</h3>
                         </div>
                         <div
                             id="display-name-content"
@@ -131,7 +131,7 @@ export default class PublicEdit extends React.Component {
                             <input
                             type="text"
                             id="edit-displayname"
-                            defaultValue={this.props.user.display_name}
+                            defaultValue={this.props.user.info.display_name}
                             onChange={this.setUnsaved}
                             ref="displayname"
                             placeholder="Display Name"
@@ -161,12 +161,12 @@ export default class PublicEdit extends React.Component {
                                 onDrop={this.onDrop}>
                                 <img
                                     className="edit-avatar-no-avatar-icon"
-                                    style={{display: (this.props.user.avatar == "" || this.props.user.avatar == undefined || this.props.user.avatar == null) && !this.state.avatarUploaded ? "block" : "none" }}
+                                    style={{display: (this.props.user.info.avatar == "" || this.props.user.info.avatar == undefined || this.props.user.info.avatar == null) && !this.state.avatarUploaded ? "block" : "none" }}
                                     src="../assets/images/icons/person-beige.svg" />
                                 <img
                                     id="uploaded-avatar"
-                                    style={{display: (this.props.user.avatar !== "" && this.props.user.avatar !== undefined && this.props.user.avatar !== null && !this.state.avatarUploaded)  ? "block" : "none" }}
-                                    src={this.props.user.avatar} />
+                                    style={{display: (this.props.user.info.avatar !== "" && this.props.user.info.avatar !== undefined && this.props.user.info.avatar !== null && !this.state.avatarUploaded)  ? "block" : "none" }}
+                                    src={this.props.user.info.avatar} />
                                 <img
                                     id="uploaded-avatar"
                                     style={{display: this.state.avatarUploaded ? "block" : "none" }}
@@ -177,7 +177,7 @@ export default class PublicEdit extends React.Component {
                             className={this.state.accordion.bio ? "accordion-item open" : "accordion-item"}
                             onClick={this.toggleAccordion.bind({},"bio")}>
                             <h2 className="accordion-item-heading">Bio</h2>
-                            <h3 className="accordion-item-preview">{this.props.user.bio ? this.props.user.bio.substring(0, 44).length > this.props.user.bio ?  this.props.user.bio.substring(0, 44) + "..." : this.props.user.bio.substring(0, 44) : "Unset"}</h3>
+                            <h3 className="accordion-item-preview">{this.props.user.info.bio ? this.props.user.info.bio.substring(0, 44).length > this.props.user.info.bio ?  this.props.user.info.bio.substring(0, 44) + "..." : this.props.user.info.bio.substring(0, 44) : "Unset"}</h3>
                         </div>
                         <div
                             id="bio-content"
@@ -186,7 +186,7 @@ export default class PublicEdit extends React.Component {
                                 className="bio"
                                 placeholder="Bio"
                                 ref="bio"
-                                defaultValue={this.props.user.bio}
+                                defaultValue={this.props.user.info.bio}
                                 maxLength="1500"
                                 onChange={this.setUnsaved}></textarea>
                         </div>
@@ -194,7 +194,7 @@ export default class PublicEdit extends React.Component {
                             className={this.state.accordion.location ? "accordion-item open" : "accordion-item"}
                             onClick={this.toggleAccordion.bind({},"location")}>
                             <h2 className="accordion-item-heading">Location</h2>
-                            <h3 className="accordion-item-preview">{this.props.user.location != "" ? this.props.user.location : "Unset"}</h3>
+                            <h3 className="accordion-item-preview">{this.props.user.info.location != "" ? this.props.user.info.location : "Unset"}</h3>
                         </div>
                         <div
                             id="location-content"
@@ -204,7 +204,7 @@ export default class PublicEdit extends React.Component {
                             id="edit-location"
                             ref="location"
                             placeholder="Location"
-                            defaultValue={this.props.user.location}
+                            defaultValue={this.props.user.info.location}
                             maxLength="50"
                             onChange={this.setUnsaved} />
                         </div>
@@ -212,7 +212,7 @@ export default class PublicEdit extends React.Component {
                             className={this.state.accordion.portfolio ? "accordion-item open" : "accordion-item"}
                             onClick={this.toggleAccordion.bind({},"portfolio")}>
                             <h2 className="accordion-item-heading">Portfolio</h2>
-                            <h3 className="accordion-item-preview">{this.props.user.portfolio != "" ? this.props.user.portfolio : "Unset"}</h3>
+                            <h3 className="accordion-item-preview">{this.props.user.info.portfolio != "" ? this.props.user.info.portfolio : "Unset"}</h3>
                         </div>
                         <div
                             id="portfolio-content"
@@ -222,7 +222,7 @@ export default class PublicEdit extends React.Component {
                             id="edit-portfolio"
                             ref="portfolio"
                             placeholder="Portfolio/Website"
-                            defaultValue={this.props.user.portfolio}
+                            defaultValue={this.props.user.info.portfolio}
                             maxLength="200"
                             onChange={this.setUnsaved} />
                         </div>

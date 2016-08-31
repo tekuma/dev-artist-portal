@@ -14,6 +14,10 @@ import ConfirmButton    from '../confirm_dialog/ConfirmButton';
 export default class EditProfileDialog extends React.Component {
     //NOTE: Class left with incomplete code-styling for efficency
 
+    componentWillMount() {
+        console.log("-----EditProfileDialog");
+    }
+
     render() {
         const actions = [
               <ConfirmButton
@@ -37,6 +41,10 @@ export default class EditProfileDialog extends React.Component {
                 </MuiThemeProvider>
             </div>
         );
+    }
+
+    componentDidMount() {
+        console.log("++++EditProfileDialog");
     }
 }
 

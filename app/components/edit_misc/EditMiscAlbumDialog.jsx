@@ -23,7 +23,7 @@ export default class EditMiscAlbumDialog extends React.Component {
     }
 
     componentWillMount() {
-        console.log("-----EditAlbumDialog");
+        console.log("-----EditMiscAlbumDialog");
     }
 
     render() {

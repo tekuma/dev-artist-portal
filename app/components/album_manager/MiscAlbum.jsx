@@ -138,7 +138,7 @@ export default class MiscAlbum extends React.Component {
                 <div className="album-tools bottom">
                     <OverlayTrigger placement="bottom" overlay={submitTooltip}>
                         <img
-                            className="artwork-tool submit"
+                            className="album-tool submit"
                             src='assets/images/icons/submit-white.svg'
                             onClick={this.props.onSubmit.bind(null, "Miscellaneous")}
                             onTouchTap={this.props.onSubmit.bind(null, "Miscellaneous")}
