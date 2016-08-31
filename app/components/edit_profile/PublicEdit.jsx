@@ -34,6 +34,7 @@ export default class PublicEdit extends React.Component {
         //Pass
     }
 
+    // FIXME clean up render with functions for readability
     render() {
         let avatar;
 
@@ -59,8 +60,8 @@ export default class PublicEdit extends React.Component {
 
         let socialSet = false;
 
-        for (let social_media in this.props.user.social_media) {
-            if (this.props.user.social_media[social_media].length > 0) {
+        for (let social_media in this.props.user.info.social_media) {
+            if (this.props.user.info.social_media[social_media].length > 0) {
                 showSocialIconPreview[social_media] = true;
                 socialSet = true;
             }
@@ -242,7 +243,6 @@ export default class PublicEdit extends React.Component {
                                         className="accordion-item-social-icon"
                                         style={instagramStyle}></div> : null
                                     }
-
                                     { showSocialIconPreview["twitter"] ?
                                         <div
                                         className="accordion-item-social-icon"
@@ -282,7 +282,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="facebook"
                                     placeholder="tekuma.world"
-                                    defaultValue={this.props.user.social_media.facebook}
+                                    defaultValue={this.props.user.info.social_media.facebook}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -299,7 +299,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="instagram"
                                     placeholder="tekuma.io"
-                                    defaultValue={this.props.user.social_media.instagram}
+                                    defaultValue={this.props.user.info.social_media.instagram}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -316,7 +316,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="twitter"
                                     placeholder="tekuma_"
-                                    defaultValue={this.props.user.social_media.twitter}
+                                    defaultValue={this.props.user.info.social_media.twitter}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -333,7 +333,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="pinterest"
                                     placeholder="Tekumaio"
-                                    defaultValue={this.props.user.social_media.pinterest}
+                                    defaultValue={this.props.user.info.social_media.pinterest}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -350,7 +350,7 @@ export default class PublicEdit extends React.Component {
                                     className="edit-social-input"
                                     ref="behance"
                                     placeholder="tekuma.io"
-                                    defaultValue={this.props.user.social_media.behance}
+                                    defaultValue={this.props.user.info.social_media.behance}
                                     maxLength="50"
                                     onChange={this.setUnsaved} />
                                 </li>
@@ -552,7 +552,7 @@ export default class PublicEdit extends React.Component {
             this.props.setSaved(); // Used to track whether user has save info to show confirm dialog or not
         }
 
-        for(let i = 0; i < this.state.errors.length; i++) {
+        for (let i = 0; i < this.state.errors.length; i++) {
             setTimeout(() => {
                 this.setState({
                     currentError: this.state.errors[i]
@@ -581,12 +581,12 @@ export default class PublicEdit extends React.Component {
 // ============= PropTypes ==============
 
 PublicEdit.propTypes = {
-    user: React.PropTypes.object.isRequired,
-    thumbnail: React.PropTypes.func.isRequired,
-    editingPublic: React.PropTypes.bool.isRequired,
-    editPublic: React.PropTypes.func.isRequired,
-    editPrivate: React.PropTypes.func.isRequired,
+    user              : React.PropTypes.object.isRequired,
+    thumbnail         : React.PropTypes.func.isRequired,
+    editingPublic     : React.PropTypes.bool.isRequired,
+    editPublic        : React.PropTypes.func.isRequired,
+    editPrivate       : React.PropTypes.func.isRequired,
     editPublicUserInfo: React.PropTypes.func.isRequired,
-    setSaved: React.PropTypes.func.isRequired,
-    setUnsaved: React.PropTypes.func.isRequired
+    setSaved          : React.PropTypes.func.isRequired,
+    setUnsaved        : React.PropTypes.func.isRequired
 };

@@ -17,6 +17,7 @@ import Views                 from '../../constants/Views';
 
 export default class PortalMain extends React.Component {
     state = {
+        submits : []
     };
 
     constructor(props) {
@@ -43,6 +44,10 @@ export default class PortalMain extends React.Component {
     componentDidMount() {
         console.log("+++++PortalMain");
         window.addEventListener("resize", this.rerender);
+        this.getSubmitObjects(this.getSubmitIDs()).then( (submits)=>{
+            this.setState({submits:submits});
+        });
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -108,8 +113,8 @@ export default class PortalMain extends React.Component {
                     changeAppLayout={this.props.changeAppLayout} />
                 <div className="edit-profile-layout">
                     <EditProfile
+                        paths                     ={this.props.paths}
                         user                      ={this.props.user}
-                        userPrivate               ={this.props.userPrivate}
                         thumbnail                 ={this.props.thumbnail}
                         editPublicUserInfo        ={this.props.editPublicUserInfo}
                         editPrivateUserInfo       ={this.props.editPrivateUserInfo}
@@ -126,7 +131,6 @@ export default class PortalMain extends React.Component {
     }
 
     goToSubmissions = () => {
-        let submits = this.getSubmitObjects(this.getSubmitIDs());
         return (
             <div className={this.props.navIsOpen ? "main-wrapper open" : "main-wrapper"}>
                 <PostAuthHeader
@@ -140,7 +144,7 @@ export default class PortalMain extends React.Component {
                     toggleManager ={this.props.toggleManager} />
                 <ReviewArtworks
                     managerIsOpen ={this.props.managerIsOpen}
-                    submits = {submits}
+                    submits       ={this.state.submits}
                     user          ={this.props.user} />
                 <ReviewArtworkInfo
 
@@ -173,14 +177,21 @@ export default class PortalMain extends React.Component {
     }
 
     getSubmitObjects = (ids) => {
-        let retlst = [];
-        for (var i = 0; i < ids.length; i++) {
-            let id = ids[i];
+        return new Promise(function(resolve, reject) {
+            let retlst = [];
+            for (var i = 0; i < ids.length; i++) {
+                let id = ids[i];
+                let submitPath = `submits/${id}`;
+                firebase.database.ref(submitPath).once('value', (snapshot)=>{
+                    let submit = snapshot.val();
+                    retlst.push(submit);
+                }, (error)=>{
 
-        }
+                }, this)
+            }
+            resolve(retlst);
+        });
     }
-
-
 
 
 }
@@ -190,7 +201,6 @@ export default class PortalMain extends React.Component {
 PortalMain.propTypes = {
     thumbnail: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
-    userPrivate: React.PropTypes.object.isRequired,
     toggleNav: React.PropTypes.func.isRequired,
     navIsOpen: React.PropTypes.bool.isRequired,
     deleteArtwork: React.PropTypes.func.isRequired,

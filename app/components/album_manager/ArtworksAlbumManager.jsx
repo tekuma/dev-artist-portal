@@ -409,7 +409,6 @@ ArtworksAlbumManager.propTypes = {
     thisUID                  : React.PropTypes.string.isRequired,
     thumbnail                : React.PropTypes.func.isRequired,
     user                     : React.PropTypes.object.isRequired,
-    userPrivate              : React.PropTypes.object.isRequired,
     managerIsOpen            : React.PropTypes.bool.isRequired,
     toggleManager            : React.PropTypes.func.isRequired,
     currentAlbum             : React.PropTypes.string.isRequired,

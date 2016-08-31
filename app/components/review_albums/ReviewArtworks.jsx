@@ -22,17 +22,6 @@ export default class ReviewArtworks extends React.Component {
 
     componentWillMount() {
         console.log("-----ReviewArtworks");
-        this.setState({
-            albumIndex: this.props.albumIndex
-        });
-        let currentAlbum = this.props.user.albums[albumIndex];
-        let submits;
-        if (currentAlbum.submits == undefined) {
-            submits = []
-        } else {
-            submits = currentAlbum.submits;
-        }
-        this.setState({submits:submits});
     }
 
     render() {
@@ -75,14 +64,38 @@ export default class ReviewArtworks extends React.Component {
                                         fixedWidth
                                 : styleManagerClosed}
                 className="review-artworks">
+
                 <ReviewArtwork />
-                <ReviewArtwork />
-                <ReviewArtwork />
-                <ReviewArtwork />
+                {this.props.submits.map(submit => {
+                    return (
+                        <ReviewArtwork
+                            submit = {submit}
+                             />
+                    );
+                })}
+
             </section>
         );
     }
-
+    /* use mapping
+    {albumArray.map(album => {
+        return (
+            <Album
+                key                 ={album.id}
+                paths               ={this.props.paths}
+                album               ={album}
+                user                ={this.props.user}
+                thumbnail           ={this.props.thumbnail}
+                onEdit              ={this.props.onEdit.bind(null, album.id)}
+                onDelete            ={this.props.onDelete.bind(null, album.id)}
+                onMove              ={this.moveAlbum}
+                currentAlbum        ={this.props.currentAlbum}
+                changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
+                changeArtworkAlbum  ={this.props.changeArtworkAlbum}
+                onSubmit            ={this.props.submitAlbum} />
+        );
+    })}
+     */
     componentDidMount() {
         console.log("+++++ReviewArtworks");
 
@@ -94,6 +107,10 @@ export default class ReviewArtworks extends React.Component {
 
     componentWillUnmount () {
     }
+
+    // ============= Methods ================
+
+
 }
 
 // ============= PropTypes ==============
