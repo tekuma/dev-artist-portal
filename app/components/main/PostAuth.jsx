@@ -58,6 +58,47 @@ export default class PostAuth extends React.Component {
 
     componentWillMount() {
         console.log("-----PostAuth");
+        //NOTE Static paths / uid
+        const thisUID   = firebase.auth().currentUser.uid;
+
+        let state = this.state;
+
+        state['paths'] = {
+            user    : `onboarders/${thisUID}`,
+            info    : `onboarders/${thisUID}/info`,
+            albums  : `onboarders/${thisUID}/albums`,
+            artworks: `onboarders/${thisUID}/artworks`
+        };
+
+        state["thisUID"] = firebase.auth().currentUser.uid;
+        this.setState(state);
+
+        //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
+        // these 2 on-methods listen for any change to the database and
+        // trigger a re-render on 'value'
+        firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
+
+            this.setState({
+                user:snapshot.val()
+            });
+            console.log("FIREBASE: user info updated", snapshot.val());
+        }, (error)=>{
+            console.error(error);
+            this.setState({
+                currentError: error.message
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    currentError: ""
+                });
+            }, 4500);   // Clear error once it has been shown
+        }, this);
+
+
+        this.forceUpdate(); //FIXME TODO  is this needed?
+
+        this.props.clearVerifyEmailMessage(); // Closes verify email snackbar message if manual registration
     }
 
     render() {
@@ -153,47 +194,6 @@ export default class PostAuth extends React.Component {
 
     componentDidMount() {
         console.log("++++++PostAuth");
-
-        //NOTE Static paths / uid
-        const thisUID   = firebase.auth().currentUser.uid;
-
-        let state = this.state;
-
-        state['paths'] = {
-            user    : `onboarders/${thisUID}`,
-            info    : `onboarders/${thisUID}/info`,
-            albums  : `onboarders/${thisUID}/albums`,
-            artworks: `onboarders/${thisUID}/artworks`
-        };
-
-        state["thisUID"] = firebase.auth().currentUser.uid;
-        this.setState(state);
-
-        //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
-        // these 2 on-methods listen for any change to the database and
-        // trigger a re-render on 'value'
-        firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
-            this.setState({
-                user:snapshot.val()
-            });
-            console.log("FIREBASE: user info updated");
-        }, (error)=>{
-            console.error(error);
-            this.setState({
-                currentError: error.message
-            });
-
-            setTimeout(() => {
-                this.setState({
-                    currentError: ""
-                });
-            }, 4500);   // Clear error once it has been shown
-        }, this);
-
-
-        this.forceUpdate(); //FIXME TODO  is this needed?
-
-        this.props.clearVerifyEmailMessage(); // Closes verify email snackbar message if manual registration
     }
 
     componentWillReceiveProps(nextProps) {
@@ -1140,7 +1140,6 @@ export default class PostAuth extends React.Component {
 // ============= PropTypes ==============
 
 PostAuth.propTypes = {
-    signOutUser: React.PropTypes.func.isRequired,
     clearVerifyEmailMessage: React.PropTypes.func.isRequired,
     thumbnail: React.PropTypes.func.isRequired
 };

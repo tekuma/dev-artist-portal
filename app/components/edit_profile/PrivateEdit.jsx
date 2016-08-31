@@ -708,7 +708,6 @@ export default class PrivateEdit extends React.Component {
 
 PrivateEdit.propTypes = {
     user: React.PropTypes.object.isRequired,
-    userPrivate: React.PropTypes.object.isRequired,
     editingPublic: React.PropTypes.bool.isRequired,
     editPublic: React.PropTypes.func.isRequired,
     editPrivate: React.PropTypes.func.isRequired,

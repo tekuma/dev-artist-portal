@@ -34,6 +34,7 @@ export default class PublicEdit extends React.Component {
         //Pass
     }
 
+    // FIXME clean up render with functions for readability
     render() {
         let avatar;
 
@@ -242,7 +243,6 @@ export default class PublicEdit extends React.Component {
                                         className="accordion-item-social-icon"
                                         style={instagramStyle}></div> : null
                                     }
-
                                     { showSocialIconPreview["twitter"] ?
                                         <div
                                         className="accordion-item-social-icon"
@@ -552,7 +552,7 @@ export default class PublicEdit extends React.Component {
             this.props.setSaved(); // Used to track whether user has save info to show confirm dialog or not
         }
 
-        for(let i = 0; i < this.state.errors.length; i++) {
+        for (let i = 0; i < this.state.errors.length; i++) {
             setTimeout(() => {
                 this.setState({
                     currentError: this.state.errors[i]
@@ -581,12 +581,12 @@ export default class PublicEdit extends React.Component {
 // ============= PropTypes ==============
 
 PublicEdit.propTypes = {
-    user: React.PropTypes.object.isRequired,
-    thumbnail: React.PropTypes.func.isRequired,
-    editingPublic: React.PropTypes.bool.isRequired,
-    editPublic: React.PropTypes.func.isRequired,
-    editPrivate: React.PropTypes.func.isRequired,
+    user              : React.PropTypes.object.isRequired,
+    thumbnail         : React.PropTypes.func.isRequired,
+    editingPublic     : React.PropTypes.bool.isRequired,
+    editPublic        : React.PropTypes.func.isRequired,
+    editPrivate       : React.PropTypes.func.isRequired,
     editPublicUserInfo: React.PropTypes.func.isRequired,
-    setSaved: React.PropTypes.func.isRequired,
-    setUnsaved: React.PropTypes.func.isRequired
+    setSaved          : React.PropTypes.func.isRequired,
+    setUnsaved        : React.PropTypes.func.isRequired
 };

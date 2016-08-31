@@ -127,6 +127,5 @@ HiddenNav.propTypes = {
     thisUID: React.PropTypes.string.isRequired,
     thumbnail: React.PropTypes.func.isRequired,
     navIsOpen: React.PropTypes.bool.isRequired,
-    changeAppLayout: React.PropTypes.func.isRequired,
-    signOutUser: React.PropTypes.func.isRequired,
+    changeAppLayout: React.PropTypes.func.isRequired
 };
