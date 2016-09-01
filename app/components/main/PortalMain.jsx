@@ -7,9 +7,9 @@ import TransitionGroup   from 'react-addons-transition-group';
 //Files
 import PostAuthHeader        from '../headers/PostAuthHeader';
 import ArtworksAlbumManager  from '../album_manager/ArtworksAlbumManager';
-import ReviewAlbumManager    from '../album_manager/ReviewAlbumManager';
-import ReviewArtworkInfo     from '../review_albums/ReviewArtworkInfo';
-import ReviewArtworks        from '../review_albums/ReviewArtworks';
+import SubmitAlbumManager    from '../album_manager/SubmitAlbumManager';
+import SubmitArtworkInfo     from '../review_albums/SubmitArtworkInfo';
+import SubmitArtworks        from '../review_albums/SubmitArtworks';
 import ArtworkManager        from '../artwork_manager/ArtworkManager';
 import EditProfile           from '../edit_profile/EditProfile';
 import Views                 from '../../constants/Views';
@@ -142,7 +142,16 @@ export default class PortalMain extends React.Component {
                     setUploadedFiles ={this.props.setUploadedFiles}
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
-
+                <SubmitAlbumManager
+                    currentAlbum  ={this.props.currentAlbum}
+                    changeAlbum   ={this.props.changeAlbum}
+                    managerIsOpen ={this.props.managerIsOpen}
+                    toggleManager ={this.props.toggleManager} />
+                <SubmitArtworks
+                    managerIsOpen ={this.props.managerIsOpen}
+                    submits = {submits}
+                    user          ={this.props.user} />
+                <SubmitArtworkInfo />
                 <div
                     onClick     ={this.props.toggleNav}
                     onTouchTap  ={this.props.toggleNav}

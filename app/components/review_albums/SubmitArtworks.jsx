@@ -4,13 +4,13 @@ import ReactDOM                     from 'react-dom';
 import firebase                     from 'firebase';
 
 // Files
-import ReviewArtwork from '../artwork_manager/ReviewArtwork';
+import SubmitArtwork from '../artwork_manager/SubmitArtwork';
 import Views             from '../../constants/Views';
 
 /**
  * TODO
  */
-export default class ReviewArtworks extends React.Component {
+export default class SubmitArtworks extends React.Component {
     state = {
         albumIndex : null,
         submits : []
@@ -65,10 +65,10 @@ export default class ReviewArtworks extends React.Component {
                                 : styleManagerClosed}
                 className="review-artworks">
 
-                <ReviewArtwork />
+                <SubmitArtwork />
                 {this.props.submits.map(submit => {
                     return (
-                        <ReviewArtwork
+                        <SubmitArtwork
                             submit = {submit}
                              />
                     );
@@ -115,6 +115,6 @@ export default class ReviewArtworks extends React.Component {
 
 // ============= PropTypes ==============
 
-ReviewArtworks.propTypes = {
+SubmitArtworks.propTypes = {
     managerIsOpen: React.PropTypes.bool.isRequired
 };

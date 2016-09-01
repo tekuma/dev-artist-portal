@@ -9,7 +9,7 @@ import Views             from '../../constants/Views';
 /**
  * TODO
  */
-export default class ReviewAlbumBanner extends React.Component {
+export default class SubmitAlbumBanner extends React.Component {
     constructor(props) {
         super(props);
     }

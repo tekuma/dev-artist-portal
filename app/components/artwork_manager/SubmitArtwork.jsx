@@ -5,9 +5,7 @@ import uuid from 'node-uuid';
 import {DragSource, DropTarget} from 'react-dnd';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
-// Files
-
-export default class Artwork extends React.Component {
+export default class SubmitArtwork extends React.Component {
     constructor(props) {
         super(props);
     }
