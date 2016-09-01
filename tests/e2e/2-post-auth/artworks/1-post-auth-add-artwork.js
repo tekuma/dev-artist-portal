@@ -1,5 +1,5 @@
 module.exports = {
-    'Test Album: Add Artwork in Empty Miscellaneous (Click Artworks Box)' : function (browser) {
+    'Test Artwork: Add Artwork in Empty Miscellaneous (Click Artworks Box)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
@@ -38,7 +38,7 @@ module.exports = {
             .waitForElementVisible('div.tekuma-logo', 5000)
             .end();
     },
-    'Test Album: Add Artwork in Empty Miscellaneous (Click Plus Button on Header)' : function (browser) {
+    'Test Artwork: Add Artwork in Empty Miscellaneous (Click Plus Button on Header)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
@@ -77,7 +77,7 @@ module.exports = {
             .waitForElementVisible('div.tekuma-logo', 5000)
             .end();
     },
-    'Test Album: Add Second Artwork in Miscellaneous (via Click)' : function (browser) {
+    'Test Artwork: Add Second Artwork in Miscellaneous (via Click)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
@@ -129,7 +129,7 @@ module.exports = {
             .waitForElementVisible('div.tekuma-logo', 5000)
             .end();
     },
-    'Test Album: Add Artwork in Empty New Album (Click Artworks Box)' : function (browser) {
+    'Test Artwork: Add Artwork in Empty New Album (Click Artworks Box)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
@@ -175,7 +175,7 @@ module.exports = {
             .waitForElementVisible('div.tekuma-logo', 5000)
             .end();
     },
-    'Test Album: Add Artwork in Empty New Album (Click Plus Button on Header)' : function (browser) {
+    'Test Artwork: Add Artwork in Empty New Album (Click Plus Button on Header)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
@@ -221,7 +221,7 @@ module.exports = {
             .waitForElementVisible('div.tekuma-logo', 5000)
             .end();
     },
-    'Test Album: Add Second Artwork in Empty New Album (via Click)' : function (browser) {
+    'Test Artwork: Add Second Artwork in Empty New Album (via Click)' : function (browser) {
         // Add
         browser
             .url('https://project-7614141605200030275.firebaseapp.com')
