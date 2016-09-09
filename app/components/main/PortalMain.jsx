@@ -146,10 +146,16 @@ export default class PortalMain extends React.Component {
                     currentAlbum  ={this.props.currentAlbum}
                     changeAlbum   ={this.props.changeAlbum}
                     managerIsOpen ={this.props.managerIsOpen}
+                    use = {this.props.user}
+                    paths = {this.props.paths}
+                    thumbnail={this.state.thumbnail}
+                    currentAlbum={this.props.currentAlbum}
+                    changeAlbum={this.props.changeAlbum}
+                    changeArtworkAlbum={this.props.changeArtworkAlbum}
                     toggleManager ={this.props.toggleManager} />
                 <SubmitArtworks
                     managerIsOpen ={this.props.managerIsOpen}
-                    submits = {submits}
+                    submits       ={this.state.submits}
                     user          ={this.props.user} />
                 <SubmitArtworkInfo />
                 <div
