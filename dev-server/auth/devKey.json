@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "project-7614141605200030275",
+  "private_key_id": "508f7ac13a83e240241444bedb97d14897363201",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8mJKxigEbDMtR\nKmJK0xCS1AfqEnmWrJ+28QxjyaPj8hIld0ny0la58un72Gqb01Jz3cNjO0D6Ni5N\nmLQ/7RkYTeEPoktzEOtJhAdE1F5Fwm7+cWEoZjTQZrKp2cLo7/KRJ5X4RsUTv8Jg\nSarTV95xKmIkN1CdfQRXj9QOmdHZs1BejysIwffPBDA+7QWNtHib1/n8coFpWugP\nBY4ftxsS46poAX8bt+LI6ks2LQJoqv9gBp+2rUMXNzklZzIIRI3DlHghGTz+91FP\ncsmbayXQYyheeOvuXBa0Jnze8dEgnxNbgldzm+f6lXurPAc0C3jjVEeQNmnV8Ud+\na4VKm7yBAgMBAAECggEBAKw0YFXOHj5Vy1xcaA3MdWisRGG95tnm25sOtPJ0zro3\nccxWBOa8msYFgRMdxBJuve3gQyVbmHQfft4JniR02SIxElzVIzF49G5XKM/3XfEy\nnWilnEJoOLdF3sNqfCd32TQjQjPGYvMqeFC1U07Q/+KzAZPyEiELYyiUwttmJpAx\nMtb0c4NM5YQB/OihMOQ07ifMuGN6jVpXqmlCIdjyzX2Svg5+Yk1dTChCGwgbEss3\ncrjCJ/MST2Oj8gOu4IrmIPz8htKfB4qbGUOJ9VlYhHmpV9mdg5BSsnR2PwrNf3gd\nT/94lIISOX047o9/gt+NBJcRZ5tR3VzgORBNB+NImTECgYEA3p2kVCusZtCI7t1k\n+oNrsqzm2AqQ9b4XhkTu5xFRN+gi1ucIoIl9p7pCFTGynBHBSIG5eGqK1Dqyyb19\nBgKlXTx4H9lz0EvDUcaOPTgccvYVrcFe3ULzWrPf/FevG8EJTxfAlmQRVzeA7ZNL\nCOR8g6Q76WmGamF+Hftc6Qclmk0CgYEA2ODj0BWDfY877shuB9fB7dBm27DMznmJ\nHmgqvMIZ7w7pNk2jdKc3kUp2YkSsY39nOQAEUC1RpbxNcnu/fl7Fxfq1bxtOKUR0\nqSej1MvNcIWDblK6JeH5U9tPeaP8LQbJlewHlp7Auy0wqZc3SJ+rNZZXP0yhoSFb\nDk01nc55HQUCgYBD7PwARtczA/xUTi+KlOEews0pLIgww5DwAkaXMNyEX4uJ4TLr\nsSgrLpUNXH2wS2abliGekXvM6CA3mF72n4YPnezVYweIjiWJ5Tjvixh7J4VT4EXu\n44fXrDzzBVpD8LHDdW7pNJ1p7GClnSTvELDBhjJVtUIzYY4W3eTqoaiinQKBgBIi\ne+oiYmRVXcWRrOGrAORJ0M/98KIzN2v7eddew5xhus53n3tZoCPd/hgpdeC7/n2d\nqr6pi3I4VKGGB3Uhp5fuZs1rkxWQS9D5J5HbmMoX3+2RrU8NnjOM2xBozeVV8/U9\nT0Ug8Sy1kqQbqNvBvic08wav+bPnfh2sBxey9B2hAoGBANMqfKFP9UHJUn9QyEIi\n4dqOpmLHg1lwNacJY2ByAttA2f66f+KKNiLP3Kcc938EhZWcWTFFa64iMcSzB2Ju\nCnd1JjE0IR6wlAl3jV513NTrnBEc6HpuauZyjFKb4ZUrz3tXTjSFY+GCP8vg9oHB\nc+22bdQkHxHK7j79Q1hsW6+D\n-----END PRIVATE KEY-----\n",
+  "client_email": "artist-server@project-7614141605200030275.iam.gserviceaccount.com",
+  "client_id": "106757603572406189460",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/artist-server%40project-7614141605200030275.iam.gserviceaccount.com"
+}
