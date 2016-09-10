@@ -55,7 +55,6 @@ export default class Albums extends React.Component {
                     user               ={this.props.user}
                     paths              ={this.props.paths}
                     uploads            ={this.props.uploads}
-                    thumbnail          ={this.props.thumbnail}
                     changeAlbum        ={this.props.changeAlbum.bind(null, "Miscellaneous")}
                     currentAlbum       ={this.props.currentAlbum}
                     changeArtworkAlbum ={this.props.changeArtworkAlbum}

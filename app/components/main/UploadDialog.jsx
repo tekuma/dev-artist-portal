@@ -64,7 +64,8 @@ export default class UploadDialog extends React.Component {
                                 <article
                                     key={uuid.v4()}
                                     className="dropzone-image-preview-container">
-                                    <img src={this.props.thumbnail(file.url, 300)} />
+                                    <img src={`https://storage.googleapis.com/dev-art-uploads/portal/${file.uid}/thumb512/${file.id}`}
+                                        width="300px" />
                                     <div className="overlay">
                                         <div>
                                             <h2 className="file-name">{file.name}</h2>
@@ -141,7 +142,6 @@ export default class UploadDialog extends React.Component {
 // ============= PropTypes ==============
 
 UploadDialog.propTypes = {
-    thumbnail: React.PropTypes.func.isRequired,
     closeUploadDialog: React.PropTypes.func.isRequired,
     uploadedPreviews: React.PropTypes.array.isRequired,
     uploadDialogIsOpen: React.PropTypes.bool.isRequired

@@ -123,7 +123,6 @@ export default class PortalMain extends React.Component {
                     <EditProfile
                         paths                     ={this.props.paths}
                         user                      ={this.props.user}
-                        thumbnail                 ={this.props.thumbnail}
                         editPublicUserInfo        ={this.props.editPublicUserInfo}
                         editPrivateUserInfo       ={this.props.editPrivateUserInfo}
                         toggleDeleteAccountDialog ={this.props.toggleDeleteAccountDialog}
@@ -151,7 +150,6 @@ export default class PortalMain extends React.Component {
                     managerIsOpen ={this.props.managerIsOpen}
                     user = {this.props.user}
                     paths = {this.props.paths}
-                    thumbnail={this.state.thumbnail}
                     currentAlbum={this.props.currentAlbum}
                     changeAlbum={this.props.changeAlbum}
                     changeArtworkAlbum={this.props.changeArtworkAlbum}

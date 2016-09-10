@@ -29,7 +29,7 @@ import ForgotPassword     from './components/pre_auth/ForgotPassword';
 
 //Initialize Firebase  SDK in root JSX (here)
 
-// // ====== Staging ====== NOTE bucket is not firebase bucket 
+// // ====== Staging ====== NOTE bucket is not firebase bucket
 var config = {
     apiKey       : "AIzaSyCbhMwmZJCt_enKPajoKeeJe9YyRK6lYO8",
     authDomain   : "project-7614141605200030275.firebaseapp.com",
@@ -38,14 +38,6 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
-//FIXME FIXME FIXME
-//FIXME move api secret to env var
-cloudinary.config({
-  cloud_name: 'tekuma-io',
-  api_key   : '815625669726765',
-  api_secret: 'vciXc0S5BmQcft0ev7eBgJQJAIc'
-});
 
 //  # Global Variables
 const providerG = new firebase.auth.GoogleAuthProvider();
@@ -119,7 +111,6 @@ export default class App extends React.Component {
             <div>
                 <PostAuth
                   clearVerifyEmailMessage ={this.clearVerifyEmailMessage}
-                  thumbnail               ={this.thumbnail}
                 />
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <Snackbar
@@ -514,26 +505,6 @@ export default class App extends React.Component {
             });
         }, this);
     }
-
-    /**
-       * Cloudinary Method. This method takes in a fullsize_url or any image url,
-       * sends the image to be used by cloudinary, and returns a dynamic link
-       * that can be used in the UX.
-       * @param  {String} url [a raw or fullsize url directing to an image file]
-       * @return {String}     [a dynamic URL safe for use inside of the UI/UX]
-       */
-      thumbnail = (url,width) => {
-          let args = {
-              width       :width,
-              fetch_format: "auto",
-              type        : "fetch"
-          };
-          let theImage = cloudinary.image(url, args);
-          let regex    = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/ig;
-          let theURL   = theImage.match(regex)[0];
-          theURL       = theURL.replace("http:", "https:"); //FIXME hacky
-          return theURL;
-      }
 
     /**
      * [description]

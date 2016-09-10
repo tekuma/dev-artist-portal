@@ -64,6 +64,7 @@ export default class PostAuth extends React.Component {
         let state = this.state;
 
         state['paths'] = {
+            uid : thisUID,
             user    : `onboarders/${thisUID}`,
             info    : `onboarders/${thisUID}/info`,
             albums  : `onboarders/${thisUID}/albums`,
@@ -106,7 +107,6 @@ export default class PostAuth extends React.Component {
                 <HiddenNav
                     user           ={this.state.user}
                     thisUID        ={this.state.thisUID}
-                    thumbnail      ={this.props.thumbnail}
                     navIsOpen      ={this.state.navIsOpen}
                     changeAppLayout={this.changeAppLayout} />
                 <HamburgerIcon
@@ -116,7 +116,6 @@ export default class PostAuth extends React.Component {
                     findAlbumIndex            ={this.findAlbumIndex}
                     thisUID                   ={this.state.thisUID}
                     paths                     ={this.state.paths}
-                    thumbnail                 ={this.props.thumbnail}
                     user                      ={this.state.user}
                     toggleNav                 ={this.toggleNav}
                     navIsOpen                 ={this.state.navIsOpen}
@@ -145,7 +144,6 @@ export default class PostAuth extends React.Component {
                     editArtworkIsOpen={this.state.editArtworkIsOpen}
                     toggleEditArtworkDialog={this.toggleEditArtworkDialog}
                     updateArtwork={this.updateArtwork}
-                    thumbnail={this.props.thumbnail}
                     currentEditArtworkInfo={this.state.currentEditArtworkInfo} />
                 <EditAlbumDialog
                     user={this.state.user}
@@ -160,7 +158,6 @@ export default class PostAuth extends React.Component {
                     updateAlbum={this.updateAlbum}
                     currentEditAlbumInfo={this.state.currentEditAlbumInfo} />
                 <UploadDialog
-                    thumbnail        ={this.props.thumbnail}
                     closeUploadDialog={this.closeUploadDialog}
                     uploadedPreviews={this.state.uploadPreviews}
                     uploadDialogIsOpen={this.state.uploadDialogIsOpen} />
@@ -340,13 +337,31 @@ export default class PostAuth extends React.Component {
 
     //  # Uploading Methods
 
+    submitJob = (path, artworkUID,task) => {
+        let jobID     = firebase.database().ref('jobs').push().key;
+        console.log(jobID);
+        let job = {
+            task     : task,
+            uid      : firebase.auth().currentUser.uid,
+            file_path: path,
+            job_id   : jobID,
+            complete : false,
+            bucket   : "dev-art-uploads",
+            name     : artworkUID,
+            submitted: new Date().toISOString()
+        }
+        let jobPath = `jobs/${jobID}`;
+        firebase.database().ref(jobPath).set(job);
+    }
+
+
     /**
      * This method takes in a blob object that a user has uploaded, then
      * -uploads the original file to gs:"portal/{user uid}/uploads"
      * - sets DB entry /public/onboarders/artworks/{uid}/fullsize_url
      * -makes a thumbnail size copy of the image,
      * -uploads the thumbnail to "portal/{user uid}/thumbnails"
-     * -sets DB entry /public/onboarders/artworks/{uid}/thumbnail_url
+     * -sets DB entry /onboarders/artworks/{uid}/thumbnail_url
      * -sends image to this.Colors(url)
      *. Asynchronously, we need to wait for:
      *  full url, thumb url, colors.
@@ -385,11 +400,17 @@ export default class PostAuth extends React.Component {
             },
             ()=>{ //on-complete fullsize upload
                 console.log(">>Full size upload complete");
+                //
+
+                // submit job
+                this.submitJob(uploadPath,artworkUID,"resize");
                 fullRef.getDownloadURL().then( (fullSizeURL)=>{
                     let uploadInfo = {
                         url :fullSizeURL,
                         size:fileSize,
-                        name:fileName
+                        name:fileName,
+                        id:artworkUID,
+                        uid:this.state.thisUID
                     };
                     this.setState({
                         uploadPreviews: this.state.uploadPreviews.concat(uploadInfo)
@@ -426,6 +447,7 @@ export default class PostAuth extends React.Component {
                         filename    : fileName,
                         title       : title,
                         artist      : artist,
+                        artist_uid  : this.state.thisUID,
                         album       : this.state.currentAlbum,
                         upload_date : new Date().toISOString(),
                         year        : new Date().getFullYear(),
@@ -1143,5 +1165,4 @@ export default class PostAuth extends React.Component {
 
 PostAuth.propTypes = {
     clearVerifyEmailMessage: React.PropTypes.func.isRequired,
-    thumbnail: React.PropTypes.func.isRequired
 };

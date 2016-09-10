@@ -64,7 +64,6 @@ export default class SubmitArtworks extends React.Component {
                                         fixedWidth
                                 : styleManagerClosed}
                 className="review-artworks">
-                
                 {this.props.submits.map(submit => {
                     return (
                         <SubmitArtwork

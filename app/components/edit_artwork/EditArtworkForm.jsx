@@ -45,10 +45,11 @@ export default class EditArtworkForm extends React.Component {
             }
         }
 
-        let image = this.props.thumbnail(this.props.value.fullsize_url, 500);
+        let artUrl = `https://storage.googleapis.com/dev-art-uploads/portal/${this.props.value.artist_uid}/thumb512/${this.props.value.id}`
+
 
         let previewImage = {
-            backgroundImage: 'url(' + image + ')'
+            backgroundImage: 'url(' + artUrl + ')'
         }
 
         return (

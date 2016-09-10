@@ -70,7 +70,6 @@ export default class EditProfile extends React.Component {
         return (
             <PublicEdit
                 user                ={this.props.user}
-                thumbnail           ={this.props.thumbnail}
                 editingPublic       ={this.state.editingPublic}
                 editPublic          ={this.editPublic}
                 editPrivate         ={this.editPrivate}
@@ -147,7 +146,6 @@ export default class EditProfile extends React.Component {
 EditProfile.propTypes = {
     user: React.PropTypes.object.isRequired,
     userPrivate: React.PropTypes.object.isRequired,
-    thumbnail: React.PropTypes.func.isRequired,
     editPublicUserInfo: React.PropTypes.func.isRequired,
     editPrivateUserInfo: React.PropTypes.func.isRequired,
     toggleDeleteAccountDialog: React.PropTypes.func.isRequired,

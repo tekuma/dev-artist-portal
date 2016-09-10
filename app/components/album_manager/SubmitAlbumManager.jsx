@@ -206,7 +206,6 @@ export default class ReviewAlbumManager extends React.Component {
                                 paths               ={this.props.paths}
                                 album               ={album}
                                 user                ={this.props.user}
-                                thumbnail           ={this.props.thumbnail}
                                 currentAlbum        ={this.props.currentAlbum}
                                 changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
                                 changeArtworkAlbum  ={this.props.changeArtworkAlbum}
@@ -270,7 +269,6 @@ export default class ReviewAlbumManager extends React.Component {
                                 paths               ={this.props.paths}
                                 album               ={album}
                                 user                ={this.props.user}
-                                thumbnail           ={this.props.thumbnail}
                                 currentAlbum        ={this.props.currentAlbum}
                                 changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
                                 changeArtworkAlbum  ={this.props.changeArtworkAlbum}

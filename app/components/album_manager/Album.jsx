@@ -39,8 +39,7 @@ const albumTarget = {
                 targetProps.changeArtworkAlbum(source.id, source.album, target.name);
 
                 // Change album within artwork JSON
-                const thisUID  = firebase.auth().currentUser.uid;
-                let path = `public/onboarders/${thisUID}/artworks/${source.id}`;
+                let path = `${this.props.paths.artworks}/${source.id}`;
                 let thisArtworkRef = firebase.database().ref(path);
                 thisArtworkRef.transaction((data) => {
                     data['album'] = target.name;
@@ -94,7 +93,7 @@ export default class Album extends React.Component {
                         if (artworkID == id) {
                             let artwork = this.props.user.artworks[artworkID];
                             if (artwork.album && this.props.thumbnail) {
-                                let image = this.props.thumbnail(artwork.fullsize_url, 150);
+                                let image = `https://storage.googleapis.com/dev-art-uploads/portal/${artwork.artist_uid}/thumb124/${artwork.id}`
                                 thumbnail = image;
                                 break;
                             } else if (artwork.album) {

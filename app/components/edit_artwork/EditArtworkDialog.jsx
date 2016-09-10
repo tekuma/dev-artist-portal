@@ -56,7 +56,6 @@ export default class EditArtworkDialog extends React.Component {
                         contentClassName            ="edit-artwork-content" >
                         <EditArtworkForm
                             user            ={this.props.user}
-                            thumbnail       ={this.props.thumbnail}
                             value           ={this.state.artworkInfo}
                             errorType       ={this.state.errorType}
                             currentError    ={this.state.currentError}
@@ -176,6 +175,5 @@ EditArtworkDialog.propTypes = {
     editArtworkIsOpen: React.PropTypes.bool.isRequired,
     toggleEditArtworkDialog: React.PropTypes.func.isRequired,
     updateArtwork: React.PropTypes.func.isRequired,
-    thumbnail: React.PropTypes.func.isRequired,
     currentEditArtworkInfo: React.PropTypes.object.isRequired
 };

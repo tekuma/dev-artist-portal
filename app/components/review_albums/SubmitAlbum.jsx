@@ -23,7 +23,6 @@ export default class Album extends React.Component {
     }
 
     render() {
-        let thumbnail = "../../assets/images/icons/new-album.svg";
         let artworkID;
 
         // ====== SETTING AVATAR IMAGE ======

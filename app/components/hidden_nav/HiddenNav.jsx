@@ -50,7 +50,7 @@ export default class HiddenNav extends React.Component {
         if(this.props.user.info != null &&
             this.props.user.info.hasOwnProperty('avatar') &&
             this.props.user.info.avatar != "") {
-                avatar = this.props.thumbnail(this.props.user.info.avatar, 500);
+                avatar = this.props.user.info.avatar;
             } else {
                 avatar = 'assets/images/default-avatar.png';
             }

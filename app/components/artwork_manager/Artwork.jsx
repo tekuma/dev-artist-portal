@@ -84,6 +84,7 @@ export default class Artwork extends React.Component {
             </Tooltip>
         );
 
+        let artUrl = `https://storage.googleapis.com/dev-art-uploads/portal/${this.props.artwork.artist_uid}/thumb512/${this.props.artwork.id}`
         return connectDragSource(connectDropTarget(
             <article
                 style={{opacity: isDragging ? 0 : 1}}
@@ -91,9 +92,7 @@ export default class Artwork extends React.Component {
                 <div
                     className="artwork-image"
                     onClick={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
-                    onTouchTap={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}
-                    >
-                    <img src={this.props.thumbnail(this.props.artwork.fullsize_url,550)} />
+                    onTouchTap={this.props.onEdit.bind(null, this.props.artwork.id, this.props.artwork.album)}>                    <img src={artUrl}/>
                 </div>
                 <div className="artwork-info">
                     <h3 className="artwork-name">{this.props.artwork.title}</h3>
@@ -145,11 +144,10 @@ export default class Artwork extends React.Component {
 // ============= PropTypes ==============
 
 Artwork.propTypes = {
-    thumbnail: React.PropTypes.func.isRequired,
     currentAlbum: React.PropTypes.string.isRequired,
-    onEdit: React.PropTypes.func.isRequired,
-    onDelete: React.PropTypes.func.isRequired,
-    onMove: React.PropTypes.func.isRequired,
-    onSubmit: React.PropTypes.func.isRequired,
-    artwork: React.PropTypes.object.isRequired
+    onEdit      : React.PropTypes.func.isRequired,
+    onDelete    : React.PropTypes.func.isRequired,
+    onMove      : React.PropTypes.func.isRequired,
+    onSubmit    : React.PropTypes.func.isRequired,
+    artwork     : React.PropTypes.object.isRequired
 };
