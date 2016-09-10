@@ -14,6 +14,7 @@
 Given the server completes all jobs, an image can be requested from anywhere with
 just its artwork uid and artist uid via
 `https://storage.googleapis.com/dev-art-uploads/portal/${ <artist uid here> }/thumb512/${<artworkUID>}`
+But, not all instances of cloudinary and its 'thumbnail' method have been removed.
 
 ## Good Tabs to have open:
 - https://console.firebase.google.com/project/project-7614141605200030275/database/data
