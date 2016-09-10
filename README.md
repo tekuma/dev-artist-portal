@@ -2,15 +2,18 @@
 (Dev) A ReactJS/Firebase web-app development area for Artist.tekuma.io
 
 ## TODOs:
-* Remaster codebase to use new data-structure
-* Add functionality to 'submit' button, to add a submit object onto /submits in the DB
 * Set up an interface, (such as https://github.com/chrisvxd/firestation/tree/08bdb12cdee7477525379c7aa6de8c601f818c67) to administrate the /submits branch of the database. [Set up an Admin account, and log into it via firestation]
 * Set up the user's submit interface in the 'Gallery'.
 * Write tests for new functionality
-* Remove Cloudinary and replace with Re-sizing cloud functionality
 * Migrate all existing portal data to new (working) Datastructure
 * Re-define all DB and Storage system security rules.
 * Deploy in production
+
+## FIXMEs:
+#### Cloudinary has been removed.
+Given the server completes all jobs, an image can be requested from anywhere with
+just its artwork uid and artist uid via
+`https://storage.googleapis.com/dev-art-uploads/portal/${ <artist uid here> }/thumb512/${<artworkUID>}`
 
 ## Good Tabs to have open:
 - https://console.firebase.google.com/project/project-7614141605200030275/database/data
@@ -18,18 +21,11 @@
 - https://console.cloud.google.com/functions/list?project=project-7614141605200030275
 - https://console.cloud.google.com/storage/browser?project=project-7614141605200030275
 
-## Cloud functions
-This project requires 2 cloud functions.
-to deploy cloud functions, simply use
-`npm run gcf`
-This is shorthand for:
-**//TODO** remaster cloud functions to deploy from same index.js file.
-`gcloud alpha functions deploy autotag --stage-bucket dev-art-functions --trigger-bucket dev-art-uploads && gcloud alpha functions deploy resize --stage-bucket dev-art-functions --trigger-bucket dev-art-uploads`
-#### resize
-Resize handles the raw upload, and makes a thumb512 and thumb128 copy.
-
-#### autotag
-Autotag makes calls to Clarifai and does auto-tagging and color digestion.
+## Server Code
+The app requires the server to be running to work properly. cd into dev-server,
+then run    `node image_processing.js`
+The server handles making resized copies of the image, and sending the image to Clarifai
+for color and tag digestion.
 
 ## Security Rules
 #### DB
