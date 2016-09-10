@@ -20,14 +20,15 @@ export default class SubmitAlbumBanner extends React.Component {
 
     render() {
         const submit     = this.props.submits[this.props.currentSubmitIndex];
+        
         const dateObj    = new Date(Date.parse(submit.submit_date));
         const submitDate = dateObj.toDateString();
-        console.log("@@@@", this.props);
 
         //FIXME TODO  make image display
+        let url = `url(${submit.fullsize_url})`;
         let previewStyle = {
-            backgroundImage: 'url(assets/starry.jpg)',
-            //backgroundImage: `url(${submit.fullsize_url})`;
+            // backgroundImage: 'url(assets/starry.jpg)',
+            backgroundImage: url
         }
 
         let infoStyle = {

@@ -159,6 +159,7 @@ export default class PortalMain extends React.Component {
                 <SubmitArtworks
                     managerIsOpen ={this.props.managerIsOpen}
                     submits       ={this.state.submits}
+                    changeSubmit  ={this.changeSubmit}
                     user          ={this.props.user} />
                 <SubmitArtworkInfo
                     currentSubmitIndex={this.state.currentSubmit}

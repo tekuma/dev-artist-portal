@@ -1,7 +1,7 @@
 // Libs
 import React    from 'react';
 import firebase from 'firebase';
-import uuid from 'node-uuid';
+import uuid     from 'node-uuid';
 import {DragSource, DropTarget} from 'react-dnd';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
@@ -27,12 +27,13 @@ export default class SubmitArtwork extends React.Component {
             status = this.props.submit.status;
         } catch (e) {
             console.log(e);
-            status = "idk";
+            status = "-error-";
         }
 
         return (
             <article
                 className="artwork review">
+                <div>
                 <div
                     style={artworkImage}
                     className="artwork-image review">
@@ -81,11 +82,19 @@ export default class SubmitArtwork extends React.Component {
                         </svg>
                     </div>
                 </div>
+                </div>
             </article>
         );
     }
 
     componentDidMount() {
         console.log("+++++++ReviewArtwork");
+    }
+
+    displaySubmit = () => {
+        setTimeout(()=>{
+            this.props.changeSubmit(this.props.submitIndex);
+        }, 200)
+
     }
 }
