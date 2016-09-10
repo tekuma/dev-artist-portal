@@ -17,7 +17,8 @@ import Views                 from '../../constants/Views';
 
 export default class PortalMain extends React.Component {
     state = {
-        submits : []
+        submits      : [],
+        currentSubmit: 0
     };
 
     constructor(props) {
@@ -43,16 +44,18 @@ export default class PortalMain extends React.Component {
 
     componentDidMount() {
         console.log("+++++PortalMain");
-        window.addEventListener("resize", this.rerender);
-
-        if (Object.keys(this.props.user).length > 0) {
-            let ids = this.getSubmitIDs();
+        console.log("*********************");
+        this.getSubmitIDs().then((ids)=>{
+            console.log("getting stuff");
+            console.log("!!!!!!!!!");
             this.getSubmitObjects(ids).then( (submits)=>{
                 this.setState({
                     submits: submits
                 });
             });
-        }
+        })
+        window.addEventListener("resize", this.rerender);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -146,7 +149,7 @@ export default class PortalMain extends React.Component {
                     currentAlbum  ={this.props.currentAlbum}
                     changeAlbum   ={this.props.changeAlbum}
                     managerIsOpen ={this.props.managerIsOpen}
-                    use = {this.props.user}
+                    user = {this.props.user}
                     paths = {this.props.paths}
                     thumbnail={this.state.thumbnail}
                     currentAlbum={this.props.currentAlbum}
@@ -157,7 +160,12 @@ export default class PortalMain extends React.Component {
                     managerIsOpen ={this.props.managerIsOpen}
                     submits       ={this.state.submits}
                     user          ={this.props.user} />
-                <SubmitArtworkInfo />
+                <SubmitArtworkInfo
+                    currentSubmitIndex={this.state.currentSubmit}
+                    submits={this.state.submits}
+                    thumbnail={this.state.thumbnail}
+                    togglePublish={this.togglePublish}
+                    />
                 <div
                     onClick     ={this.props.toggleNav}
                     onTouchTap  ={this.props.toggleNav}
@@ -168,38 +176,61 @@ export default class PortalMain extends React.Component {
 
     // ============= Methods ===============
 
+    changeSubmit = (index) => {
+        this.setState({currentSubmit:index});
+    }
+
+    togglePublish = (submitID,currentState) => {
+        let path = `submits/${submitID}`;
+        firebase.database().ref(path).update({published:!currentState});
+    }
+
     rerender = () => {
         this.setState({});
     }
 
     getSubmitIDs = () => {
+        console.log(">getting ids");
         let albumName    = this.props.currentAlbum;
-        let albumIndex   = this.props.findAlbumIndex(albumName);
-        let currentAlbum = this.props.user.albums[albumIndex];
-        let ids;
-        if (currentAlbum.submits == undefined) {
-            ids = [];
-        } else {
-            ids = currentAlbum.submits;
-        }
+        return new Promise((resolve, reject)=>{
+            // we need to wait for the callback from firebase in componentDidMount
+            setTimeout(()=>{
+                let albumIndex;
+                try {
+                    albumIndex   = this.props.findAlbumIndex(albumName);
+                } catch (e) {
+                    console.log(e);
+                    albumIndex   = this.props.findAlbumIndex(albumName);
+                }
+                let currentAlbum = this.props.user.albums[albumIndex];
+                let ids;
+                if (currentAlbum.submits == undefined) {
+                    ids = [];
+                } else {
+                    ids = currentAlbum.submits;
+                }
+                console.log("IDs: ", ids);
+                resolve(ids);
+            },1000);
+        });
 
-        console.log("IDs: ", ids);
-        return ids;
     }
 
     getSubmitObjects = (ids) => {
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject)=>{
             let retlst = [];
             for (var i = 0; i < ids.length; i++) {
                 let id = ids[i];
                 let submitPath = `submits/${id}`;
-                firebase.database.ref(submitPath).once('value', (snapshot)=>{
+                firebase.database().ref(submitPath).once('value', (snapshot)=>{
                     let submit = snapshot.val();
                     retlst.push(submit);
                 }, (error)=>{
 
                 }, this)
             }
+            console.log("============");
+            console.log(">Submits:::", retlst);
             resolve(retlst);
         });
     }

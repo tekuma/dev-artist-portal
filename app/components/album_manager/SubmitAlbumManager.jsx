@@ -19,7 +19,8 @@ export default class ReviewAlbumManager extends React.Component {
     state = {
         albums    :{},
         uploads   :{},
-        albumNames:[]
+        albumNames:[],
+        albumArray:[]
     }
 
     constructor(props) {
@@ -56,12 +57,27 @@ export default class ReviewAlbumManager extends React.Component {
                 albumNames.push(allAlbums[key]['name']);
                 albums[key] = allAlbums[key];
             }
+            // ===== handle making albumsArray ===========
+            let albumArray = [];
+            console.log("album keys:", albumKeys);
+            for (let i = 0; i < albumKeys.length; i++) {
+                let index = albumKeys[i];
+                let thisName = this.props.user.albums[index]['name'];
+                let artworks = this.props.user.albums[index]['submits'];
+                albumArray.push({
+                    id: index,
+                    name: thisName,
+                    artworks: artworks
+                });
+            }
+            console.log(albumArray);
 
             //Set albums to state
             this.setState({
                 albums    :albums,
                 uploads   :uploads,
-                albumNames:albumNames
+                albumNames:albumNames,
+                albumArray:albumArray
             });
 
         }
@@ -86,12 +102,28 @@ export default class ReviewAlbumManager extends React.Component {
                 albums[key] = allAlbums[key];
             }
 
+            // ===== handle making albumsArray ===========
+            let albumArray = [];
+            console.log("album keys:", albumKeys);
+            for (let i = 0; i < albumKeys.length; i++) {
+                let index = albumKeys[i];
+                let thisName = this.props.user.albums[index]['name'];
+                let artworks = this.props.user.albums[index]['submits'];
+                albumArray.push({
+                    id: index,
+                    name: thisName,
+                    artworks: artworks
+                });
+            }
+            console.log(albumArray);
             //Set albums to state
             this.setState({
                 albums    : albums,
                 uploads   : uploads,
-                albumNames: albumNames
+                albumNames: albumNames,
+                albumArray:albumArray
             });
+
         }
     }
 
@@ -131,23 +163,23 @@ export default class ReviewAlbumManager extends React.Component {
         };
 
         // ===== handle making albumsArray ===========
-        let albumKeys = Object.keys(this.state.albums);
-        let albumArray = [];
-
-        for (let i = 0; i < albumKeys.length; i++) {
-            let index = albumKeys[i];
-            let thisName = this.state.albums[index]['name'];
-            let artworks = this.state.albums[index]['submits'];
-            albumArray.push({
-                id: index,
-                name: thisName,
-                artworks: artworks
-            });
-        }
+        // let albumKeys = Object.keys(this.props.user.albums);
+        // let albumArray = [];
+        // console.log("album keys:", albumKeys);
+        // for (let i = 0; i < albumKeys.length; i++) {
+        //     let index = albumKeys[i];
+        //     let thisName = this.props.user.albums[index]['name'];
+        //     let artworks = this.props.user.albums[index]['submits'];
+        //     albumArray.push({
+        //         id: index,
+        //         name: thisName,
+        //         artworks: artworks
+        //     });
+        // }
+        // console.log(albumArray);
 
 
         return (
-
             <section
                 className="album-manager review"
                 style={{
@@ -167,48 +199,9 @@ export default class ReviewAlbumManager extends React.Component {
                     }}
                     className="album-locker">
 
-                    <li onClick     ={this.props.changeAlbum.bind({}, "Impressions")}
-                        className   ={(this.props.currentAlbum === "Impressions") ? "album review selected" : "album review"}>
-                        <div className="album-avatar">
-                            <div
-                                style={{backgroundImage : 'url(assets/starry.jpg)'}}
-                                className="avatar-container" />
-                        </div>
-                        <h3
-                            className   ="album-name review"
-                            style={(window.innerWidth * 0.25 > 250) ? styleResponsive : styleFixed} >
-                            Impressions of a Crazy Man
-                        </h3>
-                        <div className="album-tools bottom">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={messagesTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool review"
-                                        src         ='assets/images/icons/mail-white.svg'
-                                    />
-                                    <h5 className="album-tool message-count">1</h5>
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                        <div className="album-tools top">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={removeTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool"
-                                        src         ='assets/images/icons/delete-white.svg'
-                                    />
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                    </li>
-
-                    {albumArray.map(album => {
+                    {this.state.albumArray.map(album => {
                         return (
-                            <Album
+                            <SubmitAlbum
                                 key                 ={album.id}
                                 paths               ={this.props.paths}
                                 album               ={album}
@@ -262,127 +255,31 @@ export default class ReviewAlbumManager extends React.Component {
                     float           ={"right"}
                     background      ={"#111111"}
                     managerIsOpen   ={this.props.managerIsOpen}
-                    toggleManager   ={this.props.toggleManager} />
+                    toggleManager   ={this.props.toggleManager}
+                />
                 <ul
                     style={{
-                        height: window.innerHeight - 60
+
                     }}
                     className="album-locker">
-                    <li onClick     ={this.props.changeAlbum.bind({}, "Impressions")}
-                        className   ={(this.props.currentAlbum === "Impressions") ? "album review selected" : "album review"}>
-                        <div className="album-avatar">
-                            <div
-                                style={{backgroundImage : 'url(assets/starry.jpg)'}}
-                                className="avatar-container" />
-                        </div>
-                        <h3
-                            className   ="album-name review"
-                            style={(window.innerWidth * 0.25 > 250) ? styleResponsive : styleFixed} >
-                            Impressions of a Crazy Man
-                        </h3>
-                        <div className="album-tools bottom">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={messagesTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool review"
-                                        src         ='assets/images/icons/mail-white.svg'
-                                    />
-                                    <h5 className="album-tool message-count">1</h5>
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                        <div className="album-tools top">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={removeTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool"
-                                        src         ='assets/images/icons/delete-white.svg'
-                                    />
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                    </li>
-                    <li onClick     ={this.props.changeAlbum.bind({}, "Elephants")}
-                        className   ={(this.props.currentAlbum === "Elephants") ? "album review selected" : "album review"}>
-                        <div className="album-avatar">
-                            <div
-                                style={{backgroundImage : 'url(assets/elephant.jpg)'}}
-                                className="avatar-container" />
-                        </div>
-                        <h3
-                            className   ="album-name review"
-                            style={(window.innerWidth * 0.3 > 250) ? styleResponsive : styleFixed} >
-                            Elephants
-                        </h3>
-                        <div className="album-tools bottom">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={messagesTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool review"
-                                        src         ='assets/images/icons/mail-white.svg'
-                                    />
-                                    <h5 className="album-tool message-count">0</h5>
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                        <div className="album-tools top">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={removeTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool"
-                                        src         ='assets/images/icons/delete-white.svg'
-                                    />
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                    </li>
-                    <li onClick     ={this.props.changeAlbum.bind({}, "Sunsets")}
-                        className   ={(this.props.currentAlbum === "Sunsets") ? "album review selected" : "album review"}>
-                        <div className="album-avatar">
-                            <div
-                                style={{backgroundImage : 'url(assets/sunset.jpg)'}}
-                                className="avatar-container" />
-                        </div>
-                        <h3
-                            className   ="album-name review"
-                            style={(window.innerWidth * 0.3 > 250) ? styleResponsive : styleFixed} >
-                            Sunsets
-                        </h3>
-                        <div className="album-tools bottom">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={messagesTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool review"
-                                        src         ='assets/images/icons/mail-white.svg'
-                                    />
-                                    <h5 className="album-tool message-count">0</h5>
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                        <div className="album-tools top">
-                            <OverlayTrigger
-                                placement   ="right"
-                                overlay     ={removeTooltip}>
-                                <div>
-                                    <img
-                                        className   ="album-tool"
-                                        src         ='assets/images/icons/delete-white.svg'
-                                    />
-                                </div>
-                            </OverlayTrigger>
-                        </div>
-                    </li>
+
+                    {this.state.albumArray.map(album => {
+                        return (
+                            <SubmitAlbum
+                                key                 ={album.id}
+                                paths               ={this.props.paths}
+                                album               ={album}
+                                user                ={this.props.user}
+                                thumbnail           ={this.props.thumbnail}
+                                currentAlbum        ={this.props.currentAlbum}
+                                changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
+                                changeArtworkAlbum  ={this.props.changeArtworkAlbum}
+                            />
+                        );
+                    })}
                 </ul>
+
+
             </section>
         );
     }
@@ -396,3 +293,44 @@ ReviewAlbumManager.propTypes = {
     managerIsOpen: React.PropTypes.bool.isRequired,
     toggleManager: React.PropTypes.func.isRequired
 };
+
+/* // OLD LIST ITEM
+<li onClick     ={this.props.changeAlbum.bind({}, "Impressions")}
+    className   ={(this.props.currentAlbum === "Impressions") ? "album review selected" : "album review"}>
+    <div className="album-avatar">
+        <div
+            style={{backgroundImage : 'url(assets/starry.jpg)'}}
+            className="avatar-container" />
+    </div>
+    <h3
+        className   ="album-name review"
+        style={(window.innerWidth * 0.25 > 250) ? styleResponsive : styleFixed} >
+        Impressions of a Crazy Man
+    </h3>
+    <div className="album-tools bottom">
+        <OverlayTrigger
+            placement   ="right"
+            overlay     ={messagesTooltip}>
+            <div>
+                <img
+                    className   ="album-tool review"
+                    src         ='assets/images/icons/mail-white.svg'
+                />
+                <h5 className="album-tool message-count">1</h5>
+            </div>
+        </OverlayTrigger>
+    </div>
+    <div className="album-tools top">
+        <OverlayTrigger
+            placement   ="right"
+            overlay     ={removeTooltip}>
+            <div>
+                <img
+                    className   ="album-tool"
+                    src         ='assets/images/icons/delete-white.svg'
+                />
+            </div>
+        </OverlayTrigger>
+    </div>
+</li>
+ */

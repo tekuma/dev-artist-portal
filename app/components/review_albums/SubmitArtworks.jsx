@@ -5,7 +5,7 @@ import firebase                     from 'firebase';
 
 // Files
 import SubmitArtwork from '../artwork_manager/SubmitArtwork';
-import Views             from '../../constants/Views';
+import Views         from '../../constants/Views';
 
 /**
  * TODO
@@ -51,7 +51,7 @@ export default class SubmitArtworks extends React.Component {
             width: 236,
             height: window.innerHeight - 60
         };
-
+        console.log(">> All submits",this.props.submits);
         return (
             <section
                 style={this.props.managerIsOpen ?
@@ -65,37 +65,18 @@ export default class SubmitArtworks extends React.Component {
                                 : styleManagerClosed}
                 className="review-artworks">
 
-                <SubmitArtwork />
                 {this.props.submits.map(submit => {
                     return (
                         <SubmitArtwork
                             submit = {submit}
-                             />
+                        />
                     );
                 })}
 
             </section>
         );
     }
-    /* use mapping
-    {albumArray.map(album => {
-        return (
-            <Album
-                key                 ={album.id}
-                paths               ={this.props.paths}
-                album               ={album}
-                user                ={this.props.user}
-                thumbnail           ={this.props.thumbnail}
-                onEdit              ={this.props.onEdit.bind(null, album.id)}
-                onDelete            ={this.props.onDelete.bind(null, album.id)}
-                onMove              ={this.moveAlbum}
-                currentAlbum        ={this.props.currentAlbum}
-                changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
-                changeArtworkAlbum  ={this.props.changeArtworkAlbum}
-                onSubmit            ={this.props.submitAlbum} />
-        );
-    })}
-     */
+
     componentDidMount() {
         console.log("+++++ReviewArtworks");
 

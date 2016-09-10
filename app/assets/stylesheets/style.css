@@ -922,6 +922,21 @@ header.black {
     -ms-transition: all 0.3s;
 }
 
+.review-album-name,
+.album-edit {
+	position: relative;
+	display: inline-block;
+	margin: 10px 0px 27px;
+	padding: 0px 12px 0px 5px;
+	font-weight: 600;
+	font-size: 1em;
+	color: #ffffff;
+	transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+}
+
 .album-name.review {
 	padding: 0px 33px 0px 5px;
 }
@@ -1031,12 +1046,12 @@ header.black {
 	font-size: 0.9em;
 }
 
-.review-albums-heading {
+.bums-heading {
 	border-bottom: 1px solid rgba(255,255,255,0.12);
 	margin: 5px;
 }
 
-.review-albums-heading h2 {
+.bums-heading h2 {
 	font-size: 1.2em;
 	color: #ffffff;
 	text-align: center;

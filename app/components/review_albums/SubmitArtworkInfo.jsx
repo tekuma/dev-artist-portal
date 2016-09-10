@@ -19,9 +19,15 @@ export default class SubmitAlbumBanner extends React.Component {
     }
 
     render() {
+        const submit     = this.props.submits[this.props.currentSubmitIndex];
+        const dateObj    = new Date(Date.parse(submit.submit_date));
+        const submitDate = dateObj.toDateString();
+        console.log("@@@@", this.props);
 
+        //FIXME TODO  make image display
         let previewStyle = {
-            backgroundImage: 'url(assets/starry.jpg)'
+            backgroundImage: 'url(assets/starry.jpg)',
+            //backgroundImage: `url(${submit.fullsize_url})`;
         }
 
         let infoStyle = {
@@ -41,6 +47,7 @@ export default class SubmitAlbumBanner extends React.Component {
             height: window.innerHeight - 60 - 147
         }
 
+
         return (
                 <section
                     className="review-artwork-banner"
@@ -55,27 +62,23 @@ export default class SubmitAlbumBanner extends React.Component {
                         <div className="album-banner-details-wrapper">
                             <div className="album-banner-details">
                                 <div className="album-banner-title">
-                                    Impressions
+                                    {submit.title}
                                 </div>
                                 <div className="album-banner-artist">
-                                    Van Gogh
+                                    {submit.artist}
                                 </div>
                                 <div className="album-banner-date">
-                                    1880
+                                    {submit.year}
                                 </div>
                             </div>
                         </div>
                         <div className="album-banner-description-wrapper">
                             <p className="album-banner-description">
-                                Vincent Van Gogh, a post-impressionist artist,
-                                is one of the most famous and recognizable artists
-                                of our time. Even so, while he was alive he struggled
-                                to makes end’s meat as his artwork was too progressive
-                                for his time.
+                                {submit.description}
                             </p>
                             <h5 className="album-banner-tags-heading">Tags:</h5>
                             <p className="album-banner-tags">
-                                Art, Oil, Canvas, Stars, Yellow, People, Lake
+                                TODO TODO TODO
                             </p>
                         </div>
                     </div>
@@ -92,7 +95,7 @@ export default class SubmitAlbumBanner extends React.Component {
                                 Date Submitted
                             </h3>
                             <div className="status-info-wrapper center">
-                                <p>12:34 June 15 2016</p>
+                                <p>{submitDate}</p>
                             </div>
                         </div>
                         <div className="status-wrapper">
@@ -102,7 +105,7 @@ export default class SubmitAlbumBanner extends React.Component {
                             <div className="status-info-wrapper center">
                                 <div className="review-status">
                                     <h4>
-                                        In Review
+                                        {submit.status}
                                     </h4>
                                 </div>
                             </div>
@@ -112,10 +115,7 @@ export default class SubmitAlbumBanner extends React.Component {
                                 Message
                             </h3>
                             <div className="status-info-wrapper">
-                                <p>Your artwork will be displayed on our social
-                                    media and in our curation serices. Publish
-                                    this artwork if you would like to feature it on
-                                    our Discover page too.</p>
+                            <p>{submit.message}</p>
                             </div>
                         </div>
                         <div className="status-wrapper">
@@ -123,7 +123,12 @@ export default class SubmitAlbumBanner extends React.Component {
                                 Publish to Discover
                             </h3>
                             <div className="status-info-wrapper center">
-                                <input id="publish-button" className="button slide-square inactive" type="checkbox" />
+                                <input id="publish-button"
+                                       className="button slide-square inactive"
+                                       type="checkbox"
+                                       onChange={this.props.togglePublish(submit.submit_id, submit.published)}
+                                       checked={submit.published}/>
+
                                 <label htmlFor="publish-button"></label>
                             </div>
                         </div>
@@ -142,4 +147,6 @@ export default class SubmitAlbumBanner extends React.Component {
 
     componentWillUnmount () {
     }
+
+
 }

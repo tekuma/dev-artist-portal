@@ -77,11 +77,10 @@ export default class PostAuth extends React.Component {
         // these 2 on-methods listen for any change to the database and
         // trigger a re-render on 'value'
         firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
-
             this.setState({
                 user: snapshot.val()
             });
-                console.log("FIREBASE: user info updated", this.state);
+            console.log("FIREBASE: user info updated", this.state);
         }, (error)=>{
             console.error(error);
             this.setState({
@@ -1090,8 +1089,10 @@ export default class PostAuth extends React.Component {
 
     findAlbumIndex = (name) => {
         let albums = this.state.user.albums;
+        console.log(this.state.user);
         for (var i = 0; i < albums.length; i++) {
             if (albums[i].name === name) {
+                console.log("found", i);
                 return i;
             }
         }

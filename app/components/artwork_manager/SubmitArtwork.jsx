@@ -16,9 +16,18 @@ export default class SubmitArtwork extends React.Component {
 
     render() {
 
-        //replace with storage thumb512
+        //TODO replace with storage thumb512
+        //`portal/${uid}/thumb124/${artworkUID}`
         let artworkImage = {
             backgroundImage: 'url(assets/starry.jpg)'
+        }
+        console.log("submit",this.props.submit);
+        let status;
+        try {
+            status = this.props.submit.status;
+        } catch (e) {
+            console.log(e);
+            status = "idk";
         }
 
         return (
@@ -32,7 +41,7 @@ export default class SubmitArtwork extends React.Component {
                     className={this.props.artworkApproved ? "artwork-status approved" : "artwork-status"}>
                     <div className="review-status">
                         <h5>
-                            In Review
+                            {status}
                         </h5>
                     </div>
                     <input
