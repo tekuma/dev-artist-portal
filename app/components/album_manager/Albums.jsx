@@ -125,7 +125,6 @@ export default class Albums extends React.Component {
 
 Albums.propTypes = {
     albums: React.PropTypes.object.isRequired,
-    thumbnail: React.PropTypes.func.isRequired,
     uploads: React.PropTypes.object.isRequired,
     onEdit: React.PropTypes.func.isRequired,
     editMisc: React.PropTypes.func.isRequired,
