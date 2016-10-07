@@ -4,7 +4,7 @@ import ReactDOM                     from 'react-dom';
 import firebase                     from 'firebase';
 
 // Files
-import SubmitArtwork from '../artwork_manager/SubmitArtwork';
+import SubmitArtwork from './SubmitArtwork';
 import Views         from '../../constants/Views';
 
 /**

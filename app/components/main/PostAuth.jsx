@@ -419,10 +419,10 @@ export default class PostAuth extends React.Component {
 
                     // Find Current Album index
 
-                    let albums = this.state.user.albums;
+                    let albums     = this.state.user.albums;
                     let albumIndex = 0;
 
-                    for(let i = 0; i < Object.keys(albums).length; i++) {
+                    for (let i = 0; i < Object.keys(albums).length; i++) {
                         let album = albums[i];
 
                         if (album.name == this.state.currentAlbum) {
@@ -486,7 +486,7 @@ export default class PostAuth extends React.Component {
                     }, (error,bool,snap)=>{
                             console.log(">>>Img set into album");
                     });
-                });//END upload promise and thenable
+                });
         });
     }
 
@@ -1089,23 +1089,19 @@ export default class PostAuth extends React.Component {
     }
 
     /**
-     * @param  {[type]} id [description]
+     * add a pointer in the onboarder/{uid}/submits
+     * @param  {hash code} submit_id
      * @return {[type]}    [description]
      */
     addSubmitPointer = (submit_id) => {
-        let albumIndex = this.findAlbumIndex(this.state.currentAlbum);
-        console.log(">adding pointer to album:", albumIndex);
-        if (albumIndex == -1) {
-            console.log("Error. Album not found...");
+        let user = this.state.user;
+        let submitPath = `${this.state.paths.user}/submits`;
+        if (user['submits'] == undefined || user['submits'] == null) {
+            user['submits'] = [];
+            firebase.database().ref()
         }
-        let album = this.state.user.albums[albumIndex];
-        if (album['submits'] == undefined || album['submits'] == null) {
-            album['submits'] = [];
-        }
-        album['submits'].push(submit_id)
-        firebase.database()
-            .ref(`${this.state.paths.albums}/${albumIndex}`)
-            .set(album, ()=>{console.log("pointer added ()");});
+        user['submits'].push(submit_id)
+        firebase.database().ref(submitPath).set(user['submits']);
     }
 
 

@@ -1,15 +1,14 @@
 // Libs
-import React             from 'react';
-import firebase          from 'firebase';
-import TransitionGroup   from 'react-addons-transition-group';
-
-
+import React                 from 'react';
+import firebase              from 'firebase';
+import TransitionGroup       from 'react-addons-transition-group';
 //Files
 import PostAuthHeader        from '../headers/PostAuthHeader';
 import ArtworksAlbumManager  from '../album_manager/ArtworksAlbumManager';
 import SubmitAlbumManager    from '../album_manager/SubmitAlbumManager';
-import SubmitArtworkInfo     from '../review_albums/SubmitArtworkInfo';
-import SubmitArtworks        from '../review_albums/SubmitArtworks';
+import SubmitArtworkManager  from '../gallery/SubmitArtworkManager';
+import SubmitArtworkInfo     from '../gallery/SubmitArtworkInfo';
+import SubmitArtworks        from '../gallery/SubmitArtworks';
 import ArtworkManager        from '../artwork_manager/ArtworkManager';
 import EditProfile           from '../edit_profile/EditProfile';
 import Views                 from '../../constants/Views';
@@ -45,19 +44,13 @@ export default class PortalMain extends React.Component {
     componentDidMount() {
         console.log("+++++PortalMain");
         this.getSubmitIDs().then((ids)=>{
-            console.log("getting stuff");
-            console.log("!!!!!!!!!");
-            console.log(ids);
             this.getSubmitObjects(ids).then( (submits)=>{
-                console.log("-_-_-_-_-_-_-_-");
-                console.log(submits);
                 this.setState({
                     submits: submits
                 });
             });
         })
         window.addEventListener("resize", this.rerender);
-
     }
 
     componentWillReceiveProps(nextProps) {
@@ -146,7 +139,7 @@ export default class PortalMain extends React.Component {
                     setUploadedFiles ={this.props.setUploadedFiles}
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
-                <SubmitAlbumManager
+                <SubmitArtworkManager
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     managerIsOpen      ={this.props.managerIsOpen}
@@ -155,12 +148,9 @@ export default class PortalMain extends React.Component {
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     changeArtworkAlbum ={this.props.changeArtworkAlbum}
-                    toggleManager      ={this.props.toggleManager} />
-                <SubmitArtworks
-                    managerIsOpen ={this.props.managerIsOpen}
-                    submits       ={this.state.submits}
+                    submits            ={this.state.submits}
                     changeSubmit  ={this.changeSubmit}
-                    user          ={this.props.user} />
+                    toggleManager      ={this.props.toggleManager} />
                 <SubmitArtworkInfo
                     currentSubmitIndex={this.state.currentSubmit}
                     submits={this.state.submits}
@@ -194,30 +184,11 @@ export default class PortalMain extends React.Component {
     }
 
     getSubmitIDs = () => {
-        console.log(">getting ids");
-        let albumName    = this.props.currentAlbum;
-        return new Promise((resolve, reject)=>{
-            // we need to wait for the callback from firebase in componentDidMount
-            setTimeout(()=>{
-                let albumIndex;
-                try {
-                    albumIndex   = this.props.findAlbumIndex(albumName);
-                } catch (e) {
-                    console.log(e);
-                    albumIndex   = this.props.findAlbumIndex(albumName);
-                }
-                let currentAlbum = this.props.user.albums[albumIndex];
-                let ids;
-                if (currentAlbum.submits == undefined) {
-                    ids = [];
-                } else {
-                    ids = currentAlbum.submits;
-                }
-                console.log("IDs: ", ids);
-                resolve(ids);
-            },1000);
-        });
-
+        setTimeout( ()=>{
+            let submits = this.props.user.submits
+            console.log(submits);
+            return
+        }, 500);
     }
 
     getSubmitObjects = (ids) => {

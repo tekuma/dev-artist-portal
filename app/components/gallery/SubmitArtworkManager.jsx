@@ -13,9 +13,8 @@ import AlbumToggler                 from './AlbumToggler';
 /**
  * TODO
  */
-export default class ReviewAlbumManager extends React.Component {
+export default class SubmitArtworkManager extends React.Component {
     state = {
-        albums    :{},
         uploads   :{},
         albumNames:[],
         albumArray:[]
@@ -26,7 +25,7 @@ export default class ReviewAlbumManager extends React.Component {
     }
 
     componentWillMount() {
-        console.log("-----ReviewAlbumManager");
+        console.log("-----SubmitAlbumManager");
     }
 
     render() {
@@ -160,6 +159,7 @@ export default class ReviewAlbumManager extends React.Component {
             width   : 210 * 0.96 - 70   // Album locker width caps at 210px. An album is 96% of the locker. The avatar is 70px
         };
 
+
         return (
             <section
                 className="album-manager review"
@@ -180,16 +180,12 @@ export default class ReviewAlbumManager extends React.Component {
                     }}
                     className="album-locker">
 
-                    {this.state.albumArray.map(album => {
+                    {this.props.submits.map(submit => {
                         return (
-                            <SubmitAlbum
-                                key                 ={album.id}
-                                paths               ={this.props.paths}
-                                album               ={album}
-                                user                ={this.props.user}
-                                currentAlbum        ={this.props.currentAlbum}
-                                changeAlbum         ={this.props.changeAlbum.bind(null, album.name)}
-                                changeArtworkAlbum  ={this.props.changeArtworkAlbum}
+                            <SubmitArtwork
+                                submitIndex = {this.props.submits.indexOf(submit)}
+                                submit = {submit}
+                                changeSubmit={this.props.changeSubmit}
                             />
                         );
                     })}
@@ -223,6 +219,11 @@ export default class ReviewAlbumManager extends React.Component {
             width   : 210 * 0.96 - 70   // Album locker width caps at 210px. An album is 96% of the locker. The avatar is 70px
         };
 
+        ///   THIS IS WHERE YOU LEFT OFF
+        ///   ==========================
+        ///   -- Get this SubmitsArtworkManager working
+        ///   -- remove the middle interface
+        ///   -- clean up any old code 
         return (
             <section
                 className="album-manager review"
