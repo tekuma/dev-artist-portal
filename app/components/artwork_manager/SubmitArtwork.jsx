@@ -2,7 +2,7 @@
 import React    from 'react';
 import firebase from 'firebase';
 import uuid     from 'node-uuid';
-import {DragSource, DropTarget} from 'react-dnd';
+import {DragSource, DropTarget}  from 'react-dnd';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 export default class SubmitArtwork extends React.Component {
@@ -17,9 +17,10 @@ export default class SubmitArtwork extends React.Component {
     render() {
 
         //TODO replace with storage thumb512
-        //`portal/${uid}/thumb124/${artworkUID}`
+        //portal/slTAXcccN4c1TfnNtkIzMFaqzoE3/thumb128/-KRH_7rn32Jc6HdQR-h7
+        let thumbnail = `https://storage.googleapis.com/dev-art-uploads/portal/${this.props.submit.artist_uid}/thumb128/${this.props.submit.id}`;
         let artworkImage = {
-            backgroundImage: 'url(assets/starry.jpg)'
+            backgroundImage: `url(${thumbnail})`
         }
         console.log("submit",this.props.submit);
         let status;

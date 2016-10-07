@@ -44,11 +44,13 @@ export default class PortalMain extends React.Component {
 
     componentDidMount() {
         console.log("+++++PortalMain");
-        console.log("*********************");
         this.getSubmitIDs().then((ids)=>{
             console.log("getting stuff");
             console.log("!!!!!!!!!");
+            console.log(ids);
             this.getSubmitObjects(ids).then( (submits)=>{
+                console.log("-_-_-_-_-_-_-_-");
+                console.log(submits);
                 this.setState({
                     submits: submits
                 });
@@ -145,15 +147,15 @@ export default class PortalMain extends React.Component {
                     changeAppLayout  ={this.props.changeAppLayout}
                     />
                 <SubmitAlbumManager
-                    currentAlbum  ={this.props.currentAlbum}
-                    changeAlbum   ={this.props.changeAlbum}
-                    managerIsOpen ={this.props.managerIsOpen}
-                    user = {this.props.user}
-                    paths = {this.props.paths}
-                    currentAlbum={this.props.currentAlbum}
-                    changeAlbum={this.props.changeAlbum}
-                    changeArtworkAlbum={this.props.changeArtworkAlbum}
-                    toggleManager ={this.props.toggleManager} />
+                    currentAlbum       ={this.props.currentAlbum}
+                    changeAlbum        ={this.props.changeAlbum}
+                    managerIsOpen      ={this.props.managerIsOpen}
+                    user               = {this.props.user}
+                    paths              = {this.props.paths}
+                    currentAlbum       ={this.props.currentAlbum}
+                    changeAlbum        ={this.props.changeAlbum}
+                    changeArtworkAlbum ={this.props.changeArtworkAlbum}
+                    toggleManager      ={this.props.toggleManager} />
                 <SubmitArtworks
                     managerIsOpen ={this.props.managerIsOpen}
                     submits       ={this.state.submits}
@@ -162,7 +164,6 @@ export default class PortalMain extends React.Component {
                 <SubmitArtworkInfo
                     currentSubmitIndex={this.state.currentSubmit}
                     submits={this.state.submits}
-                    thumbnail={this.state.thumbnail}
                     togglePublish={this.togglePublish}
                     />
                 <div
@@ -181,7 +182,11 @@ export default class PortalMain extends React.Component {
 
     togglePublish = (submitID,currentState) => {
         let path = `submits/${submitID}`;
-        firebase.database().ref(path).update({published:!currentState});
+        firebase.database().ref(path).transaction((snapshot)=>{
+            let snapState = snapshot.published;
+            snapshot['published'] = !snapState;
+            return snapshot;
+        });
     }
 
     rerender = () => {
@@ -216,21 +221,27 @@ export default class PortalMain extends React.Component {
     }
 
     getSubmitObjects = (ids) => {
+        console.log("input", ids);
         return new Promise((resolve, reject)=>{
             let retlst = [];
             for (var i = 0; i < ids.length; i++) {
                 let id = ids[i];
+                console.log(id);
                 let submitPath = `submits/${id}`;
                 firebase.database().ref(submitPath).once('value', (snapshot)=>{
                     let submit = snapshot.val();
                     retlst.push(submit);
                 }, (error)=>{
-
+                    console.log(error);
                 }, this)
             }
-            console.log("============");
-            console.log(">Submits:::", retlst);
-            resolve(retlst);
+            setTimeout( ()=>{
+                // FIXME use better code than timeout to wait for async for-loop
+                // wait for database snapshots to return
+                // console.log("============");
+                // console.log(">Submits:::", retlst);
+                resolve(retlst);
+            }, 1000);
         });
     }
 

@@ -1,26 +1,33 @@
 // Libs
-import React                        from 'react';
-import ReactDOM                     from 'react-dom';
-import firebase                     from 'firebase';
-
+import React          from 'react';
+import ReactDOM       from 'react-dom';
+import firebase       from 'firebase';
 // Files
-import Views             from '../../constants/Views';
+import Views          from '../../constants/Views';
 
 /**
- * TODO
+ * Parent: PortalMain
  */
-export default class SubmitAlbumBanner extends React.Component {
+export default class SubmitArtworkInfo extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-        console.log("-----ReviewAlbumBanner");
+        console.log("-----SubmitArtworkInfo");
     }
 
     render() {
         const submit     = this.props.submits[this.props.currentSubmitIndex];
-        
+        console.log(">>>>>>", this.props.submits);
+
+        if (this.props.submits.length === 0) {
+            console.log("Nothing.");
+            return(
+                <div> *** </div>
+            );
+        }
+
         const dateObj    = new Date(Date.parse(submit.submit_date));
         const submitDate = dateObj.toDateString();
 
@@ -124,11 +131,7 @@ export default class SubmitAlbumBanner extends React.Component {
                                 Publish to Discover
                             </h3>
                             <div className="status-info-wrapper center">
-                                <input id="publish-button"
-                                       className="button slide-square inactive"
-                                       type="checkbox"
-                                       onChange={this.props.togglePublish(submit.submit_id, submit.published)}
-                                       checked={submit.published}/>
+
 
                                 <label htmlFor="publish-button"></label>
                             </div>
