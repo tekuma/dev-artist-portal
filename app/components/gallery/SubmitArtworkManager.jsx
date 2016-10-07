@@ -6,9 +6,8 @@ import uuid                         from 'node-uuid';
 import {Tooltip, OverlayTrigger}    from 'react-bootstrap';
 import update                       from 'react-addons-update';
 // Files
-import Albums                       from './Albums.jsx';
 import Views                        from '../../constants/Views';
-import AlbumToggler                 from './AlbumToggler';
+import AlbumToggler                 from '../album_manager/AlbumToggler';
 
 /**
  * TODO
@@ -39,94 +38,12 @@ export default class SubmitArtworkManager extends React.Component {
     componentDidMount() {
         console.log("+++++ReviewAlbumManager");
 
-        if (this.props.user && this.props.user.albums) {
-            let user       = this.props.user;
-            let allAlbums  = user['albums'];
-
-            let albums  = {};
-            let uploads = allAlbums[0];
-
-            let albumKeys  = Object.keys(allAlbums);
-            let albumNames = ["Miscellaneous"];
-            //NOTE 'i' starting at 1 to ignore uploads album
-            for (let i = 1; i < albumKeys.length; i++) {
-                let key = albumKeys[i];
-                albumNames.push(allAlbums[key]['name']);
-                albums[key] = allAlbums[key];
-            }
-            // ===== handle making albumsArray ===========
-            let albumArray = [];
-            console.log("album keys:", albumKeys);
-            for (let i = 0; i < albumKeys.length; i++) {
-                let index = albumKeys[i];
-                let thisName = this.props.user.albums[index]['name'];
-                let artworks = this.props.user.albums[index]['submits'];
-                albumArray.push({
-                    id: index,
-                    name: thisName,
-                    artworks: artworks
-                });
-            }
-            console.log(albumArray);
-
-            //Set albums to state
-            this.setState({
-                albums    :albums,
-                uploads   :uploads,
-                albumNames:albumNames,
-                albumArray:albumArray
-            });
-
-        }
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.user && nextProps.user.albums) {
-            let user       = nextProps.user;
-            let allAlbums  = user['albums'];
-
-            let albums  = {};
-            let uploads = allAlbums[0];
-
-            let albumKeys  = Object.keys(allAlbums);
-            let albumNames = ["Miscellaneous"];
-
-            //NOTE 'i' starting at 1 to ignore uploads album
-            for (let i = 1; i < albumKeys.length; i++) {
-                let key = albumKeys[i];
-                albumNames.push(allAlbums[key]['name']);
-                albums[key] = allAlbums[key];
-            }
-
-            // ===== handle making albumsArray ===========
-            let albumArray = [];
-            console.log("album keys:", albumKeys);
-            for (let i = 0; i < albumKeys.length; i++) {
-                let index = albumKeys[i];
-                let thisName = this.props.user.albums[index]['name'];
-                let artworks = this.props.user.albums[index]['submits'];
-                albumArray.push({
-                    id: index,
-                    name: thisName,
-                    artworks: artworks
-                });
-            }
-            console.log(albumArray);
-            //Set albums to state
-            this.setState({
-                albums    : albums,
-                uploads   : uploads,
-                albumNames: albumNames,
-                albumArray:albumArray
-            });
-
-        }
     }
 
     componentWillReceiveProps(nextProps) {
 
     }
+
 
     componentWillUnmount () {
 
@@ -223,7 +140,8 @@ export default class SubmitArtworkManager extends React.Component {
         ///   ==========================
         ///   -- Get this SubmitsArtworkManager working
         ///   -- remove the middle interface
-        ///   -- clean up any old code 
+        ///   -- clean up any old code
+        ///   --
         return (
             <section
                 className="album-manager review"
@@ -267,50 +185,9 @@ export default class SubmitArtworkManager extends React.Component {
 
 // ============= PropTypes ==============
 
-ReviewAlbumManager.propTypes = {
-    currentAlbum: React.PropTypes.string.isRequired,
-    changeAlbum: React.PropTypes.func.isRequired,
+SubmitArtworkManager.propTypes = {
+    currentAlbum : React.PropTypes.string.isRequired,
+    changeAlbum  : React.PropTypes.func.isRequired,
     managerIsOpen: React.PropTypes.bool.isRequired,
     toggleManager: React.PropTypes.func.isRequired
 };
-
-/* // OLD LIST ITEM
-<li onClick     ={this.props.changeAlbum.bind({}, "Impressions")}
-    className   ={(this.props.currentAlbum === "Impressions") ? "album review selected" : "album review"}>
-    <div className="album-avatar">
-        <div
-            style={{backgroundImage : 'url(assets/starry.jpg)'}}
-            className="avatar-container" />
-    </div>
-    <h3
-        className   ="album-name review"
-        style={(window.innerWidth * 0.25 > 250) ? styleResponsive : styleFixed} >
-        Impressions of a Crazy Man
-    </h3>
-    <div className="album-tools bottom">
-        <OverlayTrigger
-            placement   ="right"
-            overlay     ={messagesTooltip}>
-            <div>
-                <img
-                    className   ="album-tool review"
-                    src         ='assets/images/icons/mail-white.svg'
-                />
-                <h5 className="album-tool message-count">1</h5>
-            </div>
-        </OverlayTrigger>
-    </div>
-    <div className="album-tools top">
-        <OverlayTrigger
-            placement   ="right"
-            overlay     ={removeTooltip}>
-            <div>
-                <img
-                    className   ="album-tool"
-                    src         ='assets/images/icons/delete-white.svg'
-                />
-            </div>
-        </OverlayTrigger>
-    </div>
-</li>
- */
