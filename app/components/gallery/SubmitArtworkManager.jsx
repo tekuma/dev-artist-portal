@@ -8,6 +8,7 @@ import update                       from 'react-addons-update';
 // Files
 import Views                        from '../../constants/Views';
 import AlbumToggler                 from '../album_manager/AlbumToggler';
+import SubmitArtwork                from './SubmitArtwork';
 
 /**
  * TODO
@@ -24,7 +25,7 @@ export default class SubmitArtworkManager extends React.Component {
     }
 
     componentWillMount() {
-        console.log("-----SubmitAlbumManager");
+        console.log("-----SubmitArtworkManager");
     }
 
     render() {
@@ -36,7 +37,7 @@ export default class SubmitArtworkManager extends React.Component {
     }
 
     componentDidMount() {
-        console.log("+++++ReviewAlbumManager");
+        console.log("+++++SubmitArtworkManager");
 
     }
 
@@ -52,6 +53,9 @@ export default class SubmitArtworkManager extends React.Component {
 // ============= Flow Control ===============
 
     openedManager = () => {
+        console.log("-------------");
+        console.log(this.props.submits);
+
         const messagesTooltip = (
             <Tooltip
                 id="notifications-tooltip"
@@ -100,9 +104,9 @@ export default class SubmitArtworkManager extends React.Component {
                     {this.props.submits.map(submit => {
                         return (
                             <SubmitArtwork
-                                submitIndex = {this.props.submits.indexOf(submit)}
-                                submit = {submit}
-                                changeSubmit={this.props.changeSubmit}
+                                submitIndex  ={this.props.submits.indexOf(submit)}
+                                submit       ={submit}
+                                changeSubmit ={this.props.changeSubmit}
                             />
                         );
                     })}

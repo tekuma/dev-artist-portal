@@ -37,19 +37,22 @@ export default class PortalMain extends React.Component {
                 return this.goToEditProfile();
 
             case Views.REVIEW:
-                return this.goToSubmissions();
+                return this.goToGallery();
         }
     }
 
     componentDidMount() {
         console.log("+++++PortalMain");
-        this.getSubmitIDs().then((ids)=>{
-            this.getSubmitObjects(ids).then( (submits)=>{
+        let propDelay = 600; // allow for user-data from firebase to arrive
+        setTimeout( ()=> {
+            let submitIDs = this.props.user.submits;
+            this.getSubmitObjects(submitIDs).then( (submits)=>{
+                console.log("^^^^^^^SUBMITS SET^^^^");
                 this.setState({
                     submits: submits
                 });
             });
-        })
+        }, propDelay);
         window.addEventListener("resize", this.rerender);
     }
 
@@ -62,6 +65,7 @@ export default class PortalMain extends React.Component {
     }
 
 // ============= Flow Control ===============
+// flow control methods add readability to logic of the render() method
 
     goToArtworkManager = () => {
         return (
@@ -132,7 +136,8 @@ export default class PortalMain extends React.Component {
         );
     }
 
-    goToSubmissions = () => {
+    goToGallery = () => {
+        console.log(this.state.submits);
         return (
             <div className={this.props.navIsOpen ? "main-wrapper open" : "main-wrapper"}>
                 <PostAuthHeader
@@ -143,13 +148,13 @@ export default class PortalMain extends React.Component {
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     managerIsOpen      ={this.props.managerIsOpen}
-                    user               = {this.props.user}
-                    paths              = {this.props.paths}
+                    user               ={this.props.user}
+                    paths              ={this.props.paths}
                     currentAlbum       ={this.props.currentAlbum}
                     changeAlbum        ={this.props.changeAlbum}
                     changeArtworkAlbum ={this.props.changeArtworkAlbum}
                     submits            ={this.state.submits}
-                    changeSubmit  ={this.changeSubmit}
+                    changeSubmit       ={this.changeSubmit}
                     toggleManager      ={this.props.toggleManager} />
                 <SubmitArtworkInfo
                     currentSubmitIndex={this.state.currentSubmit}
@@ -184,11 +189,12 @@ export default class PortalMain extends React.Component {
     }
 
     getSubmitIDs = () => {
+        let propDelay = 500; // give time to allow data from firebase to arrive
         setTimeout( ()=>{
             let submits = this.props.user.submits
-            console.log(submits);
-            return
-        }, 500);
+            console.log("()()",submits);
+            return submits;
+        }, propDelay);
     }
 
     getSubmitObjects = (ids) => {
@@ -222,26 +228,26 @@ export default class PortalMain extends React.Component {
 // ============= PropTypes ==============
 
 PortalMain.propTypes = {
-    thumbnail: React.PropTypes.func.isRequired,
-    user: React.PropTypes.object.isRequired,
-    toggleNav: React.PropTypes.func.isRequired,
-    navIsOpen: React.PropTypes.bool.isRequired,
-    deleteArtwork: React.PropTypes.func.isRequired,
-    submitArtwork: React.PropTypes.func.isRequired,
-    submitAlbum: React.PropTypes.func.isRequired,
-    toggleEditArtworkDialog: React.PropTypes.func.isRequired,
+    thumbnail                : React.PropTypes.func.isRequired,
+    user                     : React.PropTypes.object.isRequired,
+    toggleNav                : React.PropTypes.func.isRequired,
+    navIsOpen                : React.PropTypes.bool.isRequired,
+    deleteArtwork            : React.PropTypes.func.isRequired,
+    submitArtwork            : React.PropTypes.func.isRequired,
+    submitAlbum              : React.PropTypes.func.isRequired,
+    toggleEditArtworkDialog  : React.PropTypes.func.isRequired,
     toggleEditMiscAlbumDialog: React.PropTypes.func.isRequired,
-    changeCurrentEditArtwork: React.PropTypes.func.isRequired,
-    changeCurrentEditAlbum: React.PropTypes.func.isRequired,
-    toggleManager: React.PropTypes.func.isRequired,
-    managerIsOpen: React.PropTypes.bool.isRequired,
-    changeAppLayout: React.PropTypes.func.isRequired,
-    currentAlbum: React.PropTypes.string.isRequired,
-    changeAlbum: React.PropTypes.func.isRequired,
-    setUploadedFiles: React.PropTypes.func.isRequired,
-    editPublicUserInfo: React.PropTypes.func.isRequired,
-    editPrivateUserInfo: React.PropTypes.func.isRequired,
+    changeCurrentEditArtwork : React.PropTypes.func.isRequired,
+    changeCurrentEditAlbum   : React.PropTypes.func.isRequired,
+    toggleManager            : React.PropTypes.func.isRequired,
+    managerIsOpen            : React.PropTypes.bool.isRequired,
+    changeAppLayout          : React.PropTypes.func.isRequired,
+    currentAlbum             : React.PropTypes.string.isRequired,
+    changeAlbum              : React.PropTypes.func.isRequired,
+    setUploadedFiles         : React.PropTypes.func.isRequired,
+    editPublicUserInfo       : React.PropTypes.func.isRequired,
+    editPrivateUserInfo      : React.PropTypes.func.isRequired,
     toggleDeleteAccountDialog: React.PropTypes.func.isRequired,
-    toggleVerifyEmailDialog: React.PropTypes.func.isRequired,
-    changeArtworkAlbum: React.PropTypes.func.isRequired
+    toggleVerifyEmailDialog  : React.PropTypes.func.isRequired,
+    changeArtworkAlbum       : React.PropTypes.func.isRequired
 };

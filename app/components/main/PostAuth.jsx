@@ -62,7 +62,6 @@ export default class PostAuth extends React.Component {
         const thisUID   = firebase.auth().currentUser.uid;
 
         let state = this.state;
-
         state['paths'] = {
             uid : thisUID,
             user    : `onboarders/${thisUID}`,
@@ -70,13 +69,14 @@ export default class PostAuth extends React.Component {
             albums  : `onboarders/${thisUID}/albums`,
             artworks: `onboarders/${thisUID}/artworks`
         };
-
         state["thisUID"] = firebase.auth().currentUser.uid;
         this.setState(state);
 
         //NOTE: MAIN LISTENER FOR CONNECTION TO firebase
         // these 2 on-methods listen for any change to the database and
         // trigger a re-render on 'value'
+
+        let errorLifespan = 4500; // 4.5 seconds
         firebase.database().ref(this.state.paths.user).on('value', (snapshot)=>{
             this.setState({
                 user: snapshot.val()
@@ -87,12 +87,11 @@ export default class PostAuth extends React.Component {
             this.setState({
                 currentError: error.message
             });
-
             setTimeout(() => {
                 this.setState({
                     currentError: ""
                 });
-            }, 4500);   // Clear error once it has been shown
+            }, errorLifespan);   // Clear error once it has been shown
         }, this);
 
 
@@ -190,7 +189,7 @@ export default class PostAuth extends React.Component {
 
     componentDidMount() {
         console.log("++++++PostAuth");
-        console.log("State: ", this.state);
+        // console.log("State: ", this.state);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -337,6 +336,13 @@ export default class PostAuth extends React.Component {
 
     //  # Uploading Methods
 
+    /**
+     * This method creates a new Job object, and appends it to the job stack for the
+     * image processesing daemon on the server side to handle.
+     * @param  {[String]} path       [location of the uploaded file]
+     * @param  {[Dtring]} artworkUID [firebase push key for the artwork]
+     * @param  {[String]} task       [Type of job to be performed]
+     */
     submitJob = (path, artworkUID,task) => {
         let jobID     = firebase.database().ref('jobs').push().key;
         console.log(jobID);
@@ -353,7 +359,6 @@ export default class PostAuth extends React.Component {
         let jobPath = `jobs/${jobID}`;
         firebase.database().ref(jobPath).set(job);
     }
-
 
     /**
      * This method takes in a blob object that a user has uploaded, then

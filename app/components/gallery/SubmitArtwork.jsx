@@ -11,14 +11,13 @@ export default class SubmitArtwork extends React.Component {
     }
 
     componentWillMount() {
-        console.log("------ReviewArtwork");
+        console.log("------SubmitArtwork");
     }
 
     render() {
-
-        //TODO replace with storage thumb512
         //portal/slTAXcccN4c1TfnNtkIzMFaqzoE3/thumb128/-KRH_7rn32Jc6HdQR-h7
         let thumbnail = `https://storage.googleapis.com/dev-art-uploads/portal/${this.props.submit.artist_uid}/thumb128/${this.props.submit.id}`;
+        console.log(thumbnail);
         let artworkImage = {
             backgroundImage: `url(${thumbnail})`
         }
@@ -40,7 +39,7 @@ export default class SubmitArtwork extends React.Component {
                     className="artwork-image review">
                 </div>
                 <div
-                    className={this.props.artworkApproved ? "artwork-status approved" : "artwork-status"}>
+                    className={this.props.artworkApproved ? "artwork-status approved" : "artwork-status"}
                     <div className="review-status">
                         <h5>
                             {status}
